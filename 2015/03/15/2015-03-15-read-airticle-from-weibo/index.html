@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Ubuntu14.04编译安装Qt4.8.6 | ZhangXiaoya&#39;Blog</title>
+  <title>2015-03-15 read airticle from weibo | ZhangXiaoya&#39;Blog</title>
   <meta name="author" content="ZhangXiaoya">
   
   <meta name="description" content="Nobody notices your sorrow, your pain, but everyone notices your mistakes.">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Ubuntu14.04编译安装Qt4.8.6"/>
+  <meta property="og:title" content="2015-03-15 read airticle from weibo"/>
   <meta property="og:site_name" content="ZhangXiaoya&#39;Blog"/>
 
   
@@ -52,45 +52,27 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2015-03-12T13:44:09.000Z"><a href="/2015/03/12/the-first-blog-in-hexo/">2015-03-12</a></time>
+        <time datetime="2015-03-15T08:40:28.000Z"><a href="/2015/03/15/2015-03-15-read-airticle-from-weibo/">2015-03-15</a></time>
       
       
   
-    <h1 class="title">Ubuntu14.04编译安装Qt4.8.6</h1>
+    <h1 class="title">2015-03-15 read airticle from weibo</h1>
   
 
     </header>
     <div class="entry">
       
-        <p>今天下午使用Hexo搭了一个小站，以前的文章都写在CSDN和新浪博客，到处都是广告，于是就搭建了这个属于自己的网站，自己随意搭配，以后慢慢将重要的文章转移到自己的小站。<br>第一篇文章就写写如何在Ubuntu14.04上编译安装Qt4.8.6；<br><a id="more"></a></p>
-<h4 id="Step1_安装依赖库：">Step1 安装依赖库：</h4><figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="built_in">get</span> install libfontconfig1-<span class="built_in">dev</span> libfreetype6-<span class="built_in">dev</span> libx11-<span class="built_in">dev</span> libxcursor-<span class="built_in">dev</span> libxext-<span class="built_in">dev</span> libxfixes-<span class="built_in">dev</span> libxft-<span class="built_in">dev</span> libxi-<span class="built_in">dev</span> libxrandr-<span class="built_in">dev</span> libxrender-<span class="built_in">dev</span></span><br></pre></td></tr></table></figure>
-<h4 id="Step2_在Qt的官网下载Qt4-8-6的源码：">Step2 在Qt的官网下载Qt4.8.6的源码：</h4><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget <span class="symbol">http:</span>/<span class="regexp">/download.qt.io/archive</span><span class="regexp">/qt/</span><span class="number">4.8</span>/<span class="number">4.8</span>.<span class="number">6</span>/qt-everywhere-opensource-src-<span class="number">4.8</span>.<span class="number">6</span>.tar.gz</span><br></pre></td></tr></table></figure>
-<h4 id="Step3_解压包">Step3 解压包</h4><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">gunzip</span> qt-everywhere-opensource-src-<span class="number">4</span>.<span class="number">8</span>.<span class="number">6</span>.tar.gz        <span class="comment"># uncompress the archive  </span></span><br><span class="line">tar xvf qt-everywhere-opensource-src-<span class="number">4</span>.<span class="number">8</span>.<span class="number">6</span>.tar          <span class="comment"># unpack it</span></span><br></pre></td></tr></table></figure>
-<h4 id="Step4_生成Makefile文件">Step4 生成Makefile文件</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure</span><br></pre></td></tr></table></figure>
-<h4 id="Step5_构建">Step5 构建</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">make</span></span><br></pre></td></tr></table></figure>
-<h4 id="Step6_安装">Step6 安装</h4><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make <span class="keyword">install</span></span><br></pre></td></tr></table></figure>
-<h4 id="Step7_配置环境变量">Step7 配置环境变量</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PATH=/usr/<span class="built_in">local</span>/Trolltech/Qt-<span class="number">4.8</span>.<span class="number">6</span>/bin:<span class="variable">$PATH</span>  </span><br><span class="line"><span class="built_in">export</span> PATH</span><br></pre></td></tr></table></figure>
-<h4 id="Step8_创建软连接">Step8 创建软连接</h4><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ln -s <span class="regexp">/usr/</span>local<span class="regexp">/Trolltech/</span>Qt-<span class="number">4.8</span>.<span class="number">6</span><span class="regexp">/bin/</span>qmake <span class="regexp">/usr/</span>lib<span class="regexp">/i386-linux-gnu/</span>qt4<span class="regexp">/bin/</span>qmake</span><br></pre></td></tr></table></figure>
-<h4 id="参考链接：">参考链接：</h4><ol>
-<li><a href="http://qt-project.org/doc/qt-4.8/install-x11.html" target="_blank" rel="external">官网文档</a></li>
-</ol>
+        <p>以前在微博上面分享了很多有意思的文章，但是大多数都是扫一眼，大题的看一下，有的仔细看了，但是没有总结，没有形成自己的知识，自己搭建了这个小博客，可以把看文章的心得放在上面，可供分享，另一方面也是方面自己回忆学习。<br>今天打算阅读三篇文章，分别是<strong>奇异值分解SVD</strong>、<strong>26条时间管理技巧</strong>和<strong>Github使用系列文章</strong>，其中<strong>Github使用系列文章</strong>是一个系列的文章，今天是不太可能看完了，所以只能持续几天。</p>
+<h2 id="<!-more->"><a id="more"></a></h2><h2 id="奇异值分解SVD">奇异值分解SVD</h2><p><a href="http://www.tuicool.com/articles/IFJRVrY" target="_blank" rel="external">原文</a></p>
+<h2 id="26条时间管理技巧">26条时间管理技巧</h2><p><a href="http://blog.jobbole.com/37650/" target="_blank" rel="external">原文</a></p>
+<h2 id="如何使用Github系列">如何使用Github系列</h2><p><a href="http://www.worldhello.net/gotgithub/" target="_blank" rel="external">原文</a></p>
 
       
     </div>
     <footer>
       
         
-  
-  <div class="categories">
-    <a href="/categories/Qt/">Qt</a>, <a href="/categories/Qt/Linux/">Linux</a>
-  </div>
-
         
-  
-  <div class="tags">
-    <a href="/tags/Qt4/">Qt4</a>, <a href="/tags/Ubuntu/">Ubuntu</a>, <a href="/tags/源码/">源码</a>
-  </div>
-
         <div class="bdsharebuttonbox"><a class="bds_more" href="#" data-cmd="more"></a><a title="分享到新浪微博" class="bds_tsina" href="#" data-cmd="tsina"></a><a title="分享到微信" class="bds_weixin" href="#" data-cmd="weixin"></a><a title="分享到QQ空间" class="bds_qzone" href="#" data-cmd="qzone"></a><a title="分享到腾讯微博" class="bds_tqq" href="#" data-cmd="tqq"></a><a title="分享到人人网" class="bds_renren" href="#" data-cmd="renren"></a><a title="分享到Twitter" class="bds_twi" href="#" data-cmd="twi"></a><a title="分享到Facebook" class="bds_fbook" href="#" data-cmd="fbook"></a><a title="分享到豆瓣网" class="bds_douban" href="#" data-cmd="douban"></a></div>
 <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["tsina","weixin","qzone","tqq","renren","twi","fbook","douban"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["tsina","weixin","qzone","tqq","renren","twi","fbook","douban"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
       
@@ -102,7 +84,7 @@
 
 <section id="comment">
   <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key=2015/03/12/the-first-blog-in-hexo/ data-title=Ubuntu14.04编译安装Qt4.8.6 data-url=http://yoursite.com/2015/03/12/the-first-blog-in-hexo/></div>
+  <div class="ds-thread" data-thread-key=2015/03/15/2015-03-15-read-airticle-from-weibo/ data-title=2015-03-15 read airticle from weibo data-url=http://yoursite.com/2015/03/15/2015-03-15-read-airticle-from-weibo/></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">

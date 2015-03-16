@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Ubuntu14.04编译安装Qt4.8.6 | ZhangXiaoya&#39;Blog</title>
+  <title>数据库原理复习系列（一） | ZhangXiaoya&#39;Blog</title>
   <meta name="author" content="ZhangXiaoya">
   
   <meta name="description" content="Nobody notices your sorrow, your pain, but everyone notices your mistakes.">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Ubuntu14.04编译安装Qt4.8.6"/>
+  <meta property="og:title" content="数据库原理复习系列（一）"/>
   <meta property="og:site_name" content="ZhangXiaoya&#39;Blog"/>
 
   
@@ -52,28 +52,58 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2015-03-12T13:44:09.000Z"><a href="/2015/03/12/the-first-blog-in-hexo/">2015-03-12</a></time>
+        <time datetime="2015-03-16T00:37:29.000Z"><a href="/2015/03/16/2015-03-16-database/">2015-03-16</a></time>
       
       
   
-    <h1 class="title">Ubuntu14.04编译安装Qt4.8.6</h1>
+    <h1 class="title">数据库原理复习系列（一）</h1>
   
 
     </header>
     <div class="entry">
       
-        <p>今天下午使用Hexo搭了一个小站，以前的文章都写在CSDN和新浪博客，到处都是广告，于是就搭建了这个属于自己的网站，自己随意搭配，以后慢慢将重要的文章转移到自己的小站。<br>第一篇文章就写写如何在Ubuntu14.04上编译安装Qt4.8.6；<br><a id="more"></a></p>
-<h4 id="Step1_安装依赖库：">Step1 安装依赖库：</h4><figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="built_in">get</span> install libfontconfig1-<span class="built_in">dev</span> libfreetype6-<span class="built_in">dev</span> libx11-<span class="built_in">dev</span> libxcursor-<span class="built_in">dev</span> libxext-<span class="built_in">dev</span> libxfixes-<span class="built_in">dev</span> libxft-<span class="built_in">dev</span> libxi-<span class="built_in">dev</span> libxrandr-<span class="built_in">dev</span> libxrender-<span class="built_in">dev</span></span><br></pre></td></tr></table></figure>
-<h4 id="Step2_在Qt的官网下载Qt4-8-6的源码：">Step2 在Qt的官网下载Qt4.8.6的源码：</h4><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget <span class="symbol">http:</span>/<span class="regexp">/download.qt.io/archive</span><span class="regexp">/qt/</span><span class="number">4.8</span>/<span class="number">4.8</span>.<span class="number">6</span>/qt-everywhere-opensource-src-<span class="number">4.8</span>.<span class="number">6</span>.tar.gz</span><br></pre></td></tr></table></figure>
-<h4 id="Step3_解压包">Step3 解压包</h4><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">gunzip</span> qt-everywhere-opensource-src-<span class="number">4</span>.<span class="number">8</span>.<span class="number">6</span>.tar.gz        <span class="comment"># uncompress the archive  </span></span><br><span class="line">tar xvf qt-everywhere-opensource-src-<span class="number">4</span>.<span class="number">8</span>.<span class="number">6</span>.tar          <span class="comment"># unpack it</span></span><br></pre></td></tr></table></figure>
-<h4 id="Step4_生成Makefile文件">Step4 生成Makefile文件</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure</span><br></pre></td></tr></table></figure>
-<h4 id="Step5_构建">Step5 构建</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">make</span></span><br></pre></td></tr></table></figure>
-<h4 id="Step6_安装">Step6 安装</h4><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make <span class="keyword">install</span></span><br></pre></td></tr></table></figure>
-<h4 id="Step7_配置环境变量">Step7 配置环境变量</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PATH=/usr/<span class="built_in">local</span>/Trolltech/Qt-<span class="number">4.8</span>.<span class="number">6</span>/bin:<span class="variable">$PATH</span>  </span><br><span class="line"><span class="built_in">export</span> PATH</span><br></pre></td></tr></table></figure>
-<h4 id="Step8_创建软连接">Step8 创建软连接</h4><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ln -s <span class="regexp">/usr/</span>local<span class="regexp">/Trolltech/</span>Qt-<span class="number">4.8</span>.<span class="number">6</span><span class="regexp">/bin/</span>qmake <span class="regexp">/usr/</span>lib<span class="regexp">/i386-linux-gnu/</span>qt4<span class="regexp">/bin/</span>qmake</span><br></pre></td></tr></table></figure>
-<h4 id="参考链接：">参考链接：</h4><ol>
-<li><a href="http://qt-project.org/doc/qt-4.8/install-x11.html" target="_blank" rel="external">官网文档</a></li>
+        <h2 id="要找工作找实习了，看了看之前的项目，几乎都是与数据库应用相关的，虽然项目比较水，但是面试的时候估计人家得详细的问。所以，数据库这块得非常认真的准备。准备看几篇文章，看看书，今天是第一天复习，先把基础的东西搞懂。">要找工作找实习了，看了看之前的项目，几乎都是与数据库应用相关的，虽然项目比较水，但是面试的时候估计人家得详细的问。所以，数据库这块得非常认真的准备。准备看几篇文章，看看书，今天是第一天复习，先把基础的东西搞懂。</h2><a id="more"></a>
+<h2 id="No-1_一些名词概念">No.1 一些名词概念</h2><ol>
+<li>数据库（database）：存储和提供数据的东西（库房）；</li>
+<li>数据（data）：数据库中存储的基本对象；</li>
+<li>数据库管理系统（DBMS）：属于与系统软件，是介于用户与操作系统的数据库管理软件；</li>
+<li>数据库系统（DBS）：包括数据库、数据库管理系统、应用系统和数据库管理员（DBA）；</li>
+<li>主键（Primary Key）：用于唯一的标识表中某一条记录的属性或者属性的集合；</li>
+<li>外键（Foreign Key）：用于与另外一张表关联，是另外一张表的主键；</li>
+<li>超键（Super Key）：官方的解释是唯一能标识元组的一个属性或者是多个属性的集合，其实就是主键，或者其他属性与主键的集合；</li>
+<li>元组（Tuple）：在二维表中，元组是一行数据，在二维关系数据库中，也被称作是记录；</li>
+<li>候选键（）：没有多余属性的超键，主键其实就是候选键中的唯一一个；</li>
+<li>模式（Schema）：一个数据库的描述，包括对数据库结构，数据类型和约束；<br>11：实例（Instance/State）：数据库中某一刻真实存在的数据。Instance是Schema在某一时刻的具体化，实例化；<br>12：数据库操纵语言（DML：Database Manipulation Language）：增删改查；<br>13：数据库定义余元（DDL：Data Definition Language）：定义、修改、删除数据库中的对象；<br>14：数据库控制余元（DCL：Database Control Lang）：用于控制用户对数据库的操纵权限；<br>15：数据模型（Data Model）：现实世界数据的抽象，用来定义数据如何组织，数据之间的关系怎样；<br>16：并相容性（Union Compatibility）：两个关系具有并相容性需要保证两个关系的属性个数和每个属性的域是相同的；<br>17：视图（View）：视图是虚拟的表，并不是物理上真实存在的表，是由基本表和其他视图派生的数据，对视图的更新实际上转换为对基表的更新；</li>
 </ol>
+<h2 id="No-2_数据模型（Data_Model）">No.2 数据模型（Data Model）</h2><p>分层理解数据模型，共分为三层。</p>
+<ol>
+<li>概念模型（Conceptual）：从用户的角度来对数据和信息建模；</li>
+<li>逻辑模型/实现模型（Logical/Implementation）：层次模型、网状模型、<strong>关系模型</strong></li>
+<li>物理模型（Physical）：数据在DBMS产品中的物理存储<h2 id="No-3_数据库系统的三级模式（three-level_schema）">No.3 数据库系统的三级模式（three-level schema）</h2></li>
+<li>内模式（internal schema）：也称作存储模式，数据的屋里结构和存储方式的描述，是数据在数据库内部的表示方式。</li>
+<li>概念模式（Conceptual Schema）：也称作全局模式，有时候简称模式，是对数据库中全体数据的逻辑结构和特征的描述</li>
+<li>外模式（External Schema）：也称作子模式或者用户模式，数据库用户能够看到和使用的局部数据的逻辑结构和特征的描述。<h2 id="No-4_数据库系统的两级映射以及物理和逻辑独立性：">No.4 数据库系统的两级映射以及物理和逻辑独立性：</h2></li>
+</ol>
+<ul>
+<li>两级映射：</li>
+</ul>
+<ol>
+<li>模式/内模式映射</li>
+<li>模式/外模式映射</li>
+</ol>
+<ul>
+<li>数据的物理独立性</li>
+</ul>
+<ol>
+<li>模式/内模式映射提供了数据的物理独立性，当数据的物理结构发生变化时，只需要修改内模式与概念模式之间的映射即可</li>
+</ol>
+<p>-数据的逻辑独立性</p>
+<ol>
+<li>概念模式与外模式之间的映射提供了数据的逻辑独立性。当数据的整体逻辑结构发生变化时，只需要修改各个外模式与概念模式之间的映射即可保证应用程序不受影响</li>
+</ol>
+<blockquote>
+<p> 未完待续！</p>
+</blockquote>
 
       
     </div>
@@ -82,15 +112,10 @@
         
   
   <div class="categories">
-    <a href="/categories/Qt/">Qt</a>, <a href="/categories/Qt/Linux/">Linux</a>
+    <a href="/categories/数据库原理/">数据库原理</a>
   </div>
 
         
-  
-  <div class="tags">
-    <a href="/tags/Qt4/">Qt4</a>, <a href="/tags/Ubuntu/">Ubuntu</a>, <a href="/tags/源码/">源码</a>
-  </div>
-
         <div class="bdsharebuttonbox"><a class="bds_more" href="#" data-cmd="more"></a><a title="分享到新浪微博" class="bds_tsina" href="#" data-cmd="tsina"></a><a title="分享到微信" class="bds_weixin" href="#" data-cmd="weixin"></a><a title="分享到QQ空间" class="bds_qzone" href="#" data-cmd="qzone"></a><a title="分享到腾讯微博" class="bds_tqq" href="#" data-cmd="tqq"></a><a title="分享到人人网" class="bds_renren" href="#" data-cmd="renren"></a><a title="分享到Twitter" class="bds_twi" href="#" data-cmd="twi"></a><a title="分享到Facebook" class="bds_fbook" href="#" data-cmd="fbook"></a><a title="分享到豆瓣网" class="bds_douban" href="#" data-cmd="douban"></a></div>
 <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["tsina","weixin","qzone","tqq","renren","twi","fbook","douban"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["tsina","weixin","qzone","tqq","renren","twi","fbook","douban"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
       
@@ -102,7 +127,7 @@
 
 <section id="comment">
   <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key=2015/03/12/the-first-blog-in-hexo/ data-title=Ubuntu14.04编译安装Qt4.8.6 data-url=http://yoursite.com/2015/03/12/the-first-blog-in-hexo/></div>
+  <div class="ds-thread" data-thread-key=2015/03/16/2015-03-16-database/ data-title=数据库原理复习系列（一） data-url=http://yoursite.com/2015/03/16/2015-03-16-database/></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
