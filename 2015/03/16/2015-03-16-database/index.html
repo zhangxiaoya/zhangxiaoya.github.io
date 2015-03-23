@@ -64,23 +64,23 @@
       
         <h2 id="要找工作找实习了，看了看之前的项目，几乎都是与数据库应用相关的，虽然项目比较水，但是面试的时候估计人家得详细的问。所以，数据库这块得非常认真的准备。准备看几篇文章，看看书，今天是第一天复习，先把基础的东西搞懂。">要找工作找实习了，看了看之前的项目，几乎都是与数据库应用相关的，虽然项目比较水，但是面试的时候估计人家得详细的问。所以，数据库这块得非常认真的准备。准备看几篇文章，看看书，今天是第一天复习，先把基础的东西搞懂。</h2><a id="more"></a>
 <h2 id="No-1_一些名词概念">No.1 一些名词概念</h2><ol>
-<li>数据库（database）：存储和提供数据的东西（库房）；</li>
-<li>数据（data）：数据库中存储的基本对象；</li>
-<li>数据库管理系统（DBMS）：属于与系统软件，是介于用户与操作系统的数据库管理软件；</li>
-<li>数据库系统（DBS）：包括数据库、数据库管理系统、应用系统和数据库管理员（DBA）；</li>
-<li>主键（Primary Key）：用于唯一的标识表中某一条记录的属性或者属性的集合；</li>
-<li>外键（Foreign Key）：用于与另外一张表关联，是另外一张表的主键；</li>
-<li>超键（Super Key）：官方的解释是唯一能标识元组的一个属性或者是多个属性的集合，其实就是主键，或者其他属性与主键的集合；</li>
-<li>元组（Tuple）：在二维表中，元组是一行数据，在二维关系数据库中，也被称作是记录；</li>
-<li>候选键（）：没有多余属性的超键，主键其实就是候选键中的唯一一个；</li>
-<li>模式（Schema）：一个数据库的描述，包括对数据库结构，数据类型和约束；</li>
-<li>实例（Instance/State）：数据库中某一刻真实存在的数据。Instance是Schema在某一时刻的具体化，实例化；</li>
-<li>数据库操纵语言（DML：Database Manipulation Language）：增删改查；</li>
-<li>数据库定义余元（DDL：Data Definition Language）：定义、修改、删除数据库中的对象；</li>
-<li>数据库控制余元（DCL：Database Control Lang）：用于控制用户对数据库的操纵权限；</li>
-<li>数据模型（Data Model）：现实世界数据的抽象，用来定义数据如何组织，数据之间的关系怎样；</li>
-<li>并相容性（Union Compatibility）：两个关系具有并相容性需要保证两个关系的属性个数和每个属性的域是相同的；</li>
-<li>视图（View）：视图是虚拟的表，并不是物理上真实存在的表，是由基本表和其他视图派生的数据，对视图的更新实际上转换为对基表的更新；</li>
+<li><strong>数据库（database）</strong>：存储和提供数据的东西（库房）；</li>
+<li><strong>数据（data）</strong>：数据库中存储的基本对象；</li>
+<li><strong>数据库管理系统（DBMS）</strong>：属于与系统软件，是介于用户与操作系统的数据库管理软件；</li>
+<li><strong>数据库系统（DBS）</strong>：包括数据库、数据库管理系统、应用系统和数据库管理员（DBA）；</li>
+<li><strong>主键（Primary Key）</strong>：用于唯一的标识表中某一条记录的属性或者属性的集合；</li>
+<li><strong>外键（Foreign Key）</strong>：用于与另外一张表关联，是另外一张表的主键；</li>
+<li><strong>超键（Super Key）</strong>：官方的解释是唯一能标识元组的一个属性或者是多个属性的集合，其实就是主键，或者其他属性与主键的集合；</li>
+<li><strong>元组（Tuple）</strong>：在二维表中，元组是一行数据，在二维关系数据库中，也被称作是记录；</li>
+<li><strong>候选键（）</strong>：没有多余属性的超键，主键其实就是候选键中的唯一一个；</li>
+<li><strong>模式（Schema）</strong>：一个数据库的描述，包括对数据库结构，数据类型和约束；</li>
+<li><strong>实例（Instance/State）</strong>：数据库中某一刻真实存在的数据。Instance是Schema在某一时刻的具体化，实例化；</li>
+<li><strong>数据库操纵语言（DML：Database Manipulation Language）</strong>：增删改查；</li>
+<li><strong>数据库定义余元（DDL：Data Definition Language）</strong>：定义、修改、删除数据库中的对象；</li>
+<li><strong>数据库控制余元（DCL：Database Control Lang）</strong>：用于控制用户对数据库的操纵权限；</li>
+<li><strong>数据模型（Data Model）</strong>：现实世界数据的抽象，用来定义数据如何组织，数据之间的关系怎样；</li>
+<li><strong>并相容性（Union Compatibility）</strong>：两个关系具有并相容性需要保证两个关系的属性个数和每个属性的域是相同的；</li>
+<li><strong>视图（View）</strong>：视图是虚拟的表，并不是物理上真实存在的表，是由基本表和其他视图派生的数据，对视图的更新实际上转换为对基表的更新；</li>
 </ol>
 <h2 id="No-2_数据模型（Data_Model）">No.2 数据模型（Data Model）</h2><p>分层理解数据模型，共分为三层。</p>
 <ol>
