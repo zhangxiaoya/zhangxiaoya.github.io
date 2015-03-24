@@ -109,6 +109,43 @@
   </div>
 </article>
 
+<div class="entry">
+    
+
+<div id="toc" class="toc-article">
+  <strong class="toc-title">文章目录</strong>
+<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#<!-more->"><span class="toc-number">1.</span> <span class="toc-text"></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#No-1_显示分类"><span class="toc-number">1.1.</span> <span class="toc-text">No.1 显示分类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#*参考文献:"><span class="toc-number">1.1.1.</span> <span class="toc-text">*参考文献:</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-_不如的博文"><span class="toc-number">2.</span> <span class="toc-text">1. 不如的博文</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#No-2_添加微博挂件"><span class="toc-number">2.1.</span> <span class="toc-text">No.2 添加微博挂件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#*参考文献:-1"><span class="toc-number">2.1.1.</span> <span class="toc-text">*参考文献:</span></a></li></ol></li></ol></li></ol>
+</div>
+
+      <p>经过半个下午的努力，终于把自己的小站搭建好，并放在自己的Github上面，上午写了几篇文章，下午刚开完会，准备再弄一会自己的小站，丰富一下主题。就在刚才，我修改了一个小地方，准备部署的时候，突然不能推送。。。估计应该是Github水土不服。不管了，以后托管Gitcafe上，现在时间紧，就这样吧，下面说说我是怎样丰富我的小站的。</p>
+<h2 id="<!-more->"><a id="more"></a></h2><h3 id="No-1_显示分类">No.1 显示分类</h3><p>自己平时写文章都要注意分类，我是用的是Light这个基础的主题，比较简约。其他的东西都是自己慢慢添加上去。<br>添加分类比较简单，当使用<code>hexo new postname</code>时会产生一个MarkDown文件<strong><em>postname.md</em></strong>，用sublime text editor来编辑这个文件就是在完成自己的博文，这个文件的最上面会提供类似下面的标注。<br><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">title:</span> <span class="string">"postname"</span></span><br><span class="line"><span class="label">date:</span> <span class="number">2015</span>-<span class="number">03</span>-<span class="number">13</span> <span class="number">15</span>:<span class="number">57</span>:<span class="number">14</span></span><br><span class="line"><span class="label">tags:</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><code>title</code>是指博文的名字，不一样要和文件的名字一致，都是可以修改的，中文也没关系</li>
+<li><code>date</code> 就是指的日期了，这个不用修改</li>
+<li><code>tags</code> 是指的标签，就是博文的关键词<br>默认就是只有这三项，若是要给博文添加分类，那就再添加一项 <code>categories:</code>，并且在后面填写上自己的分类。</li>
+</ul>
+<p><strong><em>需要注意的是，每个项的冒号后面必须跟一个空格</em></strong></p>
+<p>当然，在自己的主题的配置文件<code>_config.yml</code>中也要有下面的项.<br><figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">widgets:</span><br><span class="line">  -<span class="ruby"> search</span><br><span class="line"></span>  -<span class="ruby"> tagcloud</span><br><span class="line"></span>  -<span class="ruby"> category</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>search   是指搜索框；</li>
+<li>tagcloud 是指标签云，默认的是tag，我感觉标签云比较好看一些</li>
+<li>category 就是指分类框了</li>
+</ul>
+<p>其实在每次写文章都自己手动添加分类项很麻烦，那就简单一些，在<code>hexo\scaffolds\post.md</code>添加分类项，这样每次新建博文就自动添加分类项了，看下面。<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">title: &#123;&#123; title &#125;&#125;</span><br><span class="line">date: &#123;&#123; date &#125;&#125;</span><br><span class="line">categories: </span><br><span class="line"><span class="header">tags:</span><br><span class="line">---</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="*参考文献:"><strong><em>*参考文献:</em></strong></h4><h2 id="1-_不如的博文">1. <a href="http://ibruce.info/2013/11/22/hexo-your-blog/" target="_blank" rel="external">不如的博文</a></h2><h3 id="No-2_添加微博挂件">No.2 添加微博挂件</h3><p>在Zippera的博客上发现了微博挂架，自己也想加上一个</p>
+<ol>
+<li>在<a href="http://app.weibo.com/tool/weiboshow" target="_blank" rel="external">微博开放平台-微博秀</a>设置一下，然后复制代码。</li>
+<li>在<code>...\hexo\themes\主题名\layout\_widget\</code>目录下新建一个<code>weibo.ejs</code>文件，用sublime text editor打开，将刚才复制的代码粘贴在里面。</li>
+<li>在<strong><em>主题下面的配置文件</em></strong><code>_config.yml</code>添加<code>weibo</code>项<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="label">widgets:</span></span><br><span class="line">  - weibo</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="*参考文献:-1"><strong><em>*参考文献:</em></strong></h4><ol>
+<li><a href="http://zipperary.com/2013/05/30/hexo-guide-4/" target="_blank" rel="external">好友Zippera的博文</a></li>
+</ol>
+
+    
+  </div>
+
 
 <section id="comment">
   <!-- 多说评论框 start -->
