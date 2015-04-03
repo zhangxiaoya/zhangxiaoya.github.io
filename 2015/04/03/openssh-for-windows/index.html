@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>我的阅历 | ZhangXiaoya&#39;Blog</title>
+  <title>Windows8.1 安装OpenSSH | ZhangXiaoya&#39;Blog</title>
   <meta name="author" content="ZhangXiaoya">
   
   <meta name="description" content="Nobody notices your sorrow, your pain, but everyone notices your mistakes.">
@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="我的阅历"/>
+  <meta property="og:title" content="Windows8.1 安装OpenSSH"/>
   <meta property="og:site_name" content="ZhangXiaoya&#39;Blog"/>
 
   
@@ -48,53 +48,61 @@
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper"><article class="photo">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      
-        <img src="http://7xi4ue.com1.z0.glb.clouddn.com/testimg1.jpg">
-      
-        <img src="http://7xi4ue.com1.z0.glb.clouddn.com/testimgreadingbookcover2.jpg">
-      
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
   
   <div class="post-content">
     <header>
       
         <div class="icon"></div>
-        <time datetime="2015-03-24T07:40:23.000Z"><a href="/reading/index.html">2015-03-24</a></time>
+        <time datetime="2015-04-03T12:36:15.000Z"><a href="/2015/04/03/openssh-for-windows/">2015-04-03</a></time>
       
       
   
-    <h1 class="title">我的阅历</h1>
+    <h1 class="title">Windows8.1 安装OpenSSH</h1>
   
 
     </header>
     <div class="entry">
       
-        <p>更新时间：2015-03-23</p>
-<h2 id="研究生课题相关">研究生课题相关</h2><p><img src="http://7xi4ue.com1.z0.glb.clouddn.com/BookCover2015_03_23_Featur_Extraction_and_Image_Processing.jpg" alt="特征提取与图像处理"></p>
-<p><img src="http://7xi4ue.com1.z0.glb.clouddn.com/BookCover2015_03_23_Digital_Image_Processing_Using_Matlab.jpg_BookCoverSize" alt="数字图像处理Matlab版"></p>
-<h2 id="程序语言">程序语言</h2><p><img src="http://7xi4ue.com1.z0.glb.clouddn.com/BookCover2015_03_23_C_Plus_Plus_Primer.jpg_BookCoverSize" alt="C++ Primer"></p>
-<h2 id="程序员的修养">程序员的修养</h2><p><img src="http://7xi4ue.com1.z0.glb.clouddn.com/BookCover2015_03_23_ChengXuYuanDeZiWoXiuYang.jpg_BookCoverSize" alt="程序员的自我修养"></p>
-<p><img src="http://7xi4ue.com1.z0.glb.clouddn.com/BookCover2015_03_23_Effective_STL.jpg_BookCoverSize" alt="Effective STL"></p>
-<h2 id="算法设计">算法设计</h2><p><img src="http://7xi4ue.com1.z0.glb.clouddn.com/BookCover2015_03_23_Introduction_to_Algorithms.jpg_BookCoverSize" alt="算法导论"></p>
-<h2 id="机器学习">机器学习</h2><p><img src="http://7xi4ue.com1.z0.glb.clouddn.com/BookCover2015_03_23_TongJiXueXiFangFa.jpg_BookCoverSize" alt="统计学习方法"></p>
+        <p>最近要在实验室干活，实验室的电脑是Ubuntu系统，OpenSSH可以在实验室其他机器之间很方便的传输文件，有些工作还在Windows下继续，所以就在自己的Windows系统上安装OpenSSH。Windows的毛病还真不少，不过也有不少人开发了Windows版本的OpenSSH，详细的OpenSSH For WIndows的介绍<a href="http://www.openssh.com/windows.html" target="_blank" rel="external">点击</a>，下面简单的说说如何在Windows上使用OpenSSH。<br><a id="more"></a></p>
+<h2 id="我的基本配置">我的基本配置</h2><blockquote>
+<p><strong>Windows 8.1 中文版</strong><br><strong>Ubuntu 12.04 LTS</strong><br><strong>实验室局域网</strong></p>
+</blockquote>
+<h2 id="在windows下使用_OpenSSH与Ubuntu_传输文件">在windows下使用 <strong><em>OpenSSH</em></strong>与<strong><em>Ubuntu</em></strong> 传输文件</h2><ol>
+<li><p><strong><em>Putty</em></strong>安装及简介<br>Putty是网络连接工具，包含了OpenSSH的功能，在Windows下算是比较好用的OpenSSH工具，详细的介绍在<a href="http://baike.baidu.com/link?url=8VBUM3F9XKradQtzn4NQprpZAsgAjlkXAMjNBn7P8zw6rPXsgPYdXhjQ_Cnf3janRdIip_oNnQ7VGzS1ZklDFq#7" target="_blank" rel="external">百度百科</a>和<a href="http://zh.wikipedia.org/wiki/PuTTY" target="_blank" rel="external">维基百科</a>都有很详细的介绍，我就不多嘴了。</p>
+<blockquote>
+<p>官方下载<a href="http://www.putty.org/" target="_blank" rel="external">链接</a><br>Putty中文教程<a href="http://chaifeng.com/blog/2007/06/putty_200611.html" target="_blank" rel="external">链接</a></p>
+</blockquote>
+</li>
+<li><p>算了不说了<br>本来要写一个详细的教程，自己的配置过程，突然发现上面的Putty中文教程很详细了，就不罗嗦了。</p>
+</li>
+</ol>
+<h2 id="参考">参考</h2><ol>
+<li><a href="http://sec.chinabyte.com/482/8605482.shtml" target="_blank" rel="external">在windows下使用OpenSSH</a></li>
+<li><a href="http://baike.baidu.com/link?url=8VBUM3F9XKradQtzn4NQprpZAsgAjlkXAMjNBn7P8zw6rPXsgPYdXhjQ_Cnf3janRdIip_oNnQ7VGzS1ZklDFq#7" target="_blank" rel="external">百度百科</a></li>
+<li><a href="http://zh.wikipedia.org/wiki/PuTTY" target="_blank" rel="external">维基百科</a></li>
+<li><a href="http://www.vpser.net/other/putty-ssh-linux-vps.html" target="_blank" rel="external">如何使用Putty远程(SSH)管理Linux VPS</a></li>
+<li><a href="http://www.openssh.com/windows.html" target="_blank" rel="external">OpenSSH Windows</a></li>
+<li><a href="http://chaifeng.com/blog/2007/06/putty_200611.html" target="_blank" rel="external">Putty中文教程</a></li>
+<li><a href="http://www.putty.org/" target="_blank" rel="external">官方网址</a></li>
+</ol>
 
       
     </div>
     <footer>
       
         
+  
+  <div class="categories">
+    <a href="/categories/Tools/">Tools</a>
+  </div>
+
         
+  
+  <div class="tags">
+    <a href="/tags/opensh/">opensh</a>, <a href="/tags/putty/">putty</a>, <a href="/tags/windows8-1/">windows8.1</a>
+  </div>
+
         <div class="bdsharebuttonbox"><a class="bds_more" href="#" data-cmd="more"></a><a title="分享到新浪微博" class="bds_tsina" href="#" data-cmd="tsina"></a><a title="分享到微信" class="bds_weixin" href="#" data-cmd="weixin"></a><a title="分享到QQ空间" class="bds_qzone" href="#" data-cmd="qzone"></a><a title="分享到腾讯微博" class="bds_tqq" href="#" data-cmd="tqq"></a><a title="分享到人人网" class="bds_renren" href="#" data-cmd="renren"></a><a title="分享到Twitter" class="bds_twi" href="#" data-cmd="twi"></a><a title="分享到Facebook" class="bds_fbook" href="#" data-cmd="fbook"></a><a title="分享到豆瓣网" class="bds_douban" href="#" data-cmd="douban"></a></div>
 <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["tsina","weixin","qzone","tqq","renren","twi","fbook","douban"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["tsina","weixin","qzone","tqq","renren","twi","fbook","douban"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
       
@@ -107,7 +115,7 @@
 
 <section id="comment">
   <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key=reading/index.html data-title=我的阅历 data-url=http://yoursite.com/reading/index.html></div>
+  <div class="ds-thread" data-thread-key=2015/04/03/openssh-for-windows/ data-title=Windows8.1 安装OpenSSH data-url=http://yoursite.com/2015/04/03/openssh-for-windows/></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
