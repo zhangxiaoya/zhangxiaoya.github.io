@@ -1,0 +1,201 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>leetcode006-solution | 张小牙</title>
+  <meta name="author" content="ZhangXiaoya">
+  
+  <meta name="description" content="Nobody notices your sorrow, your pain, but everyone notices your mistakes.">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="leetcode006-solution"/>
+  <meta property="og:site_name" content="张小牙"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="张小牙" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">张小牙</a></h1>
+  <h2><a href="/">挑战无处不在，生命因此精彩！Do or Die！</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/">Archives</a></li>
+    
+      <li><a href="/reading">Reading</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-04-09T14:07:55.000Z"><a href="/2015/04/09/leetcode006-solution/">2015-04-09</a></time>
+      
+      
+  
+    <h1 class="title">leetcode006-solution</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><strong>问题描述</strong>：<br>给定一个字符串，用<strong>Zigzag Pattern</strong>模式书写，具体什么是<strong>Zigzag Pattern</strong>参考<a href="http://en.wikipedia.org/wiki/Zigzag" target="_blank" rel="external">维基百科</a>就是按照<strong>Z</strong>形状写的，现在要求按照正常的顺序读出来。<br><a id="more"></a><br>下面是英文题目描述。<br>The string “<strong>PAYPALISHIRING</strong>“ is written in a zigzag pattern on a given number of rows like this: (you may want to display this pattern in a fixed font for better legibility)<br>格式如下:<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">P   A   <span class="keyword">H</span>   <span class="keyword">N</span></span><br><span class="line">A P <span class="keyword">L</span> S I I <span class="keyword">G</span></span><br><span class="line">Y   I   <span class="literal">R</span></span><br></pre></td></tr></table></figure></p>
+<p>要求输出正常的顺序：”<strong>PAHNAPLSIIGYIR</strong>“</p>
+<hr>
+<p>还是老规矩，不想听我废话解释，就直接看代码：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> Solution006::convert(<span class="built_in">string</span> s, <span class="keyword">int</span> nRows)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(nRows &lt; <span class="number">2</span>)</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    <span class="built_in">string</span> result = <span class="string">""</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> row = <span class="number">0</span>;row &lt; nRows; ++ row)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(row == <span class="number">0</span>|| row == nRows -<span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> step = nRows + nRows - <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">int</span> i=row;</span><br><span class="line">            <span class="keyword">while</span>(i &lt; s.length())</span><br><span class="line">            &#123;</span><br><span class="line">                result += s[i];</span><br><span class="line">                i += step;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> i = row;</span><br><span class="line">            <span class="keyword">int</span> midstepodd = (nRows - <span class="number">1</span> - row) * <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">int</span> midstepeven = row * <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">int</span> col = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span>(i &lt; s.length())</span><br><span class="line">            &#123;</span><br><span class="line">                result += s[i];</span><br><span class="line">                <span class="keyword">if</span>(col &amp; <span class="number">0x1</span>)</span><br><span class="line">                    i += midstepodd;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    i += midstepeven;</span><br><span class="line">                col ++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="唠叨一下">唠叨一下</h2><p>这种字符排血很容易可以找到规律，找到字符下标的v，逐行读取字符就可以了。<br>分两种情况：</p>
+<ol>
+<li>第一行和最后一行，这两行比较好判断，因为相邻的<strong>两垂直列</strong>之间没有<strong>斜着排列的字符</strong>，所以，相邻<strong>两垂直列</strong>之间的字符是固定的，而且比较容易计算出来：<strong>step = nRows + nRows - 2</strong>；</li>
+<li>中间行，比较讨厌的是中间行相邻的列之间有一个<strong>斜着排列的字符</strong>，其实，没有去除<strong>斜着排列的一列</strong>，中间行<strong>两垂直列</strong>之间的间隔也是固定的，而且跟第一种情况一样，但是既然有了中间这个<strong>斜着排列的一列</strong>，相当于两个垂直之间添加了一个字符，这个字符的下标也有规律，这个字符的下标将第一种情况的Step分成了两部分，其中前一部分是<strong>midstepodd =  (nRows - 1 - row) * 2</strong>，后一部分是<strong>midstepeven = row * 2</strong>，两部分在相邻<strong>两垂直列</strong>之间是交替的，且它们的和是第一种情况的Step。</li>
+</ol>
+<p>根据行号分为两种情况，写代码也就轻松了，运行时间也算是比较可以了，26ms。</p>
+<h2 id="参考">参考</h2><p><a href="http://blog.csdn.net/zhouworld16/article/details/14121477" target="_blank" rel="external">CSDN博客</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+  
+  <div class="categories">
+    <a href="/categories/LeetCode/">LeetCode</a>
+  </div>
+
+        
+  
+  <div class="tags">
+    <a href="/tags/LeetCode/">LeetCode</a>, <a href="/tags/Math/">Math</a>
+  </div>
+
+        <div class="bdsharebuttonbox"><a class="bds_more" href="#" data-cmd="more"></a><a title="分享到新浪微博" class="bds_tsina" href="#" data-cmd="tsina"></a><a title="分享到微信" class="bds_weixin" href="#" data-cmd="weixin"></a><a title="分享到QQ空间" class="bds_qzone" href="#" data-cmd="qzone"></a><a title="分享到腾讯微博" class="bds_tqq" href="#" data-cmd="tqq"></a><a title="分享到人人网" class="bds_renren" href="#" data-cmd="renren"></a><a title="分享到Twitter" class="bds_twi" href="#" data-cmd="twi"></a><a title="分享到Facebook" class="bds_fbook" href="#" data-cmd="fbook"></a><a title="分享到豆瓣网" class="bds_douban" href="#" data-cmd="douban"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["tsina","weixin","qzone","tqq","renren","twi","fbook","douban"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["tsina","weixin","qzone","tqq","renren","twi","fbook","douban"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+<section id="comment">
+  <!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key=2015/04/09/leetcode006-solution/ data-title=leetcode006-solution data-url=http://yoursite.com/2015/04/09/leetcode006-solution/></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"zhangxiaoya"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+
+</section>
+
+
+
+
+
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜索">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">标签云</h3>
+  <div class="entry">
+    <a href="/tags/Github/" style="font-size: 10px;">Github</a><a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a><a href="/tags/Math/" style="font-size: 20px;">Math</a><a href="/tags/Python/" style="font-size: 10px;">Python</a><a href="/tags/Qt4/" style="font-size: 10px;">Qt4</a><a href="/tags/SVD/" style="font-size: 10px;">SVD</a><a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a><a href="/tags/insert-image/" style="font-size: 10px;">insert image</a><a href="/tags/opensh/" style="font-size: 10px;">opensh</a><a href="/tags/putty/" style="font-size: 10px;">putty</a><a href="/tags/qiniu/" style="font-size: 10px;">qiniu</a><a href="/tags/windows8-1/" style="font-size: 10px;">windows8.1</a><a href="/tags/分类/" style="font-size: 10px;">分类</a><a href="/tags/多说/" style="font-size: 10px;">多说</a><a href="/tags/挂件/" style="font-size: 10px;">挂件</a><a href="/tags/数据库/" style="font-size: 10px;">数据库</a><a href="/tags/时间管理/" style="font-size: 10px;">时间管理</a><a href="/tags/标签云/" style="font-size: 10px;">标签云</a><a href="/tags/源码/" style="font-size: 10px;">源码</a><a href="/tags/百度分享/" style="font-size: 10px;">百度分享</a>
+  </div>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">分类</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Hexo/">Hexo</a><small>4</small></li>
+  
+    <li><a href="/categories/LeetCode/">LeetCode</a><small>2</small></li>
+  
+    <li><a href="/categories/Qt/Linux/">Linux</a><small>1</small></li>
+  
+    <li><a href="/categories/找工作/Python/">Python</a><small>1</small></li>
+  
+    <li><a href="/categories/Qt/">Qt</a><small>1</small></li>
+  
+    <li><a href="/categories/Tools/">Tools</a><small>1</small></li>
+  
+    <li><a href="/categories/微博/">微博</a><small>1</small></li>
+  
+    <li><a href="/categories/找工作/">找工作</a><small>1</small></li>
+  
+    <li><a href="/categories/数据库原理/">数据库原理</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  <iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=1719002613&verifier=2d9045fb&dpc=1"></iframe>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 ZhangXiaoya
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
