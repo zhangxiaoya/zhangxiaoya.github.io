@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>实现STL中的next_permutation函数 | Big Eyes Boy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="@(C Plus Plus)
+前几天复习一份各大公司的面试笔试资料—题目是《百度、google、微软、MTK经典面试题》，应该是我在考研的时候看过的，为了准备机试，北理工13年计算机学院的硕士生保研题目就有一个是输出一个字符串的全排列。这个题目以前是没见过，所以仔细的研究了一下.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="实现STL中的next_permutation函数">
+<meta property="og:url" content="http://yoursite.com/2015/05/16/my-next-permutation/index.html">
+<meta property="og:site_name" content="Big Eyes Boy">
+<meta property="og:description" content="@(C Plus Plus)
+前几天复习一份各大公司的面试笔试资料—题目是《百度、google、微软、MTK经典面试题》，应该是我在考研的时候看过的，为了准备机试，北理工13年计算机学院的硕士生保研题目就有一个是输出一个字符串的全排列。这个题目以前是没见过，所以仔细的研究了一下.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="实现STL中的next_permutation函数">
+<meta name="twitter:description" content="@(C Plus Plus)
+前几天复习一份各大公司的面试笔试资料—题目是《百度、google、微软、MTK经典面试题》，应该是我在考研的时候看过的，为了准备机试，北理工13年计算机学院的硕士生保研题目就有一个是输出一个字符串的全排列。这个题目以前是没见过，所以仔细的研究了一下.">
+  
+    <link rel="alternative" href="/atom.xml" title="Big Eyes Boy" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="http://7xi4ue.com1.z0.glb.clouddn.com/HeadImg/headimage2.png" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">大眼睛男孩儿</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">运气总是实力积累爆发的时刻！</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/reading">我的阅历</a></li>
+				        
+							<li><a href="/about">我的简历</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/zhangxiaoya/" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/yayabuai/" title="weibo">weibo</a>
+					        
+								<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/zhang-xiao-ya-65/" title="zhihu">zhihu</a>
+					        
+								<a class="douban" target="_blank" href="http://www.douban.com/people/bigeyesboy/" title="douban">douban</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/C/" style="font-size: 16.67px;">C++</a><a href="/tags/Github/" style="font-size: 10px;">Github</a><a href="/tags/Hexo/" style="font-size: 13.33px;">Hexo</a><a href="/tags/LCS/" style="font-size: 10px;">LCS</a><a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a><a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a><a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a><a href="/tags/Math/" style="font-size: 20px;">Math</a><a href="/tags/Python/" style="font-size: 13.33px;">Python</a><a href="/tags/Qt4/" style="font-size: 10px;">Qt4</a><a href="/tags/STL/" style="font-size: 10px;">STL</a><a href="/tags/SVD/" style="font-size: 10px;">SVD</a><a href="/tags/Scikit-Learn/" style="font-size: 10px;">Scikit Learn</a><a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a><a href="/tags/Windows/" style="font-size: 10px;">Windows</a><a href="/tags/Windows8-1/" style="font-size: 10px;">Windows8.1</a><a href="/tags/image/" style="font-size: 10px;">image</a><a href="/tags/opensh/" style="font-size: 10px;">opensh</a><a href="/tags/putty/" style="font-size: 10px;">putty</a><a href="/tags/tracking/" style="font-size: 10px;">tracking</a><a href="/tags/yilia/" style="font-size: 10px;">yilia</a><a href="/tags/七牛/" style="font-size: 10px;">七牛</a><a href="/tags/主题/" style="font-size: 10px;">主题</a><a href="/tags/二维数组/" style="font-size: 10px;">二维数组</a><a href="/tags/全排列/" style="font-size: 10px;">全排列</a><a href="/tags/分类/" style="font-size: 10px;">分类</a><a href="/tags/图床/" style="font-size: 10px;">图床</a><a href="/tags/多线程/" style="font-size: 13.33px;">多线程</a><a href="/tags/多说/" style="font-size: 10px;">多说</a><a href="/tags/实现库函数/" style="font-size: 10px;">实现库函数</a><a href="/tags/挂件/" style="font-size: 10px;">挂件</a><a href="/tags/数据库概念/" style="font-size: 10px;">数据库概念</a><a href="/tags/数组指针/" style="font-size: 10px;">数组指针</a><a href="/tags/时间管理/" style="font-size: 10px;">时间管理</a><a href="/tags/最长公共子序列/" style="font-size: 10px;">最长公共子序列</a><a href="/tags/标签云/" style="font-size: 10px;">标签云</a><a href="/tags/百度分享/" style="font-size: 10px;">百度分享</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.csdn.net/qust_waiwai/">我之前的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.jianshu.com/p/1e402922ee32/">简书</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://tengine.taobao.org/book/">叔度的Nginx解析</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">13级北理工计算机硕士，擅长C++程序开发，为了找工作，现在研究Nginx、深入研究Linux，羡慕做前端的，因为网页确实漂亮。。。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">大眼睛男孩儿</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://7xi4ue.com1.z0.glb.clouddn.com/HeadImg/headimage2.png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">大眼睛男孩儿</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">运气总是实力积累爆发的时刻！</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/reading">我的阅历</a></li>
+		        
+					<li><a href="/about">我的简历</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/zhangxiaoya/" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/yayabuai/" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/zhang-xiao-ya-65/" title="zhihu">zhihu</a>
+			        
+						<a class="douban" target="_blank" href="http://www.douban.com/people/bigeyesboy/" title="douban">douban</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-my-next-permutation" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/05/16/my-next-permutation/" class="article-date">
+  	<time datetime="2015-05-16T08:05:47.000Z" itemprop="datePublished">2015-05-16</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      实现STL中的next_permutation函数
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/STL/">STL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/全排列/">全排列</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/实现库函数/">实现库函数</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/C/">C++</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>@(C Plus Plus)</p>
+<p>前几天复习一份各大公司的面试笔试资料—题目是《百度、google、微软、MTK经典面试题》，应该是我在考研的时候看过的，为了准备机试，北理工13年计算机学院的硕士生保研题目就有一个是输出一个字符串的全排列。这个题目以前是没见过，所以仔细的研究了一下.</p>
+<a id="more"></a>
+<p>那就还是从这个题目开始：</p>
+<blockquote>
+<p> 输出一个字符串的全排列</p>
+</blockquote>
+<p>注意的是，这个题目没有要求按照字典序输出，只要输出所有的排列就行。</p>
+<h2 id="STL_函数_next_permutation()">STL 函数 next_permutation()</h2><p>第一种比较容易的方式就是利用<code>STL</code>里面的函数<code>next_oermutation()</code>，这个函数的返回值是<code>bool</code>类型，若按照字典序，字符串还有下一个排列，就改变字符串为下一个排列，并返回<code>true</code>，否则返回<code>false</code>，并且将字符串重置为初始状态。<br>程序如下：<br><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">void printAllPermutation(<span class="keyword">char</span> *<span class="keyword">str</span>)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> len = strlen(<span class="keyword">str</span>);</span><br><span class="line">	<span class="keyword">char</span> *pend = <span class="keyword">str</span> + len;</span><br><span class="line">	std::sort(<span class="keyword">str</span>,pend);</span><br><span class="line">	std::cout&lt;&lt;<span class="keyword">str</span>&lt;&lt;std::endl;</span><br><span class="line">	<span class="keyword">while</span>(std::next_permutation(<span class="keyword">str</span>,pend))</span><br><span class="line">	&#123;</span><br><span class="line">		std::cout&lt;&lt;<span class="keyword">str</span>&lt;&lt;std::endl;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="交换的策略">交换的策略</h2><p>这个算法我一直没真正理解是真么意思，它的基本思想是交换-恢复，遍历所有两个位置的组合，它是无序的，具体的程序如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">char</span> *a,<span class="keyword">char</span> *b)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> t = *a;</span><br><span class="line">	*a = *b;</span><br><span class="line">	*b = t;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printAllPermutation</span><span class="params">(<span class="keyword">char</span> *str,<span class="keyword">char</span> *pbeg)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(str == NULL)</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">if</span>(*pbeg == <span class="string">'\0'</span>)</span><br><span class="line">		std::<span class="built_in">cout</span>&lt;&lt;str&lt;&lt;std::endl;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">char</span> *p = pbeg;*p != <span class="string">'\0'</span>;++p)</span><br><span class="line">	&#123;</span><br><span class="line">		swap(p,pbeg);</span><br><span class="line">		printAllPermutation(str,pbeg+<span class="number">1</span>);</span><br><span class="line">		swap(p,pbeg);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="实现next_permutation()函数">实现next_permutation()函数</h2><p>这是前几天在网上找到的，还是网易2014年实习生笔试题目，作者的思路不错，但是就是没有描述清楚。<br>我来试着描述一下他的思想：</p>
+<ol>
+<li>假设当前序列是<code>13542</code>，那么我们可以手动计算出下一个序列是<code>14235</code>；</li>
+<li>这个题目的关键点是寻找一个关键位置，观测发现，这样的字符串通过有个性质，其中一个位置，将字符串分成两部分，前半部分没什么规律，后半部分递减（可以为空）。</li>
+<li>寻找下一个排列就是，找到这样的一个位置，这个位置以后的字符串是递减的，也就是说后半部分已经没有下一个排列了（下一个排列回归到初始状态），从后半部分找到第一个（从后往前找）比当前位置大的字符，然后交换。</li>
+<li>比如上面的例子，关键位置的元素是<code>3</code>，后半部分第一个比<code>3</code>大的元素是<code>4</code>，交换顺序后字符串是<code>14532</code>，当关键位置变大时，其后面的子字符串应该是第一个排列，也就是递增的，因此，下一步就是将后半部分反转（交换后也是递减的，因此直接反转就是递增的），得到字符串是<code>14235</code>。</li>
+</ol>
+<p>下面是程序实现：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">mynext_permutation</span><span class="params">(<span class="keyword">char</span> *beg,<span class="keyword">char</span> *end)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(beg == NULL || <span class="built_in">strlen</span>(beg) == <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">	<span class="keyword">char</span> *k = end -<span class="number">2</span>;</span><br><span class="line">	<span class="keyword">while</span>(*k &gt; *(k+<span class="number">1</span>))</span><br><span class="line">		--k;</span><br><span class="line">	<span class="keyword">if</span>(k &lt; beg )  <span class="comment">// 字符串已经逆序，最后一个排列</span></span><br><span class="line">	&#123;</span><br><span class="line">		reverse(beg,end);</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">char</span> *p = end -<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(*p &lt; *k)</span><br><span class="line">		--p;</span><br><span class="line">	swap(p,k);</span><br><span class="line">	reverse(k+<span class="number">1</span>,end);</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>为了验证，给出测试程序：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> str1[] = <span class="string">"1234"</span>;</span><br><span class="line">    <span class="keyword">char</span> str2[] = <span class="string">"1234"</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;str1&lt;&lt;endl;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;str2&lt;&lt;endl&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">while</span>(mynext_permutation(str1))</span><br><span class="line">    &#123;</span><br><span class="line">        std::next_permutation(str2,str2 + <span class="built_in">strlen</span>(str2));</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;str2&lt;&lt;endl;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;str2&lt;&lt;endl&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>重新实现库函数貌似是面试笔试常考的，就以这个为开始吧，以后继续写写！</p>
+</blockquote>
+<h2 id="参考">参考</h2><p><a href="http://blog.csdn.net/doufei_ccst/article/details/12779831" target="_blank" rel="external">网易有道笔试题(2014届，2013.10北邮站)</a><br><a href="http://wenku.baidu.com/link?url=3u8ZkI5bkAPf8E7lSQvMN9e9wJNLnpvM28i_--iyIg1BaV0P4lv_GuCc3gHe0I-9ACJNHYjWz8DE7lvvzTmzp4TpPauL3GLsBI6KbqeTnIu" target="_blank" rel="external">百度、谷歌、微软、MTK经典面试题</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/05/16/multi-thread-in-Cplusplus/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">C++中的多线程</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="my-next-permutation" data-title="实现STL中的next_permutation函数" data-url="http://yoursite.com/2015/05/16/my-next-permutation/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"zhangxiaoya"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'zhangxiaoya'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 大眼睛男孩儿
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/mobile.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+</body>
+</html>
