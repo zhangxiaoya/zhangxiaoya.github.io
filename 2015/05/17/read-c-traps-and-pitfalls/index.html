@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>《C陷阱和缺陷》读后感 | Big Eyes Boy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="@(zhangxiaoya89的笔记本)
+这篇笔记就起这么一个俗气的名字吧，《C陷阱和缺陷》这本书是去年买的，但是去年没有完全看完，只是看了前半部分，昨天才想起来，找出来，翻了翻发现没剩下多少了于是就打算昨天看完，但是昨天看另外一片文章入迷了，就没时间再继续完成这个了，刚刚吃过饭没事就把剩余的部分看完了，感觉没有去年那种神秘了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《C陷阱和缺陷》读后感">
+<meta property="og:url" content="http://yoursite.com/2015/05/17/read-c-traps-and-pitfalls/index.html">
+<meta property="og:site_name" content="Big Eyes Boy">
+<meta property="og:description" content="@(zhangxiaoya89的笔记本)
+这篇笔记就起这么一个俗气的名字吧，《C陷阱和缺陷》这本书是去年买的，但是去年没有完全看完，只是看了前半部分，昨天才想起来，找出来，翻了翻发现没剩下多少了于是就打算昨天看完，但是昨天看另外一片文章入迷了，就没时间再继续完成这个了，刚刚吃过饭没事就把剩余的部分看完了，感觉没有去年那种神秘了。">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《C陷阱和缺陷》读后感">
+<meta name="twitter:description" content="@(zhangxiaoya89的笔记本)
+这篇笔记就起这么一个俗气的名字吧，《C陷阱和缺陷》这本书是去年买的，但是去年没有完全看完，只是看了前半部分，昨天才想起来，找出来，翻了翻发现没剩下多少了于是就打算昨天看完，但是昨天看另外一片文章入迷了，就没时间再继续完成这个了，刚刚吃过饭没事就把剩余的部分看完了，感觉没有去年那种神秘了。">
+  
+    <link rel="alternative" href="/atom.xml" title="Big Eyes Boy" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="http://7xi4ue.com1.z0.glb.clouddn.com/HeadImg/headimage2.png" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">大眼睛男孩儿</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">运气总是实力积累爆发的时刻！</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/reading">我的阅历</a></li>
+				        
+							<li><a href="/about">我的简历</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/zhangxiaoya/" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/yayabuai/" title="weibo">weibo</a>
+					        
+								<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/zhang-xiao-ya-65/" title="zhihu">zhihu</a>
+					        
+								<a class="douban" target="_blank" href="http://www.douban.com/people/bigeyesboy/" title="douban">douban</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/C/" style="font-size: 16.67px;">C++</a><a href="/tags/C语言/" style="font-size: 10px;">C语言</a><a href="/tags/Github/" style="font-size: 10px;">Github</a><a href="/tags/Hexo/" style="font-size: 13.33px;">Hexo</a><a href="/tags/LCS/" style="font-size: 10px;">LCS</a><a href="/tags/LeetCode/" style="font-size: 20px;">LeetCode</a><a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a><a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a><a href="/tags/Math/" style="font-size: 20px;">Math</a><a href="/tags/Python/" style="font-size: 13.33px;">Python</a><a href="/tags/Qt4/" style="font-size: 10px;">Qt4</a><a href="/tags/STL/" style="font-size: 10px;">STL</a><a href="/tags/SVD/" style="font-size: 10px;">SVD</a><a href="/tags/Scikit-Learn/" style="font-size: 10px;">Scikit Learn</a><a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a><a href="/tags/Windows/" style="font-size: 10px;">Windows</a><a href="/tags/Windows8-1/" style="font-size: 10px;">Windows8.1</a><a href="/tags/image/" style="font-size: 10px;">image</a><a href="/tags/opensh/" style="font-size: 10px;">opensh</a><a href="/tags/putty/" style="font-size: 10px;">putty</a><a href="/tags/tracking/" style="font-size: 10px;">tracking</a><a href="/tags/yilia/" style="font-size: 10px;">yilia</a><a href="/tags/七牛/" style="font-size: 10px;">七牛</a><a href="/tags/主题/" style="font-size: 10px;">主题</a><a href="/tags/二维数组/" style="font-size: 10px;">二维数组</a><a href="/tags/全排列/" style="font-size: 10px;">全排列</a><a href="/tags/分类/" style="font-size: 10px;">分类</a><a href="/tags/图床/" style="font-size: 10px;">图床</a><a href="/tags/多线程/" style="font-size: 13.33px;">多线程</a><a href="/tags/多说/" style="font-size: 10px;">多说</a><a href="/tags/实现库函数/" style="font-size: 10px;">实现库函数</a><a href="/tags/挂件/" style="font-size: 10px;">挂件</a><a href="/tags/数据库概念/" style="font-size: 10px;">数据库概念</a><a href="/tags/数组指针/" style="font-size: 10px;">数组指针</a><a href="/tags/时间管理/" style="font-size: 10px;">时间管理</a><a href="/tags/最长公共子序列/" style="font-size: 10px;">最长公共子序列</a><a href="/tags/标签云/" style="font-size: 10px;">标签云</a><a href="/tags/百度分享/" style="font-size: 10px;">百度分享</a><a href="/tags/读后感/" style="font-size: 10px;">读后感</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.csdn.net/qust_waiwai/">我之前的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.jianshu.com/p/1e402922ee32/">简书</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://tengine.taobao.org/book/">叔度的Nginx解析</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">13级北理工计算机硕士，擅长C++程序开发，为了找工作，现在研究Nginx、深入研究Linux，羡慕做前端的，因为网页确实漂亮。。。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">大眼睛男孩儿</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://7xi4ue.com1.z0.glb.clouddn.com/HeadImg/headimage2.png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">大眼睛男孩儿</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">运气总是实力积累爆发的时刻！</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/reading">我的阅历</a></li>
+		        
+					<li><a href="/about">我的简历</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/zhangxiaoya/" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/yayabuai/" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/zhang-xiao-ya-65/" title="zhihu">zhihu</a>
+			        
+						<a class="douban" target="_blank" href="http://www.douban.com/people/bigeyesboy/" title="douban">douban</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-read-c-traps-and-pitfalls" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/05/17/read-c-traps-and-pitfalls/" class="article-date">
+  	<time datetime="2015-05-17T14:55:52.000Z" itemprop="datePublished">2015-05-17</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      《C陷阱和缺陷》读后感
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C语言/">C语言</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读后感/">读后感</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/读书笔记/">读书笔记</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>@(zhangxiaoya89的笔记本)</p>
+<p>这篇笔记就起这么一个俗气的名字吧，《C陷阱和缺陷》这本书是去年买的，但是去年没有完全看完，只是看了前半部分，昨天才想起来，找出来，翻了翻发现没剩下多少了于是就打算昨天看完，但是昨天看另外一片文章入迷了，就没时间再继续完成这个了，刚刚吃过饭没事就把剩余的部分看完了，感觉没有去年那种神秘了。<br><a id="more"></a><br>刚刚看完，给我的感觉就是这本书在用一种大师的口气来<strong>教训</strong>我在学习和使用C语言编写程序过程中应该或者必须要注意的问题。也就是像书的封面写的“<strong>聆听大师的教诲，掌握编程精髓</strong>”。</p>
+<h2 id="从这本书中能学到什么？">从这本书中能学到什么？</h2><p>虽然是刚刚看完书的后半部分，但是大半的内容已经忘记了，因为有些东西我并不打算现在就很认真的关系，至少是现在，当下我最主要的任务就是尽可能高效的掌握C语言和C++的比较基本，而且是实际工程项目广泛应用的知识，另外还有应对面试官那些我忽略的问题，比如虚函数实现机制、宏是个什么鬼。。。此类问题。对于平台移植相关，以及早期机器（16位机器、甚至是8位机器）我暂时不想化太多的时间仔细研究。<br>那就列举我在这本书中学到的东西把。</p>
+<h3 id="这本书的是想说什么？">这本书的是想说什么？</h3><p>有意思的是，这本书是从第0章开始，比较符合C语言的风格，哈哈。。。至少我是这样理解的。这一章节介绍了这本书要写的是什么东西。<br>文中的一句话我感觉定位还是比较准确的：</p>
+<blockquote>
+<p>程序设计错误实际上是反映的程序与成员对该程序的”心智模式“两者的相异之处。</p>
+</blockquote>
+<p>这本书要介绍的内容是我们在使用C语言时常犯的错误，引起这些错误的原因来自两部分：程序语言本身的缺陷和程序语言中不容易注意的错误。<br>这类的错误区别与通常由程序员逻辑思维造成的错误，换句话说，本书中讲到的错误通常不是程序员故意要犯的错误。就像上面的那句话，这类错误是程序语言对程序的理解和程序员对程序的理解不一样造成的。我们可以把这类的错误当做是程序语言的缺陷，或者是故意留下的陷阱。<br>程序设计语言是分为若干个层次的：</p>
+<ol>
+<li>从<strong>词法分析</strong>的角度，也就是从每个符号<code>token</code>的角度分析错误；</li>
+<li>从<strong>语法分析</strong>的角度，也就是从每个语句的角度分析；</li>
+<li>从<strong>语义分析</strong>的角度，也就是对于每个语句完成的任务的具体的意义角度分析；</li>
+<li>通过了编译的阶段，下一个阶段就要分析在链接阶段会有哪些容易被忽略的错误；</li>
+<li>程序设计语言都提供了很方便的调用库，在使用不同的库函数的时候又会发生哪些错误。</li>
+<li>预处理这个过程也不能忽略，著名的宏就是在这个阶段起作用的，这个阶段有什么陷阱。</li>
+<li>习惯了使用高级开发语言，语言本身提供了可移植属性，那么对于C语言是不能忽略程序移植遇到的问题。</li>
+</ol>
+<p>以上阶段也就是包含了在程序设计过程中所有出现错误的不同层次，从这些层次依次逐个分析，就把这些陷阱或者缺陷都揪出来了。</p>
+<p>这也就是这本书的意义，不是分析程序员的逻辑错误，而是程序员容易忽略的问题，或者由于程序语言设计的缺陷会带来的潜在问题。若是这个目的，那么就可以很顺利的读完这本书，并且收货还是不少。</p>
+<h2 id="“词法”到底会有什么trap">“词法”到底会有什么trap</h2><p>单词或者是符号<code>token</code>对于编译器来说已经是原子了，这里能有什么错误，除非是把符号都写错了，还是真有一些，前辈还是列举了几个：</p>
+<ol>
+<li>符号，比如说判断相等的符号<strong>“==”</strong>，容易少些一个；</li>
+<li>符号<strong>&amp;</strong>和符号<strong>&amp;&amp;</strong>是不同的；</li>
+<li>数字我们默认是十进制，但是当一个整数是<code>0</code>开始的，那它就是八进制了；</li>
+<li>字符串与字符的区别，一个是单引号，一个是双引号，能区分吗？</li>
+</ol>
+<p>也就这点东西了，如果陷阱再多一点，我就怀疑语言本身的问题了。</p>
+<h2 id="”语法“能有什么问题呢？">”语法“能有什么问题呢？</h2><p>这一章是我最认真阅读的，也是我发现我也有好多问题没有想过，这些错误确实是我的弱点。</p>
+<ol>
+<li>函数指针是个什么鬼？就是一个指针，指向某个类型的函数的首地址。像其他指针一样，可以进行强制转化，地址为0的函数能用吗？我怕把自己的系统挂了。。。</li>
+<li>运算符的优先级，我其实最讨厌这个，经常记混了，赋值运算符<code>assignments</code>居然是<strong>从右向左结合</strong>，这个一定要记住了；还有<code>sizeof</code>不是一个函数，他是运算符，后面可以不用写括号的。</li>
+<li>分号表示已经结束了，一定不要忘了，尤其是跟<code>return</code>在一起的时候。</li>
+<li><code>switch</code>语句经常忘记<code>break</code>，这个通常编译器是允许的，但是运行结果可能大相径庭。</li>
+<li>函数调用在函数名后面要由括号包含实参列表的，即使没有实参，也要有括号；</li>
+<li>悬挂<code>else</code>，通常<code>else</code>要跟同意括号内最近的未匹配的<code>if</code>结合的，这里最好是按照正确的格式写代码，就算它什么也不做，那就加上一个分号而已。</li>
+</ol>
+<h2 id="在“语法”上常常忽视的问题">在“语法”上常常忽视的问题</h2><ol>
+<li>数组与指针，一位数组问题不是特别大，注意指针是指针，数组虽然是指向首元素的指针，但是它也只是数组名而已；最应该要注意的是二维数组与二级指针，定义一个指向一个数组的指针怎么定义？<code>int (*p)[31];</code>这里的<code>*p</code>实际上是一个有31个元素的数组；当然，也可以从第二维定义，先定义一个指针数组，<code>int ** pp = int *[12];</code>，然后给每个数组分配空间。</li>
+<li>非数组的指针，使用前一定要分配空间哦。</li>
+<li>作为参数的数组声明，数组名会退化成指针的。</li>
+<li>避免“举隅法”（<code>synecdoche</code>）这个词的意思是用宽泛的意思代替较窄的词语，需要注意的是复制指针，病不能复制指针所指向的内容。</li>
+<li>空指针并不等于空字符串，直接比较两个指针是可以的，但是不要用<code>strcmp</code>函数判断空指针，这个函数是要判断指针指向的内容的。</li>
+<li>边界计算与不对称边界，这里讲的内容最多，其实就是讲的边界不对称的情况下方式数组越界，这个也是面试的时候经常会考到的问题。</li>
+<li>求值顺序，这里其实就要注意自增或者自减的问题，还有在语句中，表达式的计算顺序。</li>
+<li>运算符<code>&amp;&amp;</code>、<code>||</code>和<code>！</code>，这个问题比较常见。</li>
+<li>整数溢出，也是面试的时候常常考虑到的，如何判断表达式是否越界，借助无符号数是个不错的方式，比如<code>if(a &gt; INT_MAX - b) xxx;</code>或者<code>if((unsigned)a +(unsigned)b &gt; INT_MAX) xxx;</code>.</li>
+<li>给<code>main</code>函数提供一个返回值，这个我通常是返回<code>0</code>.</li>
+</ol>
+<h2 id="链接器也会出问题">链接器也会出问题</h2><p>给我的感觉就是这章的内容给意义并不是特别大，主要介绍的是链接器在链接过程中如何处理外部变对象的命名冲突，所谓的外部对象是在函数体外声明或者定义的变量，这里的内容在《程序员的自我修养—编译、链接与库》介绍的比较详细了。</p>
+<h2 id="正确使用库函数">正确使用库函数</h2><p>库函数确实很方便，但是使用不好也容易出错，这章的内容我感觉意义不大，至少对我现在的任务来说，重点不在这里。</p>
+<h2 id="预处理">预处理</h2><p>这个比较重要，因为预处理主要是处理宏，这个东西比较诡异，因为是在预处理阶段，是不能检测到任何语言级别的错误的，语言级别的错误只有编译器和连接器才能检测到，预处理只是在文本上进行处理，比如去掉所有的注释，将所有的宏展开，这里的展开是指在任何使用宏的地方将程序文本替换，并不检查什么 语法错误。用宏定义常量还是没问题的，但是：</p>
+<ol>
+<li>不能忽略宏中的空格</li>
+<li>宏不是函数，不要没事把函数定义成宏</li>
+<li>宏也不是语句</li>
+<li>宏也不是类型</li>
+</ol>
+<p>最后，最好是少用宏，用常量吧！</p>
+<h2 id="移植问题">移植问题</h2><p>我暂时不想考虑！</p>
+<h2 id="最后，前辈给出建议">最后，前辈给出建议</h2><p>就是不要说服自己皇帝的新装；在程序中明确的表明自己的意图。<br>总结程序一句话：写程序别装X！</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/05/16/my-next-permutation/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">实现STL中的next_permutation函数</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="read-c-traps-and-pitfalls" data-title="《C陷阱和缺陷》读后感" data-url="http://yoursite.com/2015/05/17/read-c-traps-and-pitfalls/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"zhangxiaoya"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'zhangxiaoya'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 大眼睛男孩儿
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/mobile.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+</body>
+</html>
