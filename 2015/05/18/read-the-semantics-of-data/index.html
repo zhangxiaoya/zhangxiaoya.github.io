@@ -3,17 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>LeetCode 008 String to Integer (atoi) 解题报告 | Big Eyes Boy</title>
+  <title>read the semantics of data | Big Eyes Boy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="题目描述：实现标准库函数atoi，要解决空格字符问题，正负号问题，以及字母，溢出等问题，函数接收参数是string类型，返回值是int类型">
+  <meta name="description" content="@(Cplusplus)
+《深入探索C++对象模型》第三章读书笔记相对于前一章的内容，这一章还是比较晦涩，不是内容难，而是这里面这几不同的编译器，不同版本的编译，对程序的理解和编译结果有差异，差异多了自然就记不住了，所以，这一章我认真的看了两遍，并且xmind画了思维导图。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LeetCode 008 String to Integer (atoi) 解题报告">
-<meta property="og:url" content="http://yoursite.com/2015/04/10/leetcode008-solution/index.html">
+<meta property="og:title" content="read the semantics of data">
+<meta property="og:url" content="http://yoursite.com/2015/05/18/read-the-semantics-of-data/index.html">
 <meta property="og:site_name" content="Big Eyes Boy">
-<meta property="og:description" content="题目描述：实现标准库函数atoi，要解决空格字符问题，正负号问题，以及字母，溢出等问题，函数接收参数是string类型，返回值是int类型">
+<meta property="og:description" content="@(Cplusplus)
+《深入探索C++对象模型》第三章读书笔记相对于前一章的内容，这一章还是比较晦涩，不是内容难，而是这里面这几不同的编译器，不同版本的编译，对程序的理解和编译结果有差异，差异多了自然就记不住了，所以，这一章我认真的看了两遍，并且xmind画了思维导图。">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LeetCode 008 String to Integer (atoi) 解题报告">
-<meta name="twitter:description" content="题目描述：实现标准库函数atoi，要解决空格字符问题，正负号问题，以及字母，溢出等问题，函数接收参数是string类型，返回值是int类型">
+<meta name="twitter:title" content="read the semantics of data">
+<meta name="twitter:description" content="@(Cplusplus)
+《深入探索C++对象模型》第三章读书笔记相对于前一章的内容，这一章还是比较晦涩，不是内容难，而是这里面这几不同的编译器，不同版本的编译，对程序的理解和编译结果有差异，差异多了自然就记不住了，所以，这一章我认真的看了两遍，并且xmind画了思维导图。">
   
     <link rel="alternative" href="/atom.xml" title="Big Eyes Boy" type="application/atom+xml">
   
@@ -195,11 +198,11 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-leetcode008-solution" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-read-the-semantics-of-data" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2015/04/10/leetcode008-solution/" class="article-date">
-  	<time datetime="2015-04-10T13:12:41.000Z" itemprop="datePublished">2015-04-10</time>
+      <a href="/2015/05/18/read-the-semantics-of-data/" class="article-date">
+  	<time datetime="2015-05-18T15:40:01.000Z" itemprop="datePublished">2015-05-18</time>
 </a>
     </div>
   
@@ -212,7 +215,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      LeetCode 008 String to Integer (atoi) 解题报告
+      read the semantics of data
     </h1>
   
 
@@ -221,12 +224,12 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/">Math</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/对象模型/">对象模型</a></li></ul>
 	</div>
 
         
 	<div class="article-category tagcloud">
-	<a class="article-category-link" href="/categories/LeetCode/">LeetCode</a>
+	<a class="article-category-link" href="/categories/读书笔记/">读书笔记</a>
 	</div>
 
 
@@ -236,24 +239,25 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>题目描述</strong>：<br>实现标准库函数<strong><em>atoi</em></strong>，要解决空格字符问题，正负号问题，以及字母，溢出等问题，函数接收参数是<strong>string</strong>类型，返回值是<strong>int</strong>类型<br><a id="more"></a></p>
-<h2 id="英文描述">英文描述</h2><p>Implement atoi to convert a string to an integer.</p>
-<p>Hint: Carefully consider all possible input cases. If you want a challenge, please do not see below and ask yourself what are the possible input cases.</p>
-<p>Notes: It is intended for this problem to be specified vaguely (ie, no given input specs). You are responsible to gather all the input requirements up front.</p>
-<p>这个题目在2015年2月10号修改过<br>The signature of the C++ function had been updated. If you still see your function signature accepts a const char * argument, please click the reload button  to reset your code definition.</p>
-<p><strong>下面是一些提示</strong><br>Requirements for atoi:<br>The function first discards as many whitespace characters as necessary until the first non-whitespace character is found. Then, starting from this character, takes an optional initial plus or minus sign followed by as many numerical digits as possible, and interprets them as a numerical value.</p>
-<p>The string can contain additional characters after those that form the integral number, which are ignored and have no effect on the behavior of this function.</p>
-<p>If the first sequence of non-whitespace characters in str is not a valid integral number, or if no such sequence exists because either str is empty or it contains only whitespace characters, no conversion is performed.</p>
-<p>If no valid conversion could be performed, a zero value is returned. If the correct value is out of the range of representable values, INT_MAX (2147483647) or INT_MIN (-2147483648) is returned.</p>
-<h2 id="我的程序">我的程序</h2><p>还是老样子，废话少数，先贴上代码<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> Solution008::atoi(<span class="built_in">string</span> str)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> max = <span class="number">2147483647</span>;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> min = -<span class="number">2147483648</span>;</span><br><span class="line">    <span class="keyword">bool</span> positive = <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">int</span> len = str.length();</span><br><span class="line">    <span class="keyword">double</span> result = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> idx;</span><br><span class="line">    <span class="keyword">for</span>(idx = <span class="number">0</span>;idx&lt;len;++idx)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(str[idx] == <span class="string">' '</span>)</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(str[idx] == <span class="string">'-'</span> &amp;&amp; idx &lt; len)</span><br><span class="line">    &#123;</span><br><span class="line">        positive = <span class="keyword">false</span>;</span><br><span class="line">        idx ++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">else</span> <span class="title">if</span><span class="params">(str[idx] == '+' &amp;&amp; idx &lt; len)</span></span><br><span class="line">    </span>&#123;</span><br><span class="line">        idx ++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(str[idx] &lt; <span class="string">'0'</span> || str[idx] &gt; <span class="string">'9'</span> || idx &gt;= len)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(;idx &lt;len;++idx)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(str[idx] &gt;= <span class="string">'0'</span> &amp;&amp; str[idx] &lt;= <span class="string">'9'</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            result = result * <span class="number">10</span> + (str[idx] - <span class="string">'0'</span>);</span><br><span class="line">            <span class="keyword">if</span>(positive &amp;&amp; result &gt; max)</span><br><span class="line">                <span class="keyword">return</span> max;</span><br><span class="line">            <span class="function"><span class="keyword">else</span> <span class="title">if</span><span class="params">(!positive &amp;&amp; (-1 * result)</span> &lt; min )</span><br><span class="line">                return min</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (positive ? result :(-<span class="number">1</span> * result));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="解题思路">解题思路</h2><p>这道题目并不是很难，而且分类标准也是<strong>Easy</strong>，但是AC的比例比较低，开始的时候还真被这数字吓到了。<br>题目是不难，需要考虑多种情况。分为以下几个步骤：</p>
+        <p>@(Cplusplus)</p>
+<h1 id="《深入探索C++对象模型》第三章读书笔记">《深入探索C++对象模型》第三章读书笔记</h1><p>相对于前一章的内容，这一章还是比较晦涩，不是内容难，而是这里面这几不同的编译器，不同版本的编译，对程序的理解和编译结果有差异，差异多了自然就记不住了，所以，这一章我认真的看了两遍，并且xmind画了思维导图。<br><a id="more"></a></p>
+<h2 id="导读">导读</h2><p>每一章都有一些篇幅是导读内容，用来介绍这章要讲的是什么。这章的导读比较有意思，不是说特别有趣，而是用程序写出来很容易验证，并且记住这段内容。<br>给出的代码是这样的：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> X&#123;&#125;;</span><br><span class="line"><span class="keyword">class</span> Y:<span class="keyword">public</span> <span class="keyword">virtual</span> X&#123;&#125;;</span><br><span class="line"><span class="keyword">class</span> Z:<span class="keyword">public</span> <span class="keyword">virtual</span> X&#123;&#125;;</span><br><span class="line"><span class="keyword">class</span> A:<span class="keyword">public</span> Y,<span class="keyword">public</span> Z&#123;&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>在主函数中可以输出并验证一下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">X x;</span><br><span class="line">   Y y;</span><br><span class="line">   Z z;</span><br><span class="line">   A a;</span><br><span class="line">   <span class="built_in">cout</span>&lt;&lt; <span class="keyword">sizeof</span> x&lt;&lt;endl;</span><br><span class="line">   <span class="built_in">cout</span>&lt;&lt;<span class="keyword">sizeof</span> y&lt;&lt;endl;</span><br><span class="line">   <span class="built_in">cout</span>&lt;&lt;<span class="keyword">sizeof</span> z&lt;&lt;endl;</span><br><span class="line">   <span class="built_in">cout</span>&lt;&lt;<span class="keyword">sizeof</span> a&lt;&lt;endl;</span><br></pre></td></tr></table></figure></p>
+<p>我是在<code>window</code>环境下测试的，两种编译器：<code>Visual Studio</code> 和Windows版本的<code>gcc</code> — <code>MinGW</code>。运算结果都是一样的：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">4</span><br><span class="line">4</span><br><span class="line">8</span><br></pre></td></tr></table></figure></p>
+<p>这个导读其实我比较关注三个问题：</p>
 <ol>
-<li>首先去除字符串前缀空格；</li>
-<li>然后判断有无正负号，若有正负号，设置正负号标志，指针后移一位，否则，不做处理；</li>
-<li>判断第一个字符是否是数字，若不是，说明是无效数字，返回为0 ；否则正常处理；这个过程指针不移动；</li>
-<li>循环处理后面的字符；若是数字字符，正常处理，并判断是否越界；若不是数字字符，退出循环，返回数字</li>
+<li>空的类的对象大小到底是多少？答案是<code>1</code>，这个空间是编译器安插进去的一个字节的空间，用来区分这个类的不同的对象。（后面会有彩蛋）</li>
+<li>类<code>Y</code>和<code>Z</code>的对象的大小是多少呢？同样，这两个类也没有数据成员，当前我的编译器给出的都是4，这个四个字节存放的是个什么鬼？我是编译的32位程序，地址也就是32位，这4个字节存放的是指针，因为是虚继承，所以，这个指针指向的是虚基类子对象的地址，（若是多个虚继承，就指向一个表格，表格存放所有虚基类子对象的地址或者是偏移量）</li>
+<li>对齐（Alignment）限制，32位的应用程序的对齐大小是4个字节，也就是说若一个类的对象的字节数若不是4的整数倍，需要补齐，这是为了方便处理器进行计算。</li>
 </ol>
-<h2 id="参考">参考</h2><p>无</p>
+<p>彩蛋呢？既然不是4的整数倍就要对齐，那么空类的对象为什么不补齐？我感觉书上给出的有点迷惑，书中原话是对于空类的对象:</p>
+<blockquote>
+<p>编译器要安插一个<code>char</code></p>
+</blockquote>
+<p>我理解的是这里不应该说是一个<code>char</code>，应该是一个字节的空间，不知道是个什么东西，就是用来占据内存的一个空间，这样，空类类型的指针也可以指向内存中一个位置（就是这个一个字节，不存储任何数据），同时，同一个类的不同对象由于分配不同的一个字节的空间，也就能区分不同的对象了。我是这样理解的。</p>
+<p>书上来信者的编译器给出的答案是<code>1 8 8 12</code>，这里的<code>8=1+4+3</code>，其中4是指向基类子对象的指针，3是对齐产生的，1是因为父类为空，编译器给了它一个字节的空间。是从父类继承而来的。其实我认为这样解释不妥，一个字节的空间实际是在创建对象的时候分配的，并不是类本身具有的，我认为这里的1个字节的空间也是因为类<code>Y</code>和<code>Z</code>是空类，所以编译器也给他们添加了一个字节的空间。其实作者在86页的解释也应该是证明这一点的。我身边没有这样的编译器，否则我应该做一个实验验证一下。</p>
+<p>现代的编译器采用了一种新的策略：它将空的虚基类作看作是一个虚接口（<code>virtual interface</code>），空的虚基类视为其派生类的一部分（最开始的部分），这样派生类里面指向虚基类子对象的指针就被视为派生类的第一个成员了，而且这是一个数据成员，以前则是把虚继承当作是一种额外的<code>负担</code>，编译器自动处理这种负担，就是给每个对象添加一个指针。那么既然现在这个指针是派生类的成员了，派生类数据成员不为空了，所以，也就没有编译器安插的一个字节空间了，所以派生类对象大小是4.</p>
+<p>今天时间晚了，明天继续完成！</p>
 
       
     </div>
@@ -263,18 +267,9 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/04/11/leetcode009-solution/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          LeetCode 009 Palindrome Number 解题报告
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/04/10/start-python-sklearn/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">开始学习 Python Scikit Learn</div>
+    <a href="/2015/05/17/read-c-traps-and-pitfalls/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">《C陷阱和缺陷》读后感</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -303,7 +298,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="leetcode008-solution" data-title="LeetCode 008 String to Integer (atoi) 解题报告" data-url="http://yoursite.com/2015/04/10/leetcode008-solution/"></div>
+	<div class="ds-thread" data-thread-key="read-the-semantics-of-data" data-title="read the semantics of data" data-url="http://yoursite.com/2015/05/18/read-the-semantics-of-data/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
