@@ -3,20 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>read the semantics of data | Big Eyes Boy</title>
+  <title>深入探索C++对象模型》第三章读书笔记 | Big Eyes Boy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="@(Cplusplus)
-《深入探索C++对象模型》第三章读书笔记相对于前一章的内容，这一章还是比较晦涩，不是内容难，而是这里面这几不同的编译器，不同版本的编译，对程序的理解和编译结果有差异，差异多了自然就记不住了，所以，这一章我认真的看了两遍，并且xmind画了思维导图。">
+  <meta name="description" content="@(Cplusplus)相对于前一章的内容，这一章还是比较晦涩，不是内容难，而是这里面这几不同的编译器，不同版本的编译，对程序的理解和编译结果有差异，差异多了自然就记不住了，所以，这一章我认真的看了两遍，并且xmind画了思维导图。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="read the semantics of data">
+<meta property="og:title" content="深入探索C++对象模型》第三章读书笔记">
 <meta property="og:url" content="http://yoursite.com/2015/05/18/read-the-semantics-of-data/index.html">
 <meta property="og:site_name" content="Big Eyes Boy">
-<meta property="og:description" content="@(Cplusplus)
-《深入探索C++对象模型》第三章读书笔记相对于前一章的内容，这一章还是比较晦涩，不是内容难，而是这里面这几不同的编译器，不同版本的编译，对程序的理解和编译结果有差异，差异多了自然就记不住了，所以，这一章我认真的看了两遍，并且xmind画了思维导图。">
+<meta property="og:description" content="@(Cplusplus)相对于前一章的内容，这一章还是比较晦涩，不是内容难，而是这里面这几不同的编译器，不同版本的编译，对程序的理解和编译结果有差异，差异多了自然就记不住了，所以，这一章我认真的看了两遍，并且xmind画了思维导图。">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="read the semantics of data">
-<meta name="twitter:description" content="@(Cplusplus)
-《深入探索C++对象模型》第三章读书笔记相对于前一章的内容，这一章还是比较晦涩，不是内容难，而是这里面这几不同的编译器，不同版本的编译，对程序的理解和编译结果有差异，差异多了自然就记不住了，所以，这一章我认真的看了两遍，并且xmind画了思维导图。">
+<meta name="twitter:title" content="深入探索C++对象模型》第三章读书笔记">
+<meta name="twitter:description" content="@(Cplusplus)相对于前一章的内容，这一章还是比较晦涩，不是内容难，而是这里面这几不同的编译器，不同版本的编译，对程序的理解和编译结果有差异，差异多了自然就记不住了，所以，这一章我认真的看了两遍，并且xmind画了思维导图。">
   
     <link rel="alternative" href="/atom.xml" title="Big Eyes Boy" type="application/atom+xml">
   
@@ -215,7 +212,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      read the semantics of data
+      深入探索C++对象模型》第三章读书笔记
     </h1>
   
 
@@ -239,8 +236,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>@(Cplusplus)</p>
-<h1 id="《深入探索C++对象模型》第三章读书笔记">《深入探索C++对象模型》第三章读书笔记</h1><p>相对于前一章的内容，这一章还是比较晦涩，不是内容难，而是这里面这几不同的编译器，不同版本的编译，对程序的理解和编译结果有差异，差异多了自然就记不住了，所以，这一章我认真的看了两遍，并且xmind画了思维导图。<br><a id="more"></a></p>
+        <p>@(Cplusplus)<br>相对于前一章的内容，这一章还是比较晦涩，不是内容难，而是这里面这几不同的编译器，不同版本的编译，对程序的理解和编译结果有差异，差异多了自然就记不住了，所以，这一章我认真的看了两遍，并且xmind画了思维导图。<br><a id="more"></a></p>
 <h2 id="导读">导读</h2><p>每一章都有一些篇幅是导读内容，用来介绍这章要讲的是什么。这章的导读比较有意思，不是说特别有趣，而是用程序写出来很容易验证，并且记住这段内容。<br>给出的代码是这样的：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> X&#123;&#125;;</span><br><span class="line"><span class="keyword">class</span> Y:<span class="keyword">public</span> <span class="keyword">virtual</span> X&#123;&#125;;</span><br><span class="line"><span class="keyword">class</span> Z:<span class="keyword">public</span> <span class="keyword">virtual</span> X&#123;&#125;;</span><br><span class="line"><span class="keyword">class</span> A:<span class="keyword">public</span> Y,<span class="keyword">public</span> Z&#123;&#125;;</span><br></pre></td></tr></table></figure></p>
 <p>在主函数中可以输出并验证一下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">X x;</span><br><span class="line">   Y y;</span><br><span class="line">   Z z;</span><br><span class="line">   A a;</span><br><span class="line">   <span class="built_in">cout</span>&lt;&lt; <span class="keyword">sizeof</span> x&lt;&lt;endl;</span><br><span class="line">   <span class="built_in">cout</span>&lt;&lt;<span class="keyword">sizeof</span> y&lt;&lt;endl;</span><br><span class="line">   <span class="built_in">cout</span>&lt;&lt;<span class="keyword">sizeof</span> z&lt;&lt;endl;</span><br><span class="line">   <span class="built_in">cout</span>&lt;&lt;<span class="keyword">sizeof</span> a&lt;&lt;endl;</span><br></pre></td></tr></table></figure></p>
 <p>我是在<code>window</code>环境下测试的，两种编译器：<code>Visual Studio</code> 和Windows版本的<code>gcc</code> — <code>MinGW</code>。运算结果都是一样的：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">4</span><br><span class="line">4</span><br><span class="line">8</span><br></pre></td></tr></table></figure></p>
@@ -298,7 +294,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="read-the-semantics-of-data" data-title="read the semantics of data" data-url="http://yoursite.com/2015/05/18/read-the-semantics-of-data/"></div>
+	<div class="ds-thread" data-thread-key="read-the-semantics-of-data" data-title="深入探索C++对象模型》第三章读书笔记" data-url="http://yoursite.com/2015/05/18/read-the-semantics-of-data/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
