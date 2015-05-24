@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8">
   
-  <title>深入探索C++对象模型》第三章读书笔记 | Big Eyes Boy</title>
+  <title>《深入探索C++对象模型》第三章读书笔记 | Big Eyes Boy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="@(Cplusplus)相对于前一章的内容，这一章还是比较晦涩，不是内容难，而是这里面这几不同的编译器，不同版本的编译，对程序的理解和编译结果有差异，差异多了自然就记不住了，所以，这一章我认真的看了两遍，并且xmind画了思维导图。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="深入探索C++对象模型》第三章读书笔记">
+<meta property="og:title" content="《深入探索C++对象模型》第三章读书笔记">
 <meta property="og:url" content="http://yoursite.com/2015/05/18/read-the-semantics-of-data/index.html">
 <meta property="og:site_name" content="Big Eyes Boy">
 <meta property="og:description" content="@(Cplusplus)相对于前一章的内容，这一章还是比较晦涩，不是内容难，而是这里面这几不同的编译器，不同版本的编译，对程序的理解和编译结果有差异，差异多了自然就记不住了，所以，这一章我认真的看了两遍，并且xmind画了思维导图。">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="深入探索C++对象模型》第三章读书笔记">
+<meta name="twitter:title" content="《深入探索C++对象模型》第三章读书笔记">
 <meta name="twitter:description" content="@(Cplusplus)相对于前一章的内容，这一章还是比较晦涩，不是内容难，而是这里面这几不同的编译器，不同版本的编译，对程序的理解和编译结果有差异，差异多了自然就记不住了，所以，这一章我认真的看了两遍，并且xmind画了思维导图。">
   
     <link rel="alternative" href="/atom.xml" title="Big Eyes Boy" type="application/atom+xml">
@@ -212,7 +212,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      深入探索C++对象模型》第三章读书笔记
+      《深入探索C++对象模型》第三章读书笔记
     </h1>
   
 
@@ -253,7 +253,17 @@
 <p>我理解的是这里不应该说是一个<code>char</code>，应该是一个字节的空间，不知道是个什么东西，就是用来占据内存的一个空间，这样，空类类型的指针也可以指向内存中一个位置（就是这个一个字节，不存储任何数据），同时，同一个类的不同对象由于分配不同的一个字节的空间，也就能区分不同的对象了。我是这样理解的。</p>
 <p>书上来信者的编译器给出的答案是<code>1 8 8 12</code>，这里的<code>8=1+4+3</code>，其中4是指向基类子对象的指针，3是对齐产生的，1是因为父类为空，编译器给了它一个字节的空间。是从父类继承而来的。其实我认为这样解释不妥，一个字节的空间实际是在创建对象的时候分配的，并不是类本身具有的，我认为这里的1个字节的空间也是因为类<code>Y</code>和<code>Z</code>是空类，所以编译器也给他们添加了一个字节的空间。其实作者在86页的解释也应该是证明这一点的。我身边没有这样的编译器，否则我应该做一个实验验证一下。</p>
 <p>现代的编译器采用了一种新的策略：它将空的虚基类作看作是一个虚接口（<code>virtual interface</code>），空的虚基类视为其派生类的一部分（最开始的部分），这样派生类里面指向虚基类子对象的指针就被视为派生类的第一个成员了，而且这是一个数据成员，以前则是把虚继承当作是一种额外的<code>负担</code>，编译器自动处理这种负担，就是给每个对象添加一个指针。那么既然现在这个指针是派生类的成员了，派生类数据成员不为空了，所以，也就没有编译器安插的一个字节空间了，所以派生类对象大小是4.</p>
-<p>今天时间晚了，明天继续完成！</p>
+<p>上次写到这里！今天开题答辩，挺累的，还是写点吧</p>
+<p>至于最后一个对象的大小，是12，书中的解释是因为共享了虚基类的一个字节，其实，我还是认为这个一个字节不是在虚基类添加的，而是虚基类对象添加的（用来区分不同的对象）。我的解释是这里之所以是12，是因为编译器还没有优化，没有将指向虚基类对象的指针看作是派生类的一部分，因此派生类也是空类，编译器需要给他们一个字节的空间，这样，继承了两个这样的类的A，就需要<code>(4+1)*2</code>空间，在由编译器进行对齐，就变成了12字节。</p>
+<p>对于优化了的编译器，为什么是8？原因是指向虚基类的指针被当作成员了，那么派生类就不是空类了，他们的对象的空间大小是4，两个相加就是8咯！</p>
+<p>我觉得我的解释还是比较有道理，但是没有这样的编译器，也就不好验证，而且目前都是优化了的，也就没有太大意义去钻这个牛角尖了。</p>
+<blockquote>
+<p>临时插一句话，这本书讲的还是比较有深度的，今天身体实在是不舒服，而且要回宿舍洗澡，这一章的内容还是差一些才能看完，预计还需要一到两天，而且白天我要写论文。</p>
+</blockquote>
+<h2 id="数据成员的绑定">数据成员的绑定</h2><p>这一小节的内容还是比较晦涩的，原因是没办法验证。而且我不知道这个对我的帮助有多大，我还是不了解这条规则的意义。</p>
+<blockquote>
+<p>明天再写吧，头疼了。</p>
+</blockquote>
 
       
     </div>
@@ -294,7 +304,7 @@
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="read-the-semantics-of-data" data-title="深入探索C++对象模型》第三章读书笔记" data-url="http://yoursite.com/2015/05/18/read-the-semantics-of-data/"></div>
+	<div class="ds-thread" data-thread-key="read-the-semantics-of-data" data-title="《深入探索C++对象模型》第三章读书笔记" data-url="http://yoursite.com/2015/05/18/read-the-semantics-of-data/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
