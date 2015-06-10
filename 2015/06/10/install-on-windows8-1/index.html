@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>在Windows8.1上安装CUDA | Big Eyes Boy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="@(Program Primer)
+需要对比试验，但是作者提供的程序需要是使用CUDA，在两个台式机上测试，都不能通过，笔记本的显卡是配置最高的，在自己的笔记本上配置环境跑程序，刚才尝试了一下，还好，能用了。在Windows平台上配置环境挺简单的，还是记录一下，方便以后查看。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在Windows8.1上安装CUDA">
+<meta property="og:url" content="http://yoursite.com/2015/06/10/install-on-windows8-1/index.html">
+<meta property="og:site_name" content="Big Eyes Boy">
+<meta property="og:description" content="@(Program Primer)
+需要对比试验，但是作者提供的程序需要是使用CUDA，在两个台式机上测试，都不能通过，笔记本的显卡是配置最高的，在自己的笔记本上配置环境跑程序，刚才尝试了一下，还好，能用了。在Windows平台上配置环境挺简单的，还是记录一下，方便以后查看。">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在Windows8.1上安装CUDA">
+<meta name="twitter:description" content="@(Program Primer)
+需要对比试验，但是作者提供的程序需要是使用CUDA，在两个台式机上测试，都不能通过，笔记本的显卡是配置最高的，在自己的笔记本上配置环境跑程序，刚才尝试了一下，还好，能用了。在Windows平台上配置环境挺简单的，还是记录一下，方便以后查看。">
+  
+    <link rel="alternative" href="/atom.xml" title="Big Eyes Boy" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="http://7xi4ue.com1.z0.glb.clouddn.com/HeadImg/headimage2.png" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">大眼睛男孩儿</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">运气总是实力积累爆发的时刻！</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/reading">我的阅历</a></li>
+				        
+							<li><a href="/about">我的简历</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/zhangxiaoya/" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/yayabuai/" title="weibo">weibo</a>
+					        
+								<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/zhang-xiao-ya-65/" title="zhihu">zhihu</a>
+					        
+								<a class="douban" target="_blank" href="http://www.douban.com/people/bigeyesboy/" title="douban">douban</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/C/" style="font-size: 20px;">C++</a><a href="/tags/Cuda/" style="font-size: 10px;">Cuda</a><a href="/tags/C语言/" style="font-size: 10px;">C语言</a><a href="/tags/Github/" style="font-size: 10px;">Github</a><a href="/tags/Hexo/" style="font-size: 13.33px;">Hexo</a><a href="/tags/LCS/" style="font-size: 10px;">LCS</a><a href="/tags/LeetCode/" style="font-size: 16.67px;">LeetCode</a><a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a><a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a><a href="/tags/Math/" style="font-size: 16.67px;">Math</a><a href="/tags/Python/" style="font-size: 13.33px;">Python</a><a href="/tags/Qt4/" style="font-size: 10px;">Qt4</a><a href="/tags/STL/" style="font-size: 10px;">STL</a><a href="/tags/SVD/" style="font-size: 10px;">SVD</a><a href="/tags/Scikit-Learn/" style="font-size: 10px;">Scikit Learn</a><a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a><a href="/tags/Visual-Studio/" style="font-size: 10px;">Visual Studio</a><a href="/tags/Win8-1/" style="font-size: 10px;">Win8.1</a><a href="/tags/Windows/" style="font-size: 10px;">Windows</a><a href="/tags/Windows8-1/" style="font-size: 10px;">Windows8.1</a><a href="/tags/image/" style="font-size: 10px;">image</a><a href="/tags/opensh/" style="font-size: 10px;">opensh</a><a href="/tags/putty/" style="font-size: 10px;">putty</a><a href="/tags/tracking/" style="font-size: 10px;">tracking</a><a href="/tags/yilia/" style="font-size: 10px;">yilia</a><a href="/tags/七牛/" style="font-size: 10px;">七牛</a><a href="/tags/主题/" style="font-size: 10px;">主题</a><a href="/tags/二维数组/" style="font-size: 10px;">二维数组</a><a href="/tags/全排列/" style="font-size: 10px;">全排列</a><a href="/tags/分类/" style="font-size: 10px;">分类</a><a href="/tags/图床/" style="font-size: 10px;">图床</a><a href="/tags/多线程/" style="font-size: 13.33px;">多线程</a><a href="/tags/多说/" style="font-size: 10px;">多说</a><a href="/tags/实习/" style="font-size: 10px;">实习</a><a href="/tags/实现库函数/" style="font-size: 10px;">实现库函数</a><a href="/tags/对象模型/" style="font-size: 13.33px;">对象模型</a><a href="/tags/挂件/" style="font-size: 10px;">挂件</a><a href="/tags/数据库概念/" style="font-size: 10px;">数据库概念</a><a href="/tags/数组指针/" style="font-size: 10px;">数组指针</a><a href="/tags/时间管理/" style="font-size: 10px;">时间管理</a><a href="/tags/最长公共子序列/" style="font-size: 10px;">最长公共子序列</a><a href="/tags/标签云/" style="font-size: 10px;">标签云</a><a href="/tags/百度分享/" style="font-size: 10px;">百度分享</a><a href="/tags/读后感/" style="font-size: 10px;">读后感</a><a href="/tags/面试/" style="font-size: 10px;">面试</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.csdn.net/qust_waiwai/">我之前的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.jianshu.com/p/1e402922ee32/">简书</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://tengine.taobao.org/book/">叔度的Nginx解析</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">13级北理工计算机硕士，擅长C++程序开发，为了找工作，现在研究Nginx、深入研究Linux，羡慕做前端的，因为网页确实漂亮。。。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">大眼睛男孩儿</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://7xi4ue.com1.z0.glb.clouddn.com/HeadImg/headimage2.png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">大眼睛男孩儿</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">运气总是实力积累爆发的时刻！</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/reading">我的阅历</a></li>
+		        
+					<li><a href="/about">我的简历</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/zhangxiaoya/" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/yayabuai/" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/zhang-xiao-ya-65/" title="zhihu">zhihu</a>
+			        
+						<a class="douban" target="_blank" href="http://www.douban.com/people/bigeyesboy/" title="douban">douban</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-install-on-windows8-1" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/06/10/install-on-windows8-1/" class="article-date">
+  	<time datetime="2015-06-10T10:42:40.000Z" itemprop="datePublished">2015-06-10</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      在Windows8.1上安装CUDA
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cuda/">Cuda</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Visual-Studio/">Visual Studio</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Win8-1/">Win8.1</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/浅尝编程/">浅尝编程</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>@(Program Primer)</p>
+<p>需要对比试验，但是作者提供的程序需要是使用<code>CUDA</code>，在两个台式机上测试，都不能通过，笔记本的显卡是配置最高的，在自己的笔记本上配置环境跑程序，刚才尝试了一下，还好，能用了。在Windows平台上配置环境挺简单的，还是记录一下，方便以后查看。</p>
+<a id="more"></a>
+<h2 id="检查显卡">检查显卡</h2><p>虽然是N卡，但是还是检查一下显卡是否支持。<br>我的机器的基本配置：</p>
+<ul>
+<li>处理器 intel i5 四线程</li>
+<li>内存   4GB * 2</li>
+<li>显卡 NVIDIA Geforce 755m 2GB</li>
+<li>系统 Windows 8.1 64 bit 中文版</li>
+</ul>
+<p>也可以在<strong>设备管理器</strong>中查看自己机器的显卡。</p>
+<p>在<a href="https://developer.nvidia.com/cuda-gpus" target="_blank" rel="external">NVIDIA的官方网站</a>查看显卡是否在支持的列表中。<br>但是，这个表不是特别全。也可以在其<a href="http://www.geforce.cn/hardware/notebook-gpus/geforce-gt-755m" target="_blank" rel="external">硬件设备网站</a>中查看是否支持。</p>
+<p>或者使用<a href="http://www.techpowerup.com/gpuz/" target="_blank" rel="external"><code>GPU-Z</code></a>查看是否支持，不过这个软件也是有问题。<br>最好的是查看硬件的支持信息。</p>
+<p>不过也有在百度上直接问的，比如<a href="http://zhidao.baidu.com/question/1945547828013027988.html" target="_blank" rel="external">这位同学</a>。</p>
+<p>注意：</p>
+<blockquote>
+<p>下载的安装包实际上是安装三个东西</p>
+<ul>
+<li>Toolkit  各种工具的集合，提供了矩阵计算的各种工具</li>
+<li>GDK      提供一些库函数，我看的意思貌似 是ML（Machine Learning）的库，其实不是啦，是NVIDIA Management Library的意思。</li>
+<li>Samples  提供了一些例子</li>
+</ul>
+</blockquote>
+<h2 id="开始安装">开始安装</h2><p>检查发现显卡支持CUDA，那果断安装。</p>
+<ol>
+<li><p>在<a href="https://developer.nvidia.com/" target="_blank" rel="external">NVIDIA的官网</a>，上找到<code>CUDA ZONE</code>，可以在这里了解更多关于<code>CUDA</code>的知识；</p>
+</li>
+<li><p>在<a href="https://developer.nvidia.com/cuda-downloads" target="_blank" rel="external">CUDA下载页面</a>选择合适的系统平台，下载对应的开发包，我下载的是<code>Win8.1</code>版本的，但是我发现怎么只有<code>Win8.1</code>下有链接，其他的系统平台下没有链接，难道都是一样的？</p>
+</li>
+<li><p>安装，整个安装过程比较简单，就类似于普通的软件安装，但是要提醒一下，一定要安装<code>Visual Studio 2010</code> 或者更高版本，比如<code>Visual Studio 2012</code> 和 <code>Visual Studio 2013</code>，<code>CUDA7.0</code> 都是支持的。安装路径也是可以选择的。</p>
+</li>
+<li><p>安装过程看电脑的性能了，我大约安装了10多分钟。</p>
+</li>
+<li><p>验证安装，打开命令提示框（就是cmd），输入命令<code>nvcc - V</code>，查看<code>CUDA</code>的版本。若是安装正确的话，会出现下面的结果；若不正确，我也不知道啦。</p>
+</li>
+</ol>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">C:</span>\Users\username&gt;nvcc -V</span><br><span class="line"><span class="string">nvcc:</span> NVIDIA (R) Cuda compiler driver</span><br><span class="line">Copyright (c) <span class="number">2005</span>-<span class="number">2015</span> NVIDIA Corporation</span><br><span class="line">Built on <span class="string">Mon_Feb_16_23:</span><span class="number">00</span>:<span class="number">53</span>_CST_2015</span><br><span class="line">Cuda compilation tools, release <span class="number">7.0</span>, V7<span class="number">.0</span><span class="number">.27</span></span><br></pre></td></tr></table></figure>
+<h2 id="其他验证方式">其他验证方式</h2><p>网上的教程还给了其他的验证方式，比如<a href="http://www.tuicool.com/articles/7jaAnm7" target="_blank" rel="external">这篇文章</a>提到了用<code>deviceQuery.exe</code>验证，我找了半天也没找到这个可执行程序，后来发现原来这是一个例子，按照其他文章说的，在安装的时候就把例子也给编译了，我仔细的检测，发现我的没有编译，只能自己编译了。</p>
+<ol>
+<li><p>在例子的安装目录下，找到解决方案的名字。比如我的例子的安装路径是<code>D:\Application\ProgramData\NVIDIA Corporation\CUDA\Samples\v7.0\</code>，若版本号跟我的一样的话，应该是有三个解决方案，对应不同的版本，比如我的有<code>Samples_vs2010.sln</code>、<code>Samples_vs2012.sln</code>和<code>Samples_vs2013.sln</code>，我的机器只是安装了<code>Visual Studio 2010</code>因此，只能打开第一个解决方案。</p>
+</li>
+<li><p>开始漫长的编译过程，选择<code>Visual Studio 2010</code>的<strong>生成</strong>-&gt;<strong>生成解决方案</strong>或者直接按<code>F7</code>键，开始<code>Build</code>。</p>
+</li>
+</ol>
+<blockquote>
+<p>Visual Studio这个环境好用，但是也会有各种奇葩的错误，在构建例子的过程中，有10个例子没有成功，先不管了，绝大多数都成功了。</p>
+</blockquote>
+<p>下面是我的构建日志的最后部分：<br><figure class="highlight erlang-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="prompt">144&gt; </span> 正在删除文件“<span class="function_or_atom">x64</span>/<span class="variable">Debug</span>/<span class="function_or_atom">alignedTypes</span>.<span class="function_or_atom">unsuccessfulbuild</span>”。</span><br><span class="line"><span class="prompt">144&gt; </span> 正在对“<span class="function_or_atom">x64</span>/<span class="variable">Debug</span>/<span class="function_or_atom">alignedTypes</span>.<span class="function_or_atom">lastbuildstate</span>”执行 <span class="variable">Touch</span> 任务。</span><br><span class="line"><span class="number">144</span>&gt;</span><br><span class="line"><span class="number">144</span>&gt;生成成功。</span><br><span class="line"><span class="number">144</span>&gt;</span><br><span class="line"><span class="number">144</span>&gt;已用时间 <span class="number">00</span>:<span class="number">01</span>:<span class="number">07.49</span></span><br><span class="line">========== 生成: 成功 <span class="number">134</span> 个，失败 <span class="number">10</span> 个，最新 <span class="number">0</span> 个，跳过 <span class="number">0</span> 个 ==========</span><br></pre></td></tr></table></figure></p>
+<p>结束<code>Build</code>后，就会在对应的目录中找到<code>deviceQuery.exe</code>了，在命令行中运行这个程序，会得到如下的结果：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">deviceQuery.exe Starting...</span><br><span class="line"></span><br><span class="line"> CUDA Device Query (Runtime API) version (CUDART static linking)</span><br><span class="line"></span><br><span class="line">Detected 1 CUDA Capable device(s)</span><br><span class="line"></span><br><span class="line">Device 0: "GeForce GT 755M"</span><br><span class="line">  CUDA Driver Version / Runtime Version          7.0 / 7.0</span><br><span class="line">  CUDA Capability Major/Minor version number:    3.0</span><br><span class="line">  Total amount of global memory:                 2048 MBytes (2147483648 bytes)</span><br><span class="line">  ( 2) Multiprocessors, (192) CUDA Cores/MP:     384 CUDA Cores</span><br><span class="line">  GPU Max Clock rate:                            1020 MHz (1.02 GHz)</span><br><span class="line">  Memory Clock rate:                             2700 Mhz</span><br><span class="line">  Memory Bus Width:                              128-bit</span><br><span class="line">  L2 <span class="operator"><span class="keyword">Cache</span> <span class="keyword">Size</span>:                                 <span class="number">262144</span> bytes</span><br><span class="line">  Maximum Texture Dimension <span class="keyword">Size</span> (x,y,z)         <span class="number">1</span>D=(<span class="number">65536</span>), <span class="number">2</span>D=(<span class="number">65536</span>, <span class="number">65536</span>),<span class="number">3</span>D=(<span class="number">4096</span>, <span class="number">4096</span>, <span class="number">4096</span>)</span><br><span class="line">  Maximum Layered <span class="number">1</span>D Texture <span class="keyword">Size</span>, (num) layers  <span class="number">1</span>D=(<span class="number">16384</span>), <span class="number">2048</span> layers</span><br><span class="line">  Maximum Layered <span class="number">2</span>D Texture <span class="keyword">Size</span>, (num) layers  <span class="number">2</span>D=(<span class="number">16384</span>, <span class="number">16384</span>), <span class="number">2048</span> layers</span><br><span class="line">  Total amount <span class="keyword">of</span> constant memory:               <span class="number">65536</span> bytes</span><br><span class="line">  Total amount <span class="keyword">of</span> shared memory per block:       <span class="number">49152</span> bytes</span><br><span class="line">  Total <span class="built_in">number</span> <span class="keyword">of</span> registers available per block: <span class="number">65536</span></span><br><span class="line">  Warp <span class="keyword">size</span>:                                     <span class="number">32</span></span><br><span class="line">  Maximum <span class="built_in">number</span> <span class="keyword">of</span> threads per multiprocessor:  <span class="number">2048</span></span><br><span class="line">  Maximum <span class="built_in">number</span> <span class="keyword">of</span> threads per block:           <span class="number">1024</span></span><br><span class="line">  <span class="keyword">Max</span> dimension <span class="keyword">size</span> <span class="keyword">of</span> a thread block (x,y,z): (<span class="number">1024</span>, <span class="number">1024</span>, <span class="number">64</span>)</span><br><span class="line">  <span class="keyword">Max</span> dimension <span class="keyword">size</span> <span class="keyword">of</span> a grid <span class="keyword">size</span>    (x,y,z): (<span class="number">2147483647</span>, <span class="number">65535</span>, <span class="number">65535</span>)</span><br><span class="line">  Maximum memory pitch:                          <span class="number">2147483647</span> bytes</span><br><span class="line">  Texture alignment:                             <span class="number">512</span> bytes</span><br><span class="line">  <span class="keyword">Concurrent</span> copy <span class="keyword">and</span> kernel execution:          Yes <span class="keyword">with</span> <span class="number">1</span> copy <span class="keyword">engine</span>(s)</span><br><span class="line">  Run <span class="keyword">time</span> <span class="keyword">limit</span> <span class="keyword">on</span> kernels:                     Yes</span><br><span class="line">  Integrated GPU sharing Host Memory:            <span class="keyword">No</span></span><br><span class="line">  Support host page-locked memory mapping:       Yes</span><br><span class="line">  Alignment requirement <span class="keyword">for</span> Surfaces:            Yes</span><br><span class="line">  Device has ECC support:                        Disabled</span><br><span class="line">  CUDA Device Driver <span class="keyword">Mode</span> (TCC <span class="keyword">or</span> WDDM):         WDDM (Windows Display Driver Model)</span><br><span class="line">    Device supports Unified Addressing (UVA):      Yes</span><br><span class="line">  Device PCI <span class="keyword">Domain</span> ID / Bus ID / location ID:   <span class="number">0</span> / <span class="number">1</span> / <span class="number">0</span></span><br><span class="line">  Compute <span class="keyword">Mode</span>:</span><br><span class="line">     &lt; <span class="keyword">Default</span> (multiple host threads can <span class="keyword">use</span> ::cudaSetDevice() <span class="keyword">with</span> device simultaneously) &gt;</span><br><span class="line"></span><br><span class="line">deviceQuery, CUDA Driver = CUDART, CUDA Driver <span class="keyword">Version</span> = <span class="number">7.0</span>, CUDA Runtime <span class="keyword">Version</span> = <span class="number">7.0</span>, NumDevs = <span class="number">1</span>, Device0 = GeForce GT <span class="number">755</span>M</span><br><span class="line">Result = PASS</span></span><br></pre></td></tr></table></figure>
+<h2 id="写一个小程序">写一个小程序</h2><ol>
+<li><p>在Visual Studio 2010 中新建一个空项目</p>
+</li>
+<li><p>添加新建项</p>
+</li>
+<li><p>在新建项对话框窗口左侧，选择<strong>NVIDIA CUDA7.0</strong>—<strong>Code</strong></p>
+</li>
+<li><p>在右侧的列表框中选择<strong>CUDA C/C++ File</strong>,名字任意，不过最好选择一个有意义的名字</p>
+</li>
+<li><p>右键工程名字，选择<strong>生成自定义</strong>，在<strong>CUDA7.0</strong>项前的复选框，选中</p>
+</li>
+<li><p>右键新建的CUDA文件，后缀名是<code>.cu</code>，选择<strong>属性</strong>，将<strong>常规</strong>项中的，<strong>项类型</strong>修改为<code>CUDA C/C++</code></p>
+</li>
+<li><p>又将工程名字，选择<strong>属性</strong>，选择<strong>链接器</strong> : 打开<strong>常规</strong>，编辑<strong>附加目录</strong>，添加内容 <code>$(CUDA_PATH_V7_0)\lib\$(Platform)</code> ; 打开<strong>输入</strong>，编辑<strong>附加依赖项</strong>，添加内容 <code>cudart.lib</code></p>
+</li>
+<li><p>在CUDA文件中添加以下测试代码：</p>
+</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span>&lt; stdio.h&gt; </span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> "cuda_runtime.h" </span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> "device_launch_parameters.h" </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">InitCUDA</span><span class="params">()</span> </span><br><span class="line"></span>&#123; </span><br><span class="line">	<span class="keyword">int</span> count; </span><br><span class="line">	cudaGetDeviceCount(&amp;count); </span><br><span class="line">	<span class="keyword">if</span>(count == <span class="number">0</span>) </span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">fprintf</span>(stderr, <span class="string">"There is no device.\n"</span>); </span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">false</span>; </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> i; </span><br><span class="line">	<span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; count; i++) </span><br><span class="line">	&#123; </span><br><span class="line">		cudaDeviceProp prop; </span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span>(cudaGetDeviceProperties(&amp;prop, i) == cudaSuccess) </span><br><span class="line">		&#123; </span><br><span class="line">			<span class="keyword">if</span>(prop.major &gt;= <span class="number">1</span>) </span><br><span class="line">				<span class="keyword">break</span>; </span><br><span class="line">		&#125;</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="keyword">if</span>(i == count) </span><br><span class="line">	&#123; </span><br><span class="line">		<span class="built_in">fprintf</span>(stderr, <span class="string">"There is no device supporting CUDA 1.x.\n"</span>); </span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">false</span>; </span><br><span class="line">	&#125; </span><br><span class="line">	cudaSetDevice(i); </span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">true</span>; </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span><br><span class="line"></span>&#123; </span><br><span class="line">	<span class="keyword">if</span>(!InitCUDA()) </span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Hello World, CUDA has been initialized.\n"</span>); </span><br><span class="line">	getchar();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>若设备没有问题的话，正确的输出结果是：</p>
+<figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">Hello</span> <span class="variable">World</span>, <span class="variable">CUDA</span> has been initialized.</span><br></pre></td></tr></table></figure>
+<h2 id="参考链接">参考链接</h2><ol>
+<li><a href="http://blog.sina.com.cn/s/blog_534497fd0102vbu3.html" target="_blank" rel="external">win7+ VS2010安装CUDA7.0图文说明</a></li>
+<li><a href="http://blog.csdn.net/fengbingchun/article/details/44963681" target="_blank" rel="external">windows7 64位机上CUDA7.0配置及在VS2010中的简单使用举例—语法高亮等</a></li>
+<li><a href="http://www.tuicool.com/articles/7jaAnm7" target="_blank" rel="external">CUDA学习日志：windows开发环境配置— 推酷</a></li>
+<li><a href="https://developer.nvidia.com/cuda-gpus" target="_blank" rel="external">NVIDIA GPU支持列表</a></li>
+<li><a href="http://blog.itpub.net/23172605/viewspace-630175/" target="_blank" rel="external">Windows 下CUDA 开发环境安装及配置步骤 </a></li>
+<li><a href="http://www.nvidia.cn/object/cuda_education_cn_old.html" target="_blank" rel="external">NVIDIA CUDA 在线课程</a></li>
+<li><a href="http://www.cnblogs.com/cutepig/archive/2013/05/25/3098621.html" target="_blank" rel="external">CUDA学习入门 — 博客园</a></li>
+<li><a href="http://docs.nvidia.com/cuda/cuda-getting-started-guide-for-microsoft-windows/index.html#axzz3W8BU10Ol" target="_blank" rel="external">NVIDIA CUDA Getting Started Guide for Microsoft Windows</a></li>
+<li><a href="https://developer.nvidia.com/cuda-zone" target="_blank" rel="external">NVIDIA CUDA ZONE</a></li>
+<li><a href="http://zhidao.baidu.com/question/1945547828013027988.html" target="_blank" rel="external">NVIDIA Geforce 755m支持CUDA—百度知道</a></li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/06/07/read-the-semantics-of-function/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">深入探索C++对象模型》第四章读书笔记</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="install-on-windows8-1" data-title="在Windows8.1上安装CUDA" data-url="http://yoursite.com/2015/06/10/install-on-windows8-1/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"zhangxiaoya"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'zhangxiaoya'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 大眼睛男孩儿
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/mobile.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+</body>
+</html>
