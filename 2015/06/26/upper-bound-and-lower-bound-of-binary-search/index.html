@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>二分查找上界和下界 | Big Eyes Boy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="@(笔试面试)
+在算法题里面,最常用的算法也就是二分查找,以及二分查找的变种,时间效率高,而且占用常量空间.但是二分查找也有一个问题,需要查找的数列必须是有序的,不然需要提前进行排序的.关于查找一个元素是否在数列内,这样的算法是比较基础的了,较为复杂的是含有重复元素的时候怎么办?">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二分查找上界和下界">
+<meta property="og:url" content="http://yoursite.com/2015/06/26/upper-bound-and-lower-bound-of-binary-search/index.html">
+<meta property="og:site_name" content="Big Eyes Boy">
+<meta property="og:description" content="@(笔试面试)
+在算法题里面,最常用的算法也就是二分查找,以及二分查找的变种,时间效率高,而且占用常量空间.但是二分查找也有一个问题,需要查找的数列必须是有序的,不然需要提前进行排序的.关于查找一个元素是否在数列内,这样的算法是比较基础的了,较为复杂的是含有重复元素的时候怎么办?">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="二分查找上界和下界">
+<meta name="twitter:description" content="@(笔试面试)
+在算法题里面,最常用的算法也就是二分查找,以及二分查找的变种,时间效率高,而且占用常量空间.但是二分查找也有一个问题,需要查找的数列必须是有序的,不然需要提前进行排序的.关于查找一个元素是否在数列内,这样的算法是比较基础的了,较为复杂的是含有重复元素的时候怎么办?">
+  
+    <link rel="alternative" href="/atom.xml" title="Big Eyes Boy" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="http://7xi4ue.com1.z0.glb.clouddn.com/HeadImg/headimage2.png" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">大眼睛男孩儿</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">运气总是实力积累爆发的时刻！</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/reading">我的阅历</a></li>
+				        
+							<li><a href="/about">我的简历</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/zhangxiaoya/" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/yayabuai/" title="weibo">weibo</a>
+					        
+								<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/zhang-xiao-ya-65/" title="zhihu">zhihu</a>
+					        
+								<a class="douban" target="_blank" href="http://www.douban.com/people/bigeyesboy/" title="douban">douban</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/C/" style="font-size: 20px;">C++</a><a href="/tags/Cuda/" style="font-size: 10px;">Cuda</a><a href="/tags/C语言/" style="font-size: 10px;">C语言</a><a href="/tags/Github/" style="font-size: 10px;">Github</a><a href="/tags/Hexo/" style="font-size: 13.33px;">Hexo</a><a href="/tags/LCS/" style="font-size: 10px;">LCS</a><a href="/tags/LeetCode/" style="font-size: 16.67px;">LeetCode</a><a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a><a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a><a href="/tags/Math/" style="font-size: 16.67px;">Math</a><a href="/tags/Python/" style="font-size: 13.33px;">Python</a><a href="/tags/Qt4/" style="font-size: 10px;">Qt4</a><a href="/tags/STL/" style="font-size: 10px;">STL</a><a href="/tags/SVD/" style="font-size: 10px;">SVD</a><a href="/tags/Scikit-Learn/" style="font-size: 10px;">Scikit Learn</a><a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a><a href="/tags/Visual-Studio/" style="font-size: 10px;">Visual Studio</a><a href="/tags/Win8-1/" style="font-size: 10px;">Win8.1</a><a href="/tags/Windows/" style="font-size: 10px;">Windows</a><a href="/tags/Windows8-1/" style="font-size: 10px;">Windows8.1</a><a href="/tags/image/" style="font-size: 10px;">image</a><a href="/tags/opensh/" style="font-size: 10px;">opensh</a><a href="/tags/putty/" style="font-size: 10px;">putty</a><a href="/tags/tracking/" style="font-size: 10px;">tracking</a><a href="/tags/yilia/" style="font-size: 10px;">yilia</a><a href="/tags/七牛/" style="font-size: 10px;">七牛</a><a href="/tags/主题/" style="font-size: 10px;">主题</a><a href="/tags/二维数组/" style="font-size: 10px;">二维数组</a><a href="/tags/全排列/" style="font-size: 10px;">全排列</a><a href="/tags/分类/" style="font-size: 10px;">分类</a><a href="/tags/图床/" style="font-size: 10px;">图床</a><a href="/tags/多线程/" style="font-size: 13.33px;">多线程</a><a href="/tags/多说/" style="font-size: 10px;">多说</a><a href="/tags/实习/" style="font-size: 13.33px;">实习</a><a href="/tags/实现库函数/" style="font-size: 10px;">实现库函数</a><a href="/tags/对象模型/" style="font-size: 13.33px;">对象模型</a><a href="/tags/挂件/" style="font-size: 10px;">挂件</a><a href="/tags/数据库概念/" style="font-size: 10px;">数据库概念</a><a href="/tags/数组指针/" style="font-size: 10px;">数组指针</a><a href="/tags/时间管理/" style="font-size: 10px;">时间管理</a><a href="/tags/最长公共子序列/" style="font-size: 10px;">最长公共子序列</a><a href="/tags/标签云/" style="font-size: 10px;">标签云</a><a href="/tags/生活/" style="font-size: 10px;">生活</a><a href="/tags/百度分享/" style="font-size: 10px;">百度分享</a><a href="/tags/笔试/" style="font-size: 10px;">笔试</a><a href="/tags/读后感/" style="font-size: 10px;">读后感</a><a href="/tags/面试/" style="font-size: 10px;">面试</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.csdn.net/qust_waiwai/">我之前的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.jianshu.com/p/1e402922ee32/">简书</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://tengine.taobao.org/book/">叔度的Nginx解析</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">13级北理工计算机硕士，擅长C++程序开发，为了找工作，现在研究Nginx、深入研究Linux，羡慕做前端的，因为网页确实漂亮。。。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">大眼睛男孩儿</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://7xi4ue.com1.z0.glb.clouddn.com/HeadImg/headimage2.png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">大眼睛男孩儿</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">运气总是实力积累爆发的时刻！</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/reading">我的阅历</a></li>
+		        
+					<li><a href="/about">我的简历</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/zhangxiaoya/" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/yayabuai/" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/zhang-xiao-ya-65/" title="zhihu">zhihu</a>
+			        
+						<a class="douban" target="_blank" href="http://www.douban.com/people/bigeyesboy/" title="douban">douban</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-upper-bound-and-lower-bound-of-binary-search" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/06/26/upper-bound-and-lower-bound-of-binary-search/" class="article-date">
+  	<time datetime="2015-06-26T02:08:10.000Z" itemprop="datePublished">2015-06-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      二分查找上界和下界
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/实习/">实习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔试/">笔试</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/实习/">实习</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>@(笔试面试)</p>
+<p>在算法题里面,最常用的算法也就是二分查找,以及二分查找的变种,时间效率高,而且占用常量空间.但是二分查找也有一个问题,需要查找的数列必须是有序的,不然需要提前进行排序的.<br>关于查找一个元素是否在数列内,这样的算法是比较基础的了,较为复杂的是含有重复元素的时候怎么办?</p>
+<a id="more"></a>
+<h2 id="一般的二分查找">一般的二分查找</h2><p>先举一个例子,一个给定一个有序数组,查找是否存在一个元素.<br><figure class="highlight vbscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span> BinarySearch_basic(vector&lt;<span class="built_in">int</span>&gt; &amp;nums,<span class="built_in">int</span> target)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">int</span> <span class="built_in">len</span> = nums.size();</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">len</span> == <span class="number">0</span>)</span><br><span class="line">        return -<span class="number">1</span>;</span><br><span class="line">    <span class="built_in">int</span> low = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">int</span> high = <span class="built_in">len</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(low &lt;= high)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">int</span> <span class="built_in">mid</span> = (low +  high) &gt;&gt;<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(nums[<span class="built_in">mid</span>] == target)</span><br><span class="line">            return <span class="built_in">mid</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(nums[<span class="built_in">mid</span>] &gt; target)</span><br><span class="line">            high = <span class="built_in">mid</span> - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            low = <span class="built_in">mid</span> + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    return -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>算是经典的二分查找程序了,每一次都折半查找空间,直到遇到相等的元素,返回该元素的下标,否则,查找范围不对其了,返回-1.<br>二分查找相对顺序查找的一个重要的优点就是减少了比较次数,比较次数正是查找算法复杂度的关键,减少查找次数就是降低时间复杂度.</p>
+<h2 id="二分查找寻找下界">二分查找寻找下界</h2><p>上面的例子很简单,没有重复的元素,但是若序列中有重复的元素,那就不能简单的返回其中一个下标了,用户需要的是返回重复元素的起始下标和终止下标,用来表示范围,同时还要保证在不存在的情况下的鲁棒性.<br>先是利用二分查找寻找下界:<br>相对于基本的二分查找,一个重要的不同是,就是在找到相同的元素的时候,不能直接返回其下标地址,还需要不断的移动上边界,直到查找范围不能满足条件,下面是我的代码:<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">findLower</span><span class="params">(<span class="keyword">const</span> vector&lt;<span class="keyword">int</span>&gt; &amp;nums, <span class="keyword">int</span> <span class="keyword">target</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(nums.size() &lt; <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> high = nums.size() -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(low &lt;= high)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> mid = (low + high)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(nums[mid] &gt;= <span class="keyword">target</span>)</span><br><span class="line">            high = mid - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            low = mid +<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(low &lt; nums.size() &amp;&amp; nums[low] == <span class="keyword">target</span>)</span><br><span class="line">        <span class="keyword">return</span> low;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>简单的介绍一下:当中间元素大于或者等于目标元素的时候,都需要用<code>mid-1</code>来替换查找上界,结束的条件是<code>high&lt;low</code>,这时候需要检查是否满足条件;</p>
+<ol>
+<li>若<code>low</code>已经超过序列的长度,则肯定是不存在的(high没有移动,<strong>若存在的话,high至少移动一次!)</strong>,那么越界呢?high是一直在降低的,所以也可能变成-1,为什么不见查呢?这里不需要特别的处理,因为所有的元素都是大于或者等于目标元素值的,是否存在,只需要下面一个检查条件.</li>
+<li>若<code>low</code>没有越界,则从下标为<code>low</code>开始,元素值都是大于或者等于目标元素值的,这是检查<code>low</code>位置的元素值,若与目标元素值相等,则<code>low</code>就是下界位置,否则是不存在元素的.</li>
+</ol>
+<h2 id="二分查找寻找上界">二分查找寻找上界</h2><p>查找上界与查找下界非常相似,唯一的不同是,当找到相同的元素的时候,要移动的是查找下界,查找下界变大,直到查找范围不满足条件.<br>下面是我的代码:<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">findUpper</span><span class="params">(<span class="keyword">const</span> vector&lt;<span class="keyword">int</span>&gt; &amp;nums, <span class="keyword">int</span> <span class="keyword">target</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(nums.size() &lt; <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> high = nums.size() - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(low &lt;= high)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> mid = (low + high) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(nums[mid] &lt;= <span class="keyword">target</span>)</span><br><span class="line">            low = mid + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            high = mid -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(high &gt; -<span class="number">1</span> &amp;&amp; nums[high] == <span class="keyword">target</span>)</span><br><span class="line">        <span class="keyword">return</span> high;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>当遇到相等的元素,查找范围的下界都用<code>mid+1</code>替换,这样下界不断的增大,直到<code>low&gt;high</code>.这时候也需要检查条件:</p>
+<ol>
+<li>若存在相同的元素,应该是<code>low</code>向上移动的,所以,在存在元素的情况下,是不可能high变成-1的(low没有移动),这种越界情况下是不存在元素的,所以返回-1,那么<code>low</code>呢?跟上面的情况 类似了,需要看<code>high</code>位置的元素了.</li>
+<li>在<code>high</code>没有低于下界的情况下,此时<code>low</code>位置前面的元素肯定是小于或者等于目标元素的.此时<code>high</code>正好在<code>low</code>前面的一个位置,只需要检查这个位置的元素,若与目标元素相等,则上界就是<code>high</code>了,否则,其他的元素更不满足了(递增),返回-1.</li>
+</ol>
+<h2 id="其他">其他</h2><p>还有一种应用,就是给定一个序列,有序,给定一个值,寻找第一个比这个值大的元素的位置,或者比该元素小的最大的那个数值的位置.<br>这个题目是上次我面试的时候遇到的,<a href="http://zhangxiaoya.github.io/2015/06/02/interview-no-3/#more" target="_blank" rel="external">文章</a>已经详细的描述了.<br>本文寻找上下界的方法也可以用于求解该问题,但是缺点是,若不存在的话就不好找了,需要稍微对前面两个方法修改.</p>
+<p>比如,第一个比目标值大的元素的位置:<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">func1</span><span class="params">(<span class="keyword">const</span> vector&lt;<span class="keyword">int</span>&gt; &amp;nums, <span class="keyword">int</span> <span class="keyword">target</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(nums.size() &lt; <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> high = nums.size() - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(low &lt;= high)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> mid = (low + high) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(nums[mid] &lt;= <span class="keyword">target</span>)</span><br><span class="line">            low = mid + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            high = mid -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> low;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>可能所有的元素都比目标值小,上面的程序返回的是序列的最后一个元素的下一个位置,若需要返回-1的话,需要稍微修改一下最后一句就好了.</p>
+<p>比目标元素小的最大的值的位置:<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">func2</span><span class="params">(<span class="keyword">const</span> vector&lt;<span class="keyword">int</span>&gt; &amp;nums, <span class="keyword">int</span> <span class="keyword">target</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(nums.size() &lt; <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> high = nums.size() -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(low &lt;= high)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> mid = (low + high)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(nums[mid] &gt;= <span class="keyword">target</span>)</span><br><span class="line">            high = mid - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            low = mid +<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(low &lt; nums.size() &amp;&amp; nums[low] == <span class="keyword">target</span>)</span><br><span class="line">        <span class="keyword">return</span> high;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>若素有的元素都比目标元素大,则实际上返回的是序列第一个元素的前面的一个位置,也就是-1,所以不用修改了.</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/06/14/it-s-up-to-you/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">你的生活你决定</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="upper-bound-and-lower-bound-of-binary-search" data-title="二分查找上界和下界" data-url="http://yoursite.com/2015/06/26/upper-bound-and-lower-bound-of-binary-search/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"zhangxiaoya"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'zhangxiaoya'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 大眼睛男孩儿
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/mobile.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+</body>
+</html>
