@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>《深入探索C++对象模型》第六读书笔记 | Big Eyes Boy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="@(读书笔记)
+中间项目耽误了很大一段时间，今天学校算是正式放假了，放松一下（虽然我们依然没有假期）只是心里的感觉，可以暂时放下一会项目，做一些自己喜欢的事情，比如今天终于把《深入探索C++对象模型》看的差不多了，写一些读书笔记。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《深入探索C++对象模型》第六读书笔记">
+<meta property="og:url" content="http://yoursite.com/2015/07/09/read-the-semantics-of-runtime/index.html">
+<meta property="og:site_name" content="Big Eyes Boy">
+<meta property="og:description" content="@(读书笔记)
+中间项目耽误了很大一段时间，今天学校算是正式放假了，放松一下（虽然我们依然没有假期）只是心里的感觉，可以暂时放下一会项目，做一些自己喜欢的事情，比如今天终于把《深入探索C++对象模型》看的差不多了，写一些读书笔记。">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《深入探索C++对象模型》第六读书笔记">
+<meta name="twitter:description" content="@(读书笔记)
+中间项目耽误了很大一段时间，今天学校算是正式放假了，放松一下（虽然我们依然没有假期）只是心里的感觉，可以暂时放下一会项目，做一些自己喜欢的事情，比如今天终于把《深入探索C++对象模型》看的差不多了，写一些读书笔记。">
+  
+    <link rel="alternative" href="/atom.xml" title="Big Eyes Boy" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="http://7xi4ue.com1.z0.glb.clouddn.com/HeadImg/headimage2.png" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">大眼睛男孩儿</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">运气总是实力积累爆发的时刻！</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/reading">我的阅历</a></li>
+				        
+							<li><a href="/about">我的简历</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/zhangxiaoya/" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/yayabuai/" title="weibo">weibo</a>
+					        
+								<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/zhang-xiao-ya-65/" title="zhihu">zhihu</a>
+					        
+								<a class="douban" target="_blank" href="http://www.douban.com/people/bigeyesboy/" title="douban">douban</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/C/" style="font-size: 20px;">C++</a><a href="/tags/Cuda/" style="font-size: 10px;">Cuda</a><a href="/tags/C语言/" style="font-size: 10px;">C语言</a><a href="/tags/Github/" style="font-size: 10px;">Github</a><a href="/tags/Hexo/" style="font-size: 13.33px;">Hexo</a><a href="/tags/LCS/" style="font-size: 10px;">LCS</a><a href="/tags/LeetCode/" style="font-size: 16.67px;">LeetCode</a><a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a><a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a><a href="/tags/Math/" style="font-size: 16.67px;">Math</a><a href="/tags/Python/" style="font-size: 13.33px;">Python</a><a href="/tags/Qt4/" style="font-size: 10px;">Qt4</a><a href="/tags/STL/" style="font-size: 10px;">STL</a><a href="/tags/SVD/" style="font-size: 10px;">SVD</a><a href="/tags/Scikit-Learn/" style="font-size: 10px;">Scikit Learn</a><a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a><a href="/tags/Visual-Studio/" style="font-size: 10px;">Visual Studio</a><a href="/tags/Win8-1/" style="font-size: 10px;">Win8.1</a><a href="/tags/Windows/" style="font-size: 10px;">Windows</a><a href="/tags/Windows8-1/" style="font-size: 10px;">Windows8.1</a><a href="/tags/image/" style="font-size: 10px;">image</a><a href="/tags/opensh/" style="font-size: 10px;">opensh</a><a href="/tags/putty/" style="font-size: 10px;">putty</a><a href="/tags/tracking/" style="font-size: 10px;">tracking</a><a href="/tags/yilia/" style="font-size: 10px;">yilia</a><a href="/tags/七牛/" style="font-size: 10px;">七牛</a><a href="/tags/主题/" style="font-size: 10px;">主题</a><a href="/tags/二维数组/" style="font-size: 10px;">二维数组</a><a href="/tags/全排列/" style="font-size: 10px;">全排列</a><a href="/tags/分类/" style="font-size: 10px;">分类</a><a href="/tags/图床/" style="font-size: 10px;">图床</a><a href="/tags/多线程/" style="font-size: 13.33px;">多线程</a><a href="/tags/多说/" style="font-size: 10px;">多说</a><a href="/tags/实习/" style="font-size: 13.33px;">实习</a><a href="/tags/实现库函数/" style="font-size: 10px;">实现库函数</a><a href="/tags/对象模型/" style="font-size: 13.33px;">对象模型</a><a href="/tags/挂件/" style="font-size: 10px;">挂件</a><a href="/tags/数据库概念/" style="font-size: 10px;">数据库概念</a><a href="/tags/数组指针/" style="font-size: 10px;">数组指针</a><a href="/tags/时间管理/" style="font-size: 10px;">时间管理</a><a href="/tags/最长公共子序列/" style="font-size: 10px;">最长公共子序列</a><a href="/tags/标签云/" style="font-size: 10px;">标签云</a><a href="/tags/生活/" style="font-size: 10px;">生活</a><a href="/tags/百度分享/" style="font-size: 10px;">百度分享</a><a href="/tags/笔试/" style="font-size: 10px;">笔试</a><a href="/tags/读后感/" style="font-size: 10px;">读后感</a><a href="/tags/面试/" style="font-size: 10px;">面试</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.csdn.net/qust_waiwai/">我之前的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.jianshu.com/p/1e402922ee32/">简书</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://tengine.taobao.org/book/">叔度的Nginx解析</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">13级北理工计算机硕士，擅长C++程序开发，为了找工作，现在研究Nginx、深入研究Linux，羡慕做前端的，因为网页确实漂亮。。。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">大眼睛男孩儿</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://7xi4ue.com1.z0.glb.clouddn.com/HeadImg/headimage2.png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">大眼睛男孩儿</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">运气总是实力积累爆发的时刻！</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/reading">我的阅历</a></li>
+		        
+					<li><a href="/about">我的简历</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/zhangxiaoya/" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/yayabuai/" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/zhang-xiao-ya-65/" title="zhihu">zhihu</a>
+			        
+						<a class="douban" target="_blank" href="http://www.douban.com/people/bigeyesboy/" title="douban">douban</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-read-the-semantics-of-runtime" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/07/09/read-the-semantics-of-runtime/" class="article-date">
+  	<time datetime="2015-07-09T14:58:49.000Z" itemprop="datePublished">2015-07-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      《深入探索C++对象模型》第六读书笔记
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>@(读书笔记)</p>
+<p>中间项目耽误了很大一段时间，今天学校算是正式放假了，放松一下（虽然我们依然没有假期）只是心里的感觉，可以暂时放下一会项目，做一些自己喜欢的事情，比如今天终于把《深入探索C++对象模型》看的差不多了，写一些读书笔记。</p>
+<a id="more"></a>
+<h2 id="执行期语义学">执行期语义学</h2><p>这一章其实是看了两遍，第一遍没看懂这个执行期的语义学到底是是个什么东西，第二遍是在今天早上看的（实在不想写某项目的代码），果然还是早上的头脑清楚，效率很高，思路非常清晰，这一章的内容就是讲了程序在运行期间的临时变量以及对象如何构造与析构的。</p>
+<p>本章开始用一个程序例子来说明，一个简单的语句在被编译器理解后变成了由一些“原子操作”构成的一个“胖子“，以及各种临时变量的生成。</p>
+<p>本章的内容就是在我们写的程序在执行期间是被编译器如何解释的，相对于前几章的内容，这些更”动态“，比如第一节是讲的对象的在执行期间是如歌调用构造和析构函数，第二节是介绍的<code>new</code>和<code>delete</code>是在堆上分配空间，如何调用构造和析构函数，最后一节则是重点介绍了程序常遇到的临时对象的问题。这些东西相对与对象在内存中分布，函数在内存中的地址等，更抽象一些，更像是一些”动作“，而前面的知识更像是这些”动作“的”基本要领“，或者称作是”技术指标“。</p>
+<h2 id="对象的构造与析构">对象的构造与析构</h2><p>这里主要是介绍对象是在什么时候调用构造与析构函数的，换做是编译器语言：就是对象的构造函数和析构函数在编译期间被安插在程序的具体位置（因为对象的构造函数和析构函数是编译器来调用的，程序中还是不好直接显示直接调用他们）<br>举个最简单的例子，在声明对象后很快就要对它初始化（构造），在它的生命周期结束前要对它销毁（析构）<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	Point pt;</span><br><span class="line">	// Constructor may be here</span><br><span class="line">	<span class="keyword">...</span></span><br><span class="line">	// Destructor may be here</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>当然了，程序结构不是都这么简单的，比如常见的程序结构：条件，循环，<code>Switch</code>结构，甚至还有<code>goto</code>语句，对象出现的位置只有一个，但是消失的位置可能是多个中的一个（不确定），编译器会在任何可能的位置添加析构函数。</p>
+<h3 id="全部变量">全部变量</h3><p>上面这些还是动态的局部变量，非常普通，不需要额外的处理。但是当遇到全局对象（非内置类型）就不这么简单了。</p>
+<ol>
+<li>普通的变量不需要有初始值，只要在程序运行到之前给它初始值就可以了，也就是在执行期执行构造函数。</li>
+<li>普通的动态变量是存放在堆栈中的，他们在程序执行的整个周期的一小部分，但是全局变量是伴随整个程序执行的，甚至在<code>main</code>函数之前他们就已经初始化好了，他们不是放在堆栈中，而是放在程序的<code>data segment</code>也就是数据段中。</li>
+<li>全局变量是通过常量表达式设定初始值的，所谓的常量表达式是指在变异期间就知道表达式值的表达式（构造函数不是常量表达式）。</li>
+<li>全局变量是程序的实体的一部分，是在编译期间就初始化的，所以全局变量是必须静态初始化的。</li>
+</ol>
+<p>那么怎么做呢？cfront的方法还是比较典型的。</p>
+<ol>
+<li>为每个需要静态初始化的对象产生一个<code>_sti()</code>函数，在这样的函数里面直接调用其构造函数，或者用内联的方式执行初始化工作。需要注意的是，这里每个变量的<code>_sti()</code>都是经过重命名处理的，比如这里是添加文件名和变量名。</li>
+<li>同样，为每个需要静态内存释放的对象产生一个<code>_std()</code>函数，在这个函数里面直接调用其析构函数，或者内联的方式展开函数。同样这个函数做了重命名处理。</li>
+<li>提供这样的函数，在程序开始的时候调用所有的<code>_sti</code>函数，：<code>_main()</code>函数提供这样的操作，将所有的<code>_sti</code>组合在一起。同样也提供一个<code>_exit()</code>函数，将所有的<code>_std()</code>函数。</li>
+<li>书中的一个图看失去是非常形象的，但是仔细的想象，全局变量是静态初始化的，而书中给的图的意思是，在<code>main</code>函数内执行<code>_main()</code>函数，在<code>main</code>函数结尾前执行<code>_exit()</code>函数，但是全局变量应该是在<code>main</code>函数执行前就已经完成初始化了，这里的图有点迷惑，还是看看《程序员的自我修养—编译、链接、装载》，那里讲的比较详细点。</li>
+<li>暂且不考虑上面的问题，还有一个问题是怎么收集所有的<code>_sti()</code>和<code>_std()</code>函数，书中将的有点乱，我认为是有 程序来读取每个object文件，读取其中的符号表，然后将符号表中关于<code>_sti()</code>和<code>_std()</code>的函数提取出来，存储在一个”跳离表格“中，然后，重新启动编译器，重新编译，将包含”跳离表格“的文件一起编译链接。</li>
+</ol>
+<p>以上是对于类的对象，但是对于<code>noclass</code> 对象和对于支持虚基类的对象，都是不同的，其中<code>noclass</code> 对象没有构造函数，虚基类的指针比较复杂。书中也没有 详细的介绍这里。</p>
+<p>最后就是静态初始化的缺点：</p>
+<ol>
+<li>这些对象不能放在<code>try</code>块内。</li>
+<li>有些全局变量的依赖顺序要考虑好，复杂度是个问题。</li>
+</ol>
+<h3 id="局部静态对象">局部静态对象</h3><p>静态局部对象有写特点：</p>
+<ol>
+<li>存在一个函数内，生命周期是整个程序的生命周期，但是作用域只是在这个函数内部。</li>
+<li>这个函数可能被调用多次，但是静态局部变量只能初始化一次，析构一次。</li>
+</ol>
+<p>怎么办？<br>设置一个辅助变量，用来标识静态局部变量是否已经被构建和析构。</p>
+<p>静态局部变量的生命周期是整个程序的生命周期，但是作用范围确是只是在函数体内。在程序结束的时候是没办法直接调用静态局部变量的析构函数的。</p>
+<p>怎么办？<br>保存静态局部变量的指针。</p>
+<p>最后还提到了，如何根据构建顺序，然后逆序析构，显然，在静态编译期间是无法预知顺序的，只有在程序执行的时候保存一个初始化顺序表。</p>
+<h3 id="对象数组">对象数组</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">Point</span> <span class="tag">knots</span><span class="attr_selector">[10]</span>;</span><br></pre></td></tr></table></figure>
+<p>若一个数组是由一些带构造函数的类的对象构成，那么在初始化数组的时候，需要挨个初始化每个元素。当然，要是类没有定义构造函数和析构函数，那就无所谓了，它们的初始化与初始化一个内置类型的数组的消耗是一样的。</p>
+<p>在早期的Cfront中，是专门有个函数来完成初始化的（调用构造函数）：<code>vec_new</code>，比较新的编译器会提供两种函数，另外一种是<code>vec_vnew</code>，是用来初始化带有虚基类的类的对象数组的。<br>其中一个函数原型如下：<br><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">void*</span><br><span class="line">vec_new(</span><br><span class="line">	void* <span class="keyword">array</span>,              <span class="comment">// 起始地址</span></span><br><span class="line">	size_t elem_size,         <span class="comment">// 每个对象大小</span></span><br><span class="line">	int elem_count,           <span class="comment">// 元素个数</span></span><br><span class="line">	void <span class="comment">(*constructor)(void*)</span>,</span><br><span class="line">	void <span class="comment">(*destructor)(void*,char))</span></span><br></pre></td></tr></table></figure></p>
+<p>其中<code>array</code>可以是具名数组的地址，也可以是<code>new</code>在堆上分配的空间，此时<code>array=0</code>。</p>
+<p>这里有一个析构函数的函数指针，我一直怀疑是不是写错了。因为会有一个类似的函数：<code>vec_delete</code>或者一个<code>vec_vdelete</code>来调用析构函数。</p>
+<p>在写程序的时候，也会给程序赋初值，也许会只有一部分有初值。那就把有初始值的部分设定好，剩余的部分用<code>vec_new</code>函数来完成。</p>
+<h2 id="new_和delete运算符">new 和delete运算符</h2><p>int *pi = new int(5);<br>其实这个语句是分为两个步骤完成的：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *pi = __new(<span class="keyword">sizeof</span>(<span class="keyword">int</span>));   <span class="comment">// 分配空间</span></span><br><span class="line">*pi = <span class="number">5</span>;                        <span class="comment">// 赋值</span></span><br></pre></td></tr></table></figure></p>
+<p>但是实际上是要判断是否分配内存成功的：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int *<span class="constant">pi</span>;</span><br><span class="line"><span class="keyword">if</span>(<span class="constant">pi</span> == __new(sizeof(int)))</span><br><span class="line">	*<span class="constant">pi</span> = <span class="number">5</span>;</span><br></pre></td></tr></table></figure></p>
+<p>delete也是类似的：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="constant">pi</span> != <span class="number">0</span>)</span><br><span class="line">	__delete(<span class="constant">pi</span>);</span><br></pre></td></tr></table></figure></p>
+<p>delete 操作是不会对<code>0</code>指针做删除操作的。而且也不会把指针修改为<code>0</code>的。</p>
+<p>对于数组也有类似的操作，需要注意的是函数<code>vec_new</code>是只有在类对象数组，且该类提供了默认构造函数的时候才会调用。</p>
+<p>删除数组的时候需要提供<code>[]</code>在数组名前，其实也可以在这里面指定元素的个数，不过现代的编译器都是忽略这个元素个数。</p>
+<p>什么是<code>cookie</code>？</p>
+<p>不知道个数怎么析构呢，原来是在函数<code>vec_new</code>的时候会存储一个<code>cookie</code>用来存放元素个数。</p>
+<h3 id="placement_Operator_new">placement Operator new</h3><p>实际是重载<code>new</code> 操作符。<br><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Point</span> *pt = new(arena)<span class="keyword">Point</span>;</span><br></pre></td></tr></table></figure></p>
+<p>其中<code>arena</code>应开辟的空间的地址，用来存储一个新创建的<code>Point</code>对象。</p>
+<p>这个函数实际上只是返回了这个地址，函数的原型可以理解为这样<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span>* <span class="function"><span class="keyword">operator</span> <span class="title">new</span><span class="params">(size_t,<span class="keyword">void</span>* p)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>表面是看起来确实如此，但是实际上还有另外一层语义，就是类型转换，并且执行构造函数。实际的代码可能类似于这样的：<br><figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Point</span> *pt = (<span class="keyword">Point</span>*)arena;</span><br><span class="line">if(pt !=<span class="number">0</span>)</span><br><span class="line">	pt-&gt;<span class="keyword">Point</span>::<span class="keyword">Point</span>();</span><br></pre></td></tr></table></figure></p>
+<p>上面的解释其实是基于这样的假设：<code>arena</code>是新开辟的空间，没有任何污染。</p>
+<p>但是若要使这个<code>arena</code>空间已经存在了一个对象怎么办？<br>需要保证原来的对象被析构，delete这块区域，早期的delete会将这块内存也删除，这块内存也没法用了，不可行<br>直接调用<code>destructor</code>，可以解决这个问题。</p>
+<p>这还不算是麻烦的，当这块区域是一个基类的对象。。。</p>
+<h2 id="临时对象">临时对象</h2><p>这块讲的有点拗口，还不是特别清楚作者的思路，先不写了。</p>
+<h2 id="彩蛋">彩蛋</h2><blockquote>
+<p>今天女神<a href="http://movie.douban.com/celebrity/1316159/" target="_blank" rel="external">张俪</a>来我理工拍新戏，大晚上的，蚊子满天飞，一个镜头拍了N遍，好不容易啊！</p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/06/26/upper-bound-and-lower-bound-of-binary-search/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">二分查找上界和下界</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="read-the-semantics-of-runtime" data-title="《深入探索C++对象模型》第六读书笔记" data-url="http://yoursite.com/2015/07/09/read-the-semantics-of-runtime/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"zhangxiaoya"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'zhangxiaoya'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 大眼睛男孩儿
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/mobile.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+</body>
+</html>
