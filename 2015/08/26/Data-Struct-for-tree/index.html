@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>数据结构复习 -- 二叉树 | Big Eyes Boy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="@(C Plus Plus)
+前些天为了准备一些面试，把本科学习的笔记翻出来，是之前参加的魔鬼训练营的学习笔记，重点是关于树的部分，另外还有一些链表和操作系统相关的东西，后续几天认真复习整理一下。手写了代码，还是手动的敲一遍，增加印象。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据结构复习 -- 二叉树">
+<meta property="og:url" content="http://yoursite.com/2015/08/26/Data-Struct-for-tree/index.html">
+<meta property="og:site_name" content="Big Eyes Boy">
+<meta property="og:description" content="@(C Plus Plus)
+前些天为了准备一些面试，把本科学习的笔记翻出来，是之前参加的魔鬼训练营的学习笔记，重点是关于树的部分，另外还有一些链表和操作系统相关的东西，后续几天认真复习整理一下。手写了代码，还是手动的敲一遍，增加印象。">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据结构复习 -- 二叉树">
+<meta name="twitter:description" content="@(C Plus Plus)
+前些天为了准备一些面试，把本科学习的笔记翻出来，是之前参加的魔鬼训练营的学习笔记，重点是关于树的部分，另外还有一些链表和操作系统相关的东西，后续几天认真复习整理一下。手写了代码，还是手动的敲一遍，增加印象。">
+  
+    <link rel="alternative" href="/atom.xml" title="Big Eyes Boy" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="http://7xi4ue.com1.z0.glb.clouddn.com/HeadImg/headimage2.png" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">大眼睛男孩儿</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">运气总是实力积累爆发的时刻！</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/reading">我的阅历</a></li>
+				        
+							<li><a href="/about">我的简历</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/zhangxiaoya/" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/yayabuai/" title="weibo">weibo</a>
+					        
+								<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/zhang-xiao-ya-65/" title="zhihu">zhihu</a>
+					        
+								<a class="douban" target="_blank" href="http://www.douban.com/people/bigeyesboy/" title="douban">douban</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/C/" style="font-size: 20px;">C++</a><a href="/tags/Cuda/" style="font-size: 10px;">Cuda</a><a href="/tags/C语言/" style="font-size: 10px;">C语言</a><a href="/tags/Github/" style="font-size: 10px;">Github</a><a href="/tags/Hexo/" style="font-size: 12.5px;">Hexo</a><a href="/tags/LCS/" style="font-size: 10px;">LCS</a><a href="/tags/LeetCode/" style="font-size: 17.5px;">LeetCode</a><a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a><a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a><a href="/tags/Math/" style="font-size: 17.5px;">Math</a><a href="/tags/Python/" style="font-size: 12.5px;">Python</a><a href="/tags/Qt4/" style="font-size: 10px;">Qt4</a><a href="/tags/STL/" style="font-size: 10px;">STL</a><a href="/tags/SVD/" style="font-size: 10px;">SVD</a><a href="/tags/Scikit-Learn/" style="font-size: 10px;">Scikit Learn</a><a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a><a href="/tags/Visual-Studio/" style="font-size: 10px;">Visual Studio</a><a href="/tags/Win8-1/" style="font-size: 10px;">Win8.1</a><a href="/tags/Windows/" style="font-size: 10px;">Windows</a><a href="/tags/Windows8-1/" style="font-size: 10px;">Windows8.1</a><a href="/tags/image/" style="font-size: 10px;">image</a><a href="/tags/opensh/" style="font-size: 10px;">opensh</a><a href="/tags/putty/" style="font-size: 10px;">putty</a><a href="/tags/tracking/" style="font-size: 10px;">tracking</a><a href="/tags/yilia/" style="font-size: 10px;">yilia</a><a href="/tags/七牛/" style="font-size: 10px;">七牛</a><a href="/tags/主题/" style="font-size: 10px;">主题</a><a href="/tags/二叉树/" style="font-size: 10px;">二叉树</a><a href="/tags/二维数组/" style="font-size: 10px;">二维数组</a><a href="/tags/全排列/" style="font-size: 10px;">全排列</a><a href="/tags/分类/" style="font-size: 10px;">分类</a><a href="/tags/图床/" style="font-size: 10px;">图床</a><a href="/tags/多线程/" style="font-size: 12.5px;">多线程</a><a href="/tags/多说/" style="font-size: 10px;">多说</a><a href="/tags/实习/" style="font-size: 15px;">实习</a><a href="/tags/实现库函数/" style="font-size: 10px;">实现库函数</a><a href="/tags/对象模型/" style="font-size: 15px;">对象模型</a><a href="/tags/挂件/" style="font-size: 10px;">挂件</a><a href="/tags/数据库概念/" style="font-size: 10px;">数据库概念</a><a href="/tags/数据结构/" style="font-size: 10px;">数据结构</a><a href="/tags/数组指针/" style="font-size: 10px;">数组指针</a><a href="/tags/时间管理/" style="font-size: 10px;">时间管理</a><a href="/tags/最长公共子序列/" style="font-size: 10px;">最长公共子序列</a><a href="/tags/标签云/" style="font-size: 10px;">标签云</a><a href="/tags/生活/" style="font-size: 10px;">生活</a><a href="/tags/百度分享/" style="font-size: 10px;">百度分享</a><a href="/tags/笔试/" style="font-size: 12.5px;">笔试</a><a href="/tags/读后感/" style="font-size: 10px;">读后感</a><a href="/tags/面试/" style="font-size: 10px;">面试</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.csdn.net/qust_waiwai/">我之前的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.jianshu.com/p/1e402922ee32/">简书</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://tengine.taobao.org/book/">叔度的Nginx解析</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">13级北理工计算机硕士，擅长C++程序开发，为了找工作，现在研究Nginx、深入研究Linux，羡慕做前端的，因为网页确实漂亮。。。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">大眼睛男孩儿</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://7xi4ue.com1.z0.glb.clouddn.com/HeadImg/headimage2.png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">大眼睛男孩儿</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">运气总是实力积累爆发的时刻！</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/reading">我的阅历</a></li>
+		        
+					<li><a href="/about">我的简历</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/zhangxiaoya/" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/yayabuai/" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/zhang-xiao-ya-65/" title="zhihu">zhihu</a>
+			        
+						<a class="douban" target="_blank" href="http://www.douban.com/people/bigeyesboy/" title="douban">douban</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-Data-Struct-for-tree" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/08/26/Data-Struct-for-tree/" class="article-date">
+  	<time datetime="2015-08-25T16:19:48.000Z" itemprop="datePublished">2015-08-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      数据结构复习 -- 二叉树
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/二叉树/">二叉树</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/数据结构与算法/">数据结构与算法</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>@(C Plus Plus)</p>
+<p>前些天为了准备一些面试，把本科学习的笔记翻出来，是之前参加的魔鬼训练营的学习笔记，重点是关于树的部分，另外还有一些链表和操作系统相关的东西，后续几天认真复习整理一下。手写了代码，还是手动的敲一遍，增加印象。</p>
+<a id="more"></a>
+<h2 id="前序、中序和后序遍历二叉树（递归）">前序、中序和后序遍历二叉树（递归）</h2><p>首先定义数的节点：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> BTNode</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    BTNode *left;</span><br><span class="line">    BTNode *right;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>先序遍历算法（递归）<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">preorder</span><span class="params">(BTNode *T)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(T == NULL)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;T-&gt;val&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">    preorder(T-&gt;left);</span><br><span class="line">    preorder(T-&gt;right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>中序遍历算法（递归）<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inorder</span><span class="params">(BTNode *T)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(T == NULL)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    inorder(T-&gt;left);</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;T-&gt;val&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">    inorder(T-&gt;right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>后续遍历算法（递归）<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">postorder</span><span class="params">(BTNode *T)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(T == NULL)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    postorder(T-&gt;left);</span><br><span class="line">    postorder(T-&gt;right);</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;T-&gt;val&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="前序、中序和后序遍历二叉树（非递归）">前序、中序和后序遍历二叉树（非递归）</h2><p>树的遍历非递归的方法一般多少采用栈数据结构辅助完成的。其中先序遍历和中序遍历算法比较简单。只需要一个栈就足够了。<br>先序遍历（非递归）<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dpreorder</span><span class="params">(BTNode *T)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(T == NULL)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="stl_container"><span class="built_in">stack</span>&lt;BTNode *&gt;</span> s;</span><br><span class="line">    <span class="keyword">while</span>(T != NULL || !s.empty())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span>(T != NULL)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;T-&gt;val&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">            s.push(T);</span><br><span class="line">            T = T-&gt;left;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(!s.empty())</span><br><span class="line">        &#123;</span><br><span class="line">            T = s.top();</span><br><span class="line">            s.pop();</span><br><span class="line">            T = T-&gt;right;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>中序遍历（非递归）<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dinorder</span><span class="params">(BTNode *T)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(T== NULL)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="stl_container"><span class="built_in">stack</span>&lt;BTNode *&gt;</span> s;</span><br><span class="line">    <span class="keyword">while</span>(T != NULL || !s.empty())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span>(T != NULL)</span><br><span class="line">        &#123;</span><br><span class="line">            s.push(T);</span><br><span class="line">            T = T-&gt;left;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(!s.empty())</span><br><span class="line">        &#123;</span><br><span class="line">            T = s.top();</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;T-&gt;val&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">            s.pop();</span><br><span class="line">            T = T-&gt;right;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>后序遍历二叉树的非递归算法要复杂一些，需要用到辅助标记，先序遍历是在入栈之前就访问，中序遍历是在第一次访问栈顶的时候就访问，后序遍历不一样，需要两次访问栈顶的时候才出栈并打印。<br>下面是后序遍历二叉树（非递归）<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span>&#123;L,R&#125; tagtype;</span><br><span class="line"><span class="keyword">struct</span> stacknode&#123;</span><br><span class="line">    BTNode *ptr;</span><br><span class="line">    tagtype tag;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dpostorder</span><span class="params">(BTNode *T)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    stacknode x;</span><br><span class="line">    <span class="stl_container"><span class="built_in">stack</span>&lt;stacknode&gt;</span> s;</span><br><span class="line">    <span class="keyword">if</span>(T == NULL)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span>(T != NULL)</span><br><span class="line">        &#123;</span><br><span class="line">            x.ptr = T;</span><br><span class="line">            x.tag = L;</span><br><span class="line">            s.push(x);</span><br><span class="line">            T = T-&gt;left;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(!s.empty() &amp;&amp; s.top().tag == R)</span><br><span class="line">        &#123;</span><br><span class="line">            x = s.top();</span><br><span class="line">            s.pop();</span><br><span class="line">            T = x.ptr;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;T-&gt;val&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(!s.empty())</span><br><span class="line">        &#123;</span><br><span class="line">            x = s.top();</span><br><span class="line">            T = x.ptr;</span><br><span class="line">            s.top().tag = R;</span><br><span class="line">            T = T-&gt;right;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">while</span>(!s.empty());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="构造二叉树">构造二叉树</h2><p>给定一个二叉树的先序遍历和中序遍历序列，构造一颗二叉树。正好创建一个二叉树验证前面的程序。<br>程序代码如下：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">BTNode *CreateTree(<span class="keyword">int</span> pre[],<span class="keyword">int</span> in[],<span class="keyword">int</span> beg1,<span class="keyword">int</span> end1,<span class="keyword">int</span> beg2,<span class="keyword">int</span> end2)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(beg1 &gt; end1 || beg2 &gt; end2)</span><br><span class="line">		<span class="keyword">return</span> NULL</span><br><span class="line">    BTNode *p;</span><br><span class="line">    p = <span class="keyword">new</span> BTNode;</span><br><span class="line">    p-&gt;val = pre[beg1];</span><br><span class="line">    p-&gt;left = p-&gt;right = NULL;</span><br><span class="line">    <span class="keyword">if</span>(beg1 == end1)</span><br><span class="line">        <span class="keyword">return</span> p;</span><br><span class="line">    <span class="keyword">int</span> k = beg2;</span><br><span class="line">    <span class="keyword">while</span>(pre[beg1] != in[k])</span><br><span class="line">        ++k;</span><br><span class="line">    <span class="keyword">int</span> t = k - beg2 + beg1;</span><br><span class="line">    p-&gt;left = CreateTree(pre,in,beg1+<span class="number">1</span>,t,beg2,k-<span class="number">1</span>);</span><br><span class="line">    p-&gt;right = CreateTree(pre,in,t+<span class="number">1</span>,end1,k+<span class="number">1</span>,end2);</span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="完全二叉树遍历">完全二叉树遍历</h2><p>给定一个完全二叉树，存储方式是使用数组方式存储的，空节点存储的是0.<br>题目要求是给定两个节点的位置<code>i</code>和<code>j</code>，求解这两个节点的最近的双亲。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">comparent</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> j)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(i != j)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(i &gt; j)</span><br><span class="line">            i /= <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            j /= <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="求二叉树的节点数">求二叉树的节点数</h2><p>用递归的方法比价简单<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">finnum</span><span class="params">(BTNode *T)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> lcount;</span><br><span class="line">    <span class="keyword">int</span> rcount;</span><br><span class="line">    <span class="keyword">if</span>(T == NULL)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="function"><span class="keyword">else</span> <span class="title">if</span><span class="params">(T-&gt;left == NULL &amp;&amp; T-&gt;right == NULL)</span></span><br><span class="line">        return 1</span>;</span><br><span class="line">    <span class="function"><span class="keyword">else</span></span><br><span class="line">        return <span class="title">finnum</span><span class="params">(T-&gt;left)</span> + <span class="title">finnum</span><span class="params">(T-&gt;right)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="层次遍历二叉树和树的高度">层次遍历二叉树和树的高度</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">findlevel</span><span class="params">(BTNode *T,<span class="keyword">int</span> &amp;level)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    BTNode* que[maxlength];</span><br><span class="line">    <span class="keyword">int</span> front = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> rear  = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> k;</span><br><span class="line">    <span class="keyword">if</span>(T != NULL)</span><br><span class="line">    &#123;</span><br><span class="line">        que[(rear++)% maxlength] = T;</span><br><span class="line">        k = rear;</span><br><span class="line">        level = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(rear != front)  <span class="comment">// 队列空</span></span><br><span class="line">    &#123;</span><br><span class="line">        T = que[(front++) % maxlength];</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;T-&gt;val&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">        <span class="keyword">if</span>(T-&gt;left != NULL)</span><br><span class="line">            que[(rear++)% maxlength] = T-&gt;left;</span><br><span class="line">        <span class="keyword">if</span>(T-&gt;right != NULL)</span><br><span class="line">            que[(rear++)% maxlength] = T-&gt;right;</span><br><span class="line">        <span class="keyword">if</span>(k == front)</span><br><span class="line">        &#123;</span><br><span class="line">            k = rear;</span><br><span class="line">            level ++;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;endl;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="参考">参考</h2><ol>
+<li>本科参加魔鬼训练营笔记</li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/07/12/calculate-the-number-of-devisor-of-a-integer/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">计算一个整数因子个数</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Data-Struct-for-tree" data-title="数据结构复习 -- 二叉树" data-url="http://yoursite.com/2015/08/26/Data-Struct-for-tree/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"zhangxiaoya"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'zhangxiaoya'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 大眼睛男孩儿
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/mobile.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+</body>
+</html>
