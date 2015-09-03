@@ -274,7 +274,36 @@
 <li>sdstrim 给定一个sds和一个C字符串，从sds两端删除在C字符串出现的字符，时间复杂度O(M* N)</li>
 <li>sdscmp 比较两个sds是否相同，时间复杂度O(N)</li>
 </ul>
-<h4 id="链表">链表</h4><h3 id="单机数据库的实现">单机数据库的实现</h3>
+<h4 id="链表">链表</h4><p>链表是在数据结构中很常用的数据数据逻辑结构，很多高级编程语言都内置了链表，比如Qt,C++里面的STL，但是在C语言里面没有这样的结构，Redis自己定义链表数据结构。</p>
+<p>链表节点的数据定义如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> listNode&#123;</span><br><span class="line">	<span class="keyword">struct</span> listNode* prev; <span class="comment">// 指向前一个节点</span></span><br><span class="line">	<span class="keyword">struct</span> listNode* next; <span class="comment">// 指向后一个节点</span></span><br><span class="line">	<span class="keyword">void</span> value;            <span class="comment">// 节点的值</span></span><br><span class="line">&#125;listNode;</span><br></pre></td></tr></table></figure></p>
+<p>链表的定义如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="built_in">list</span>&#123;</span><br><span class="line">	listNode* head;</span><br><span class="line">	listNode* tail;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">long</span> len;</span><br><span class="line">	<span class="keyword">void</span>* (dup)(<span class="keyword">void</span> *ptr);</span><br><span class="line">	<span class="keyword">void</span> (*<span class="built_in">free</span>)(<span class="keyword">void</span> *ptr);</span><br><span class="line">	<span class="keyword">int</span> (*match)(<span class="keyword">void</span> *ptr,<span class="keyword">void</span> *key);</span><br><span class="line">&#125;<span class="built_in">list</span>;</span><br></pre></td></tr></table></figure></p>
+<p>实际上是一个双端队列，并添加了一些其他的属性。</p>
+<p>另外，Redis还提供了一些自己的API：</p>
+<ul>
+<li>listSetDupMethod 将给定的函数设置为节点值复制函数，时间复杂度为O(1)</li>
+<li>listGetDupMethod 返回当前使用的节点值复制韩式指，时间复杂度为O(1)</li>
+<li>listSetFreeMethod  将给定的函数设置为节点值释放函数，时间复杂度为O(1)</li>
+<li>listGetFree 返回链表当前正在使用的节点值释放函数，时间复杂度为O(1)</li>
+<li>listSetMatchMethod 设置链表节点值的对比函数，时间复杂度为O(1)</li>
+<li>listGetMatchMethod 返回链表正在使用的节点值对比函数，时间复杂度为O(1)</li>
+<li>listLength  获取长度 时间复杂度为O(1)</li>
+<li>listFirst 返回头节点 时间复杂度为O(1)</li>
+<li>listLast 返回尾节点 时间复杂度为O(1)</li>
+<li>listPrevNode 返回前置 时间复杂度为O(1)</li>
+<li>listNextNode 返回后置节点 时间复杂度为O(1)</li>
+<li>listNodeValue 返回节点的值 时间复杂度为O(1)</li>
+<li>listCreate 创建一个不含任何节点的链表 时间复杂度为O(1)</li>
+<li>listAddNodeHead 在头节点位置田间节点 时间复杂度为O(1)</li>
+<li>listInsertNode  在给定节点后或前面添加一个节点 </li>
+<li>listAddNodeTail 在尾部添加节点 时间复杂度为O(1)</li>
+<li>listSearchKey 查找包含一个值得节点，时间复杂度为O(N)</li>
+<li>listIndex 返回给定索引的节点 时间复杂度为O(N)</li>
+<li>listDelNode 删除给定值的节点 时间复杂度为O(N)</li>
+<li>listRotate 将尾部节点弹出，作为头节点，时间复杂度为O(1)</li>
+<li>listDup 复制一个链表的副本 时间复杂度为O(N)</li>
+<li>listRelease 释放所有节点 时间复杂度为O(N)</li>
+</ul>
+<h3 id="单机数据库的实现">单机数据库的实现</h3>
       
     </div>
     
