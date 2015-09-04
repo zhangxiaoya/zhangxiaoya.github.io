@@ -315,6 +315,92 @@
 <p>再哈希是为了避免哈希命中率降低的问题，也就是当装填因子超过一定范围的时候，需要修改一下Hash表，这就是两个哈希表的原因，另外一个用于再哈希，至于哈希策略，在书上29页有详细的描述。</p>
 <p>渐进哈希是为了避免繁重的服务器消耗，而是把再哈希的过程分散到查找，添加和删除的过程中，rhashidx就是用来渐进过程的。</p>
 <p>字典的API在Page36.</p>
+<h4 id="跳跃表">跳跃表</h4><p>这算是一个比较奇怪的数据结构，可以跟双向链表对比着说明：</p>
+<ul>
+<li>有一个头节点，双向链表没有；</li>
+<li>每个节点有多个前向指针，双向链表只有一个；</li>
+<li>这多个前向指针，可以指向任意一个前向的元素，并不局限于前置元素，双向链表的指针只能指向前置元素；</li>
+<li>节点数据定义要比双向链表复杂。</li>
+</ul>
+<p>跳跃表是一个有序数据结构，效率跟二叉平衡树查不多，但是实现要比二叉平衡树简单。被用作有序集合键的底层实现，另外也被用作集群节点的底层数据结构，用处也就这两个。</p>
+<p>条约表节点的定义：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> zskiplistNode&#123;</span><br><span class="line">	<span class="keyword">struct</span> zskiplistNode* backward;       <span class="comment">// 后向指针</span></span><br><span class="line">	<span class="keyword">double</span> score;   <span class="comment">// 分值</span></span><br><span class="line">	robj*obj        <span class="comment">// 成员对象</span></span><br><span class="line">	<span class="keyword">struct</span> zskiplistLevel&#123;</span><br><span class="line">		<span class="keyword">struct</span> zskiplistNode* forward;    <span class="comment">// 前向指针</span></span><br><span class="line">		<span class="keyword">unsigned</span> <span class="keyword">int</span> span;       <span class="comment">// 跨度</span></span><br><span class="line">	&#125;level[];   <span class="comment">// 层</span></span><br><span class="line">&#125;zskiplistNode;</span><br></pre></td></tr></table></figure></p>
+<p>这个参考书中的图比较好理解，层就是多个前向指针的结构体，跨度用来记录两个节点的距离，分值是用来排序的，若分值相同，则根据对象的字典序排序，后向指针只能指向后置元素。</p>
+<p>将多个这样的节点组合在一起就组成了跳跃表，是有头节点的，头节点中，这些属性都是无意义的。</p>
+<ul>
+<li>header 指向头节点的指针</li>
+<li>tail 指向尾节点的指针</li>
+<li>level 所有节点中最大的level（不包括头节点）</li>
+<li>length 所有节点的个数（不包含头节点）</li>
+</ul>
+<p>再说一下分值和成员对象，这两个是用来排序的，分值是一个double类型的浮点数，分值是可以相同的，但是对象是不能相同的，对象是一个字符串对象，里面封装了SDS，分值相同的时候，用SDS的字典序排序。</p>
+<p>API 参考Page 45；</p>
+<h4 id="整数集合">整数集合</h4><p>整数集是集合键的底层实现方式之一。</p>
+<pre><code>Intset
+</code></pre><p>整数集合可以存储三种整数：</p>
+<ul>
+<li>int16_t</li>
+<li>int32_t</li>
+<li>int64_t</li>
+</ul>
+<p>整数集合的定义如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> intset&#123;</span><br><span class="line">	<span class="keyword">uint32_t</span> encoding;      <span class="comment">// 编码方式</span></span><br><span class="line">	<span class="keyword">uint32_t</span> length;        <span class="comment">// 元素个数</span></span><br><span class="line">	<span class="keyword">int8_t</span> contents[];      <span class="comment">// 数据存储数组</span></span><br><span class="line">&#125;intset;</span><br></pre></td></tr></table></figure></p>
+<p>整数集合也是有序的，按照其元素值从小到大的顺序，并且是没有重复元素的。</p>
+<p>encoding是编码方式，用来指示存储的数据是以上哪三种类型：</p>
+<ul>
+<li>INTSET_ENC_INT16 表示存储数据是 int16_t;</li>
+<li>INTSET_ENC_INT32 表示存储数据是 int32_t;</li>
+<li>INTSET_ENC_INT64 表示存储数据是 int64_t;</li>
+</ul>
+<p>升级是比较好玩的设计，整数集合所有的元素必须是同意类型的，若此时是低级（int16_t），那么插入一个int32_t的元素，就会引起升级，所有的元素的空间都开始扩大，原理不好用文字，描述，类似与给定一个字符串，将里面的空格替换成<code>%20</code>，这样的操作，计算好空间从后往前整理。这样的设计是为了节省内存。</p>
+<p>但是整数集合没有设计降级操作。</p>
+<p>API 参考 P51；</p>
+<h4 id="压缩列表">压缩列表</h4><p>压缩列表是我觉得最麻烦的东西，因为它直接对内存以字节为单位进行处理。</p>
+<p>压缩列表是列表键和哈希键的底层实现方式的一种，具体看一下表格吧：</p>
+<table>
+<thead>
+<tr>
+<th>zlbytes</th>
+<th>zltail</th>
+<th>zllen</th>
+<th>entry1</th>
+<th>entry2</th>
+<th>…</th>
+<th>entryN</th>
+<th>zlend</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>zlbytes 4个字节 记录整个链表的字节数</li>
+<li>zltail 4个字节 记录链表的偏移量</li>
+<li>zllen 2个字节 节点数量</li>
+<li>zlend 1个字节 特殊字符0xFF用于表示链表结尾。</li>
+</ul>
+<p>压缩列表节点的定义用下面的结构描述：</p>
+<table>
+<thead>
+<tr>
+<th>prrevious_entry_length</th>
+<th>encoding</th>
+<th>content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>previous_entry_length 用来表示每个字节的长度，占用一个字节，或5个字节</li>
+<li>encoding 用来表示存储数据类型，与后面的content配套使用</li>
+</ul>
+<p>在里面最复杂的就是这个每个节点的长度属性，它会引起连锁更新，当然，概率很小。</p>
+<p>API列表在P59</p>
 <h3 id="单机数据库的实现">单机数据库的实现</h3>
       
     </div>
