@@ -401,6 +401,63 @@
 </ul>
 <p>在里面最复杂的就是这个每个节点的长度属性，它会引起连锁更新，当然，概率很小。</p>
 <p>API列表在P59</p>
+<h4 id="对象">对象</h4><p>前面介绍了几种数据结构，只不过是底层的数据结构而已，但是真正在数据库中使用的还是由这些数据结构组成的对象。</p>
+<p>数据结构有：</p>
+<ul>
+<li>简单动态字符串</li>
+<li>双端链表</li>
+<li>字典</li>
+<li>压缩链表</li>
+<li>整数集合</li>
+</ul>
+<p>对象有：</p>
+<ul>
+<li>字符串对象</li>
+<li>列表对象</li>
+<li>哈希对象</li>
+<li>集合对象</li>
+<li>有序集合对象</li>
+</ul>
+<p>根据这些对象的不同，命令决定不同的操作，也就所谓的命令多态。</p>
+<p>在Redis里面，对象来组成数据库中的键值对，键和值都是对象，键对象和值对象。</p>
+<ul>
+<li>键对象都是字符串对象</li>
+<li>值对象可以其五种对象这种的一种</li>
+</ul>
+<blockquote>
+<p>这里来解释一下前面的疑惑，我一开始不知道哈希键是个什么东西，直到看到这一章内容。称作一个键为“某某键”，实际上是这个键对应的值的对象，比如列表键，就是指的该键对应的值是列表对象。<br>使用 <code>Type</code>命令可以查看一个键对应的值的对象类型</p>
+</blockquote>
+<p>Redis每个对象都是一个redisObject结构体<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">typedef struct redisObject&#123;</span><br><span class="line">	unsigned type:<span class="number">4</span>;</span><br><span class="line">	unsigned encoding:<span class="number">4</span>;</span><br><span class="line">	void* ptr;</span><br><span class="line">	<span class="keyword">...</span></span><br><span class="line">&#125;robj;</span><br></pre></td></tr></table></figure></p>
+<p>其中type表示对象类型，也就是上面的五种对象类型；<br>encoding表示对象的编码，也就是对象的底层数据结构是由哪几种基本的数据结构实现的。<br>使用命令<code>OBJECT ENCODING</code>查询对象的编码，也就是底层是什么数据结构实现的。</p>
+<p><strong>字符串对象</strong>的编码可以是：int，raw，embstr。<br>字符串的编码转换是：当数字后面连接字符串，int -&gt; raw；当数字长度变大，或者课编辑 embstr -&gt; raw。<br>字符串命令实现参考P68.</p>
+<p><strong>列表对象</strong>的编码可以是ziplist，linkedlist。<br>这里还提到了字符串对象是五种对象中唯一可被嵌套使用的对象。<br>编码转换：</p>
+<ul>
+<li>所有字符串对象长度都小于64字节</li>
+<li>对象元素个数小512</li>
+</ul>
+<p>不满足两个条件就用linkedList存储，否则用ziplist存储。</p>
+<p><strong>哈希对象</strong>的编码可以是ziplist 和hashtable；<br>编码转换：</p>
+<ul>
+<li>所有键和值的字符串长度都小于64字节</li>
+<li>保存键值对的数量小于512</li>
+</ul>
+<p>不满足这个条件，就使用hashtable存储，否则用ziplist存储。</p>
+<p><strong>集合对象</strong> 的编码可以是intset和hashtable；<br>编码转换：</p>
+<ul>
+<li>所有对象元素都是整数</li>
+<li>元素个数不超过512</li>
+</ul>
+<p>不满足两个条件用intset存储，否则用hashtable存储。</p>
+<p><strong>有序集合对象</strong>的编码可以是ziplist和skiplist；<br>第一个比较好理解，压缩链表，数据是成对存储的，第一个存储对象，第二个存储分值用来排序。<br>对于skiplist其实是用两种结构结合存储的skiplist和字典，共同组成叫做zset的结构，利用的是两种结构的优点</p>
+<p>编码转换：</p>
+<ul>
+<li>元素个数少于128个</li>
+<li>所有元素的成员都小于64字节</li>
+</ul>
+<p>满足条件用ziplist存储，否则用skiplist存储。</p>
+<p>命令多态实际上就是在执行名的时候检擦类型，然后调用不同的API。</p>
+<p>内存回收和对象共享都是采用引用计数器实现的；</p>
+<p>兑现的空转时长就是类似与LRU算法。</p>
 <h3 id="单机数据库的实现">单机数据库的实现</h3>
       
     </div>
