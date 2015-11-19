@@ -268,7 +268,7 @@
 </blockquote>
 <p><strong>最后,配置CUDA环境</strong></p>
 <blockquote>
-<p>新建cuda.conf，并编辑：<br>\$ sudo gedit /etc/ld.so.conf.d/cuda.conf<br>/usr/local/cuda/lib64<br>/lib<br>\$ sudo ldconfig -v</p>
+<p>新建cuda.conf，并编辑：<br>sudo gedit /etc/ld.so.conf.d/cuda.conf<br>添加内容：/usr/local/cuda/lib64/lib<br>sudo ldconfig -v</p>
 </blockquote>
 <h4 id="主要参考">主要参考</h4><ol>
 <li><a href="https://ouxinyu.github.io/Blogs/20140723001.html" target="_blank" rel="external">Caffe + Ubuntu 15.04 + CUDA 7.0 新手安装配置指南</a></li>
@@ -292,8 +292,8 @@
 <li><a href="http://write.blog.csdn.net/postlist" target="_blank" rel="external">qust_waiwai的专栏</a></li>
 </ul>
 <p><strong>卸载：</strong><br>是参考的<a href="http://www.zhihu.com/question/21203756" target="_blank" rel="external">这里</a></p>
-<pre><code><span class="comment"><figure class="highlight"><figcaption><span>install_manifest.txt | sudo xargs rm```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;**&#26597;&#30475;&#23433;&#35013;&#29256;&#26412;&#65306;**&#10;&#21442;&#32771;[&#36825;&#37324;](http://blog.csdn.net/shaoxiaohu1/article/details/24308335)&#10;&#10;    ```pkg-config --modversion opencv</span><br></pre></td></tr></table></figure></span>
-</code></pre><h3 id="参考">参考</h3><ol>
+<figure class="highlight"><figcaption><span>install_manifest.txt | sudo xargs rm```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;**&#26597;&#30475;&#23433;&#35013;&#29256;&#26412;&#65306;**&#10;&#21442;&#32771;[&#36825;&#37324;](http://blog.csdn.net/shaoxiaohu1/article/details/24308335)&#10;&#10;```pkg-config --modversion opencv</span><br></pre></td></tr></table></figure>
+<h3 id="参考">参考</h3><ol>
 <li><a href="https://github.com/jayrambhia/Install-OpenCV" target="_blank" rel="external">Install-OpenCV</a></li>
 <li><a href="https://github.com/ouxinyu/Install-OpenCV-master" target="_blank" rel="external">Install-OpenCV-master</a></li>
 <li><a href="http://ubuntuforums.org/showthread.php?t=2244063" target="_blank" rel="external">Ubuntu 14.04 cuda 6.5 and opencv 2.4.9</a></li>
@@ -318,7 +318,7 @@
 </ol>
 <p><strong>最后，配置MKL环境</strong></p>
 <blockquote>
-<p>新建intel_mkl.conf， 并编辑：<br><code>$ sudo gedit /etc/ld.so.conf.d/intel_mkl.conf</code><br>/opt/intel/lib/intel64<br>/opt/intel/mkl/lib/intel64<br>\$ sudo ldconfig -v</p>
+<p>新建intel_mkl.conf， 并编辑：<br>$ sudo gedit /etc/ld.so.conf.d/intel_mkl.conf<br>/opt/intel/lib/intel64<br>/opt/intel/mkl/lib/intel64<br>\$ sudo ldconfig -v</p>
 </blockquote>
 <h4 id="参考-1">参考</h4><ol>
 <li><a href="http://www.netlib.org/blas/" target="_blank" rel="external">BLAS (Basic Linear Algebra Subprograms)</a></li>
@@ -327,10 +327,8 @@
 </ol>
 <h2 id="Ubuntu14-04_安装Glog等一些依赖库">Ubuntu14.04 安装Glog等一些依赖库</h2><p>Glog是一个轻量级的日志系统，我是第一次接触程序级的日志系统，主要的是参考<a href="http://www.cnblogs.com/foreveryl/archive/2011/10/14/2212265.html" target="_blank" rel="external">这里</a>。</p>
 <ol>
-<li>下载。原文提供的Google Code，但是我自己的电脑是一直不能登陆，在另外一台电脑上，登陆后发现是原始的源码都转移到GitHub上了，地址在<a href="https://github.com/google/glog" target="_blank" rel="external">这里</a>。<ol>
+<li>下载。原文提供的Google Code，但是我自己的电脑是一直不能登陆，在另外一台电脑上，登陆后发现是原始的源码都转移到GitHub上了，地址在<a href="https://github.com/google/glog" target="_blank" rel="external">这里</a>。</li>
 <li>配置：<code>./configure</code></li>
-</ol>
-</li>
 </ol>
 <p>这里先暂停一下，遇到一些问题，我在试图编译Glog的时候出现了多种错误，一直没有好的办法解决，另外，我在<a href="http://caffe.berkeleyvision.org/install_apt.html" target="_blank" rel="external">Caffe的Install指导</a>上，并不是需要自己手动编译Glog和Boost，不像是参考<a href="http://blog.csdn.net/wingfox117/article/details/46278001" target="_blank" rel="external">这里</a>和<a href="https://ouxinyu.github.io/Blogs/20140723001.html" target="_blank" rel="external">这里</a>讲的都是需要手动编译和安装Glog和Boost。<br>另外，我刚刚按照<a href="http://blog.csdn.net/wingfox117/article/details/46278001" target="_blank" rel="external">这里</a>说的，安装了一些函数库：</p>
 <figure class="highlight q"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="built_in">get</span> install libprotobuf-<span class="built_in">dev</span> libleveldb-<span class="built_in">dev</span> libsnappy-<span class="built_in">dev</span> libopencv-<span class="built_in">dev</span> libboost-<span class="built_in">all</span>-<span class="built_in">dev</span> libhdf5-serial-<span class="built_in">dev</span> libgflags-<span class="built_in">dev</span> libgoogle-glog-<span class="built_in">dev</span> liblmdb-<span class="built_in">dev</span> protobuf-compiler</span><br></pre></td></tr></table></figure>
