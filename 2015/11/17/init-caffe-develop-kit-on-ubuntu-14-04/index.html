@@ -316,9 +316,9 @@
 <li>运行一个shell安装脚本，<code>sudo ./install_GUI.sh</code>，按照提示安装即可</li>
 <li>一定要注意在下载页面会有一个序列号，要记录下来，在安装过程中会使用的。</li>
 </ol>
-<p><strong>最后，配置MKL环境</strong></p>
+<p><strong>最后，配置MKL环境</strong><br>新建intel_mkl.conf， 并编辑：</p>
 <blockquote>
-<p>新建intel_mkl.conf， 并编辑：<br>$ sudo gedit /etc/ld.so.conf.d/intel_mkl.conf<br>/opt/intel/lib/intel64<br>/opt/intel/mkl/lib/intel64<br>$ sudo ldconfig -v</p>
+<p>$ sudo gedit /etc/ld.so.conf.d/intel_mkl.conf<br>/opt/intel/lib/intel64<br>/opt/intel/mkl/lib/intel64<br>$ sudo ldconfig -v</p>
 </blockquote>
 <h4 id="参考-1">参考</h4><ol>
 <li><a href="http://www.netlib.org/blas/" target="_blank" rel="external">BLAS (Basic Linear Algebra Subprograms)</a></li>
