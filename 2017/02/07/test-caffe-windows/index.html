@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>在Windows10上使用Visual Studio 2015 测试Caffe | Big Eyes Boy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在Windows10 上完成了配置，还没来得及测试，在Ubuntu下完成测试非常简单，在Caffe的根目录中有一个data的文件夹，这里面又包含了三个文件夹，分别对应了三个数据来源：
+
+cifar10 — 数据集
+ilsvrc12
+mnist — 手写字体数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在Windows10上使用Visual Studio 2015 测试Caffe">
+<meta property="og:url" content="http://yoursite.com/2017/02/07/test-caffe-windows/index.html">
+<meta property="og:site_name" content="Big Eyes Boy">
+<meta property="og:description" content="在Windows10 上完成了配置，还没来得及测试，在Ubuntu下完成测试非常简单，在Caffe的根目录中有一个data的文件夹，这里面又包含了三个文件夹，分别对应了三个数据来源：
+
+cifar10 — 数据集
+ilsvrc12
+mnist — 手写字体数据库">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在Windows10上使用Visual Studio 2015 测试Caffe">
+<meta name="twitter:description" content="在Windows10 上完成了配置，还没来得及测试，在Ubuntu下完成测试非常简单，在Caffe的根目录中有一个data的文件夹，这里面又包含了三个文件夹，分别对应了三个数据来源：
+
+cifar10 — 数据集
+ilsvrc12
+mnist — 手写字体数据库">
+  
+    <link rel="alternative" href="/atom.xml" title="Big Eyes Boy" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="http://7xi4ue.com1.z0.glb.clouddn.com/HeadImg/headimage2.png" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">大眼睛男孩儿</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">运气总是实力积累爆发的时刻！</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/reading">我的阅历</a></li>
+				        
+							<li><a href="/about">我的简历</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/zhangxiaoya/" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/yayabuai/" title="weibo">weibo</a>
+					        
+								<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/zhang-xiao-ya-65/" title="zhihu">zhihu</a>
+					        
+								<a class="douban" target="_blank" href="http://www.douban.com/people/bigeyesboy/" title="douban">douban</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/BP神经网络/" style="font-size: 10px;">BP神经网络</a><a href="/tags/C/" style="font-size: 20px;">C++</a><a href="/tags/CUDA/" style="font-size: 10px;">CUDA</a><a href="/tags/Caffe/" style="font-size: 15px;">Caffe</a><a href="/tags/Cpp/" style="font-size: 10px;">Cpp</a><a href="/tags/Cuda/" style="font-size: 10px;">Cuda</a><a href="/tags/C语言/" style="font-size: 10px;">C语言</a><a href="/tags/Github/" style="font-size: 10px;">Github</a><a href="/tags/Hexo/" style="font-size: 12.5px;">Hexo</a><a href="/tags/LCS/" style="font-size: 10px;">LCS</a><a href="/tags/LeetCode/" style="font-size: 17.5px;">LeetCode</a><a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a><a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a><a href="/tags/Math/" style="font-size: 17.5px;">Math</a><a href="/tags/OpenCV/" style="font-size: 10px;">OpenCV</a><a href="/tags/Python/" style="font-size: 12.5px;">Python</a><a href="/tags/Qt4/" style="font-size: 10px;">Qt4</a><a href="/tags/Redis/" style="font-size: 10px;">Redis</a><a href="/tags/STL/" style="font-size: 10px;">STL</a><a href="/tags/SVD/" style="font-size: 10px;">SVD</a><a href="/tags/Scikit-Learn/" style="font-size: 10px;">Scikit Learn</a><a href="/tags/Sonar-Qube/" style="font-size: 10px;">Sonar Qube</a><a href="/tags/Sublime/" style="font-size: 10px;">Sublime</a><a href="/tags/Ubuntu/" style="font-size: 12.5px;">Ubuntu</a><a href="/tags/Ubuntu14-04/" style="font-size: 10px;">Ubuntu14.04</a><a href="/tags/VS2015/" style="font-size: 12.5px;">VS2015</a><a href="/tags/Visual-Studio/" style="font-size: 10px;">Visual Studio</a><a href="/tags/Win8-1/" style="font-size: 10px;">Win8.1</a><a href="/tags/Windows/" style="font-size: 15px;">Windows</a><a href="/tags/Windows8-1/" style="font-size: 10px;">Windows8.1</a><a href="/tags/image/" style="font-size: 10px;">image</a><a href="/tags/opensh/" style="font-size: 10px;">opensh</a><a href="/tags/putty/" style="font-size: 10px;">putty</a><a href="/tags/tracking/" style="font-size: 10px;">tracking</a><a href="/tags/yilia/" style="font-size: 10px;">yilia</a><a href="/tags/七牛/" style="font-size: 10px;">七牛</a><a href="/tags/中文/" style="font-size: 10px;">中文</a><a href="/tags/主题/" style="font-size: 10px;">主题</a><a href="/tags/二叉树/" style="font-size: 10px;">二叉树</a><a href="/tags/二维数组/" style="font-size: 10px;">二维数组</a><a href="/tags/代码扫描/" style="font-size: 10px;">代码扫描</a><a href="/tags/全排列/" style="font-size: 10px;">全排列</a><a href="/tags/分类/" style="font-size: 10px;">分类</a><a href="/tags/初始化/" style="font-size: 10px;">初始化</a><a href="/tags/图床/" style="font-size: 10px;">图床</a><a href="/tags/多线程/" style="font-size: 12.5px;">多线程</a><a href="/tags/多说/" style="font-size: 10px;">多说</a><a href="/tags/实习/" style="font-size: 17.5px;">实习</a><a href="/tags/实现库函数/" style="font-size: 10px;">实现库函数</a><a href="/tags/对象模型/" style="font-size: 15px;">对象模型</a><a href="/tags/挂件/" style="font-size: 10px;">挂件</a><a href="/tags/排序/" style="font-size: 10px;">排序</a><a href="/tags/数据库概念/" style="font-size: 10px;">数据库概念</a><a href="/tags/数据结构/" style="font-size: 12.5px;">数据结构</a><a href="/tags/数组指针/" style="font-size: 10px;">数组指针</a><a href="/tags/时间管理/" style="font-size: 10px;">时间管理</a><a href="/tags/智力题/" style="font-size: 10px;">智力题</a><a href="/tags/最长公共子序列/" style="font-size: 10px;">最长公共子序列</a><a href="/tags/机器学习/" style="font-size: 10px;">机器学习</a><a href="/tags/标签云/" style="font-size: 10px;">标签云</a><a href="/tags/概率图模型/" style="font-size: 10px;">概率图模型</a><a href="/tags/生活/" style="font-size: 10px;">生活</a><a href="/tags/百度分享/" style="font-size: 10px;">百度分享</a><a href="/tags/笔试/" style="font-size: 15px;">笔试</a><a href="/tags/读书笔记/" style="font-size: 10px;">读书笔记</a><a href="/tags/读后感/" style="font-size: 10px;">读后感</a><a href="/tags/面试/" style="font-size: 10px;">面试</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.csdn.net/qust_waiwai/">我之前的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.jianshu.com/p/1e402922ee32/">简书</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://tengine.taobao.org/book/">叔度的Nginx解析</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">13级北理工计算机硕士，擅长C++程序开发，为了找工作，现在研究Nginx、深入研究Linux，羡慕做前端的，因为网页确实漂亮。。。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">大眼睛男孩儿</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://7xi4ue.com1.z0.glb.clouddn.com/HeadImg/headimage2.png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">大眼睛男孩儿</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">运气总是实力积累爆发的时刻！</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/reading">我的阅历</a></li>
+		        
+					<li><a href="/about">我的简历</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/zhangxiaoya/" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/yayabuai/" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/zhang-xiao-ya-65/" title="zhihu">zhihu</a>
+			        
+						<a class="douban" target="_blank" href="http://www.douban.com/people/bigeyesboy/" title="douban">douban</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-test-caffe-windows" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/02/07/test-caffe-windows/" class="article-date">
+  	<time datetime="2017-02-07T15:44:39.000Z" itemprop="datePublished">2017-02-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      在Windows10上使用Visual Studio 2015 测试Caffe
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Caffe/">Caffe</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VS2015/">VS2015</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Windows/">Windows</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/深度学习/">深度学习</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在Windows10 上完成了配置，还没来得及测试，在Ubuntu下完成测试非常简单，在Caffe的根目录中有一个data的文件夹，这里面又包含了三个文件夹，分别对应了三个数据来源：</p>
+<ul>
+<li>cifar10 — <a href="http://www.cs.toronto.edu/~kriz/cifar.html" target="_blank" rel="external">数据集</a></li>
+<li>ilsvrc12</li>
+<li>mnist — <a href="http://yann.lecun.com/exdb/mnist/" target="_blank" rel="external">手写字体数据库</a> </li>
+</ul>
+<a id="more"></a>
+<h2 id="数据集下载">数据集下载</h2><p>每个目录下都有 一个shell的脚本文件，在Ubuntu下的terminal运行，自动下载数据。<br>比如下载mnist数据集的脚本是<code>get_mnist.sh</code>，其中的脚本是：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/usr/bin/env sh</span></span><br><span class="line"><span class="comment"># This scripts downloads the mnist data and unzips it.</span></span><br><span class="line"></span><br><span class="line">DIR=<span class="string">"<span class="variable">$( cd "$(dirname "$0")</span>"</span> ; <span class="built_in">pwd</span> -P )<span class="string">"</span><br><span class="line">cd "</span><span class="variable">$DIR</span><span class="string">"</span><br><span class="line"></span><br><span class="line">echo "</span>Downloading...<span class="string">"</span><br><span class="line"></span><br><span class="line">for fname in train-images-idx3-ubyte train-labels-idx1-ubyte t10k-images-idx3-ubyte t10k-labels-idx1-ubyte</span><br><span class="line">do</span><br><span class="line">    if [ ! -e <span class="variable">$fname</span> ]; then</span><br><span class="line">        wget --no-check-certificate http://yann.lecun.com/exdb/mnist/<span class="variable">$&#123;fname&#125;</span>.gz</span><br><span class="line">        gunzip <span class="variable">$&#123;fname&#125;</span>.gz</span><br><span class="line">    fi</span><br><span class="line">done</span></span><br></pre></td></tr></table></figure></p>
+<p>就是下载这四个文件，当然也可以在mnist的网站上直接下载。</p>
+<p>这个数据还需要转换，但是在Windows上编译的数据格式转格式的工程一直没配置好，所以就先用别人转换好的吧。</p>
+<p>在<a href="http://pan.baidu.com/s/1o7YrhKe" target="_blank" rel="external">这里</a>下载，这个数据文件不全，只有leveldb的，另外一种没有，不过这个一个也足够完成一次测试了。</p>
+<p>在Caffe根目录下会有一个example的文件夹，里面是caffe提供的测试，网络结构还有运行的shell脚本都写好了，但是在Win下不能直接用。在Win10下，采用这种方式编译的 caffe，会在script目录下的build文件夹中，caffe可执行文件在这个目录下的tools目录下的Release中，也就是caffe.exe。</p>
+<p>把example中的mnist复制一份，命名为mnist_win，然后将下载的数据放在这个目录下，有两个文件夹：</p>
+<ul>
+<li>mnist-test-leveldb</li>
+<li>mnist-train-leveldb</li>
+</ul>
+<h2 id="修改训练测试文件">修改训练测试文件</h2><p>修改训练配置文件<code>lenet_train_test.prototxt</code>，将文件中的数据路径和backed都修改，需要注意的是文件路径中的斜杠问题，要用双斜杠，否则会仿作转义符，如下所示（一共有四个地方，注意文件名中的下划线与横杆，找不到文件就是因为文件名不对）：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">name</span>: "<span class="tag">LeNet</span>"</span><br><span class="line"><span class="tag">layer</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">name</span>:<span class="value"> <span class="string">"mnist"</span></span><br><span class="line">  type: <span class="string">"Data"</span></span><br><span class="line">  top: <span class="string">"data"</span></span><br><span class="line">  top: <span class="string">"label"</span></span><br><span class="line">  include &#123;</span><br><span class="line">    phase: TRAIN</span><br><span class="line">  </span></span></span>&#125;</span><br><span class="line">  <span class="tag">transform_param</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">scale</span>:<span class="value"> <span class="number">0.00390625</span></span><br><span class="line">  </span></span></span>&#125;</span><br><span class="line">  <span class="tag">data_param</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">source</span>:<span class="value"> <span class="string">"D:\\Application\\CaffeNew\\caffe\\examples\\mnist\\mnist-train-leveldb"</span></span><br><span class="line">    batch_size: <span class="number">64</span></span><br><span class="line">    backend: LEVELDB</span><br><span class="line">  </span></span></span>&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">layer</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">name</span>:<span class="value"> <span class="string">"mnist"</span></span><br><span class="line">  type: <span class="string">"Data"</span></span><br><span class="line">  top: <span class="string">"data"</span></span><br><span class="line">  top: <span class="string">"label"</span></span><br><span class="line">  include &#123;</span><br><span class="line">    phase: TEST</span><br><span class="line">  </span></span></span>&#125;</span><br><span class="line">  <span class="tag">transform_param</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">scale</span>:<span class="value"> <span class="number">0.00390625</span></span><br><span class="line">  </span></span></span>&#125;</span><br><span class="line">  <span class="tag">data_param</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">source</span>:<span class="value"> <span class="string">"D:\\Application\\CaffeNew\\caffe\\examples\\mnist\\mnist-test-leveldb"</span></span><br><span class="line">    batch_size: <span class="number">100</span></span><br><span class="line">    backend: LEVELDB</span><br><span class="line">  </span></span></span>&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">layer</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">name</span>:<span class="value"> <span class="string">"conv1"</span></span><br><span class="line">  type: <span class="string">"Convolution"</span></span><br><span class="line">  bottom: <span class="string">"data"</span></span><br><span class="line">  top: <span class="string">"conv1"</span></span><br><span class="line">  param &#123;</span><br><span class="line">    lr_mult: <span class="number">1</span></span><br><span class="line">  </span></span></span>&#125;</span><br><span class="line">  <span class="tag">param</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">lr_mult</span>:<span class="value"> <span class="number">2</span></span><br><span class="line">  </span></span></span>&#125;</span><br><span class="line">  <span class="tag">convolution_param</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">num_output</span>:<span class="value"> <span class="number">20</span></span><br><span class="line">    kernel_size: <span class="number">5</span></span><br><span class="line">    stride: <span class="number">1</span></span><br><span class="line">    weight_filler &#123;</span><br><span class="line">      type: <span class="string">"xavier"</span></span><br><span class="line">    </span></span></span>&#125;</span><br><span class="line">    <span class="tag">bias_filler</span> <span class="rules">&#123;</span><br><span class="line">      <span class="rule"><span class="attribute">type</span>:<span class="value"> <span class="string">"constant"</span></span><br><span class="line">    </span></span></span>&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">layer</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">name</span>:<span class="value"> <span class="string">"pool1"</span></span><br><span class="line">  type: <span class="string">"Pooling"</span></span><br><span class="line">  bottom: <span class="string">"conv1"</span></span><br><span class="line">  top: <span class="string">"pool1"</span></span><br><span class="line">  pooling_param &#123;</span><br><span class="line">    pool: MAX</span><br><span class="line">    kernel_size: <span class="number">2</span></span><br><span class="line">    stride: <span class="number">2</span></span><br><span class="line">  </span></span></span>&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">layer</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">name</span>:<span class="value"> <span class="string">"conv2"</span></span><br><span class="line">  type: <span class="string">"Convolution"</span></span><br><span class="line">  bottom: <span class="string">"pool1"</span></span><br><span class="line">  top: <span class="string">"conv2"</span></span><br><span class="line">  param &#123;</span><br><span class="line">    lr_mult: <span class="number">1</span></span><br><span class="line">  </span></span></span>&#125;</span><br><span class="line">  <span class="tag">param</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">lr_mult</span>:<span class="value"> <span class="number">2</span></span><br><span class="line">  </span></span></span>&#125;</span><br><span class="line">  <span class="tag">convolution_param</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">num_output</span>:<span class="value"> <span class="number">50</span></span><br><span class="line">    kernel_size: <span class="number">5</span></span><br><span class="line">    stride: <span class="number">1</span></span><br><span class="line">    weight_filler &#123;</span><br><span class="line">      type: <span class="string">"xavier"</span></span><br><span class="line">    </span></span></span>&#125;</span><br><span class="line">    <span class="tag">bias_filler</span> <span class="rules">&#123;</span><br><span class="line">      <span class="rule"><span class="attribute">type</span>:<span class="value"> <span class="string">"constant"</span></span><br><span class="line">    </span></span></span>&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">layer</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">name</span>:<span class="value"> <span class="string">"pool2"</span></span><br><span class="line">  type: <span class="string">"Pooling"</span></span><br><span class="line">  bottom: <span class="string">"conv2"</span></span><br><span class="line">  top: <span class="string">"pool2"</span></span><br><span class="line">  pooling_param &#123;</span><br><span class="line">    pool: MAX</span><br><span class="line">    kernel_size: <span class="number">2</span></span><br><span class="line">    stride: <span class="number">2</span></span><br><span class="line">  </span></span></span>&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">layer</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">name</span>:<span class="value"> <span class="string">"ip1"</span></span><br><span class="line">  type: <span class="string">"InnerProduct"</span></span><br><span class="line">  bottom: <span class="string">"pool2"</span></span><br><span class="line">  top: <span class="string">"ip1"</span></span><br><span class="line">  param &#123;</span><br><span class="line">    lr_mult: <span class="number">1</span></span><br><span class="line">  </span></span></span>&#125;</span><br><span class="line">  <span class="tag">param</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">lr_mult</span>:<span class="value"> <span class="number">2</span></span><br><span class="line">  </span></span></span>&#125;</span><br><span class="line">  <span class="tag">inner_product_param</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">num_output</span>:<span class="value"> <span class="number">500</span></span><br><span class="line">    weight_filler &#123;</span><br><span class="line">      type: <span class="string">"xavier"</span></span><br><span class="line">    </span></span></span>&#125;</span><br><span class="line">    <span class="tag">bias_filler</span> <span class="rules">&#123;</span><br><span class="line">      <span class="rule"><span class="attribute">type</span>:<span class="value"> <span class="string">"constant"</span></span><br><span class="line">    </span></span></span>&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">layer</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">name</span>:<span class="value"> <span class="string">"relu1"</span></span><br><span class="line">  type: <span class="string">"ReLU"</span></span><br><span class="line">  bottom: <span class="string">"ip1"</span></span><br><span class="line">  top: <span class="string">"ip1"</span></span><br><span class="line"></span></span></span>&#125;</span><br><span class="line"><span class="tag">layer</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">name</span>:<span class="value"> <span class="string">"ip2"</span></span><br><span class="line">  type: <span class="string">"InnerProduct"</span></span><br><span class="line">  bottom: <span class="string">"ip1"</span></span><br><span class="line">  top: <span class="string">"ip2"</span></span><br><span class="line">  param &#123;</span><br><span class="line">    lr_mult: <span class="number">1</span></span><br><span class="line">  </span></span></span>&#125;</span><br><span class="line">  <span class="tag">param</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">lr_mult</span>:<span class="value"> <span class="number">2</span></span><br><span class="line">  </span></span></span>&#125;</span><br><span class="line">  <span class="tag">inner_product_param</span> <span class="rules">&#123;</span><br><span class="line">    <span class="rule"><span class="attribute">num_output</span>:<span class="value"> <span class="number">10</span></span><br><span class="line">    weight_filler &#123;</span><br><span class="line">      type: <span class="string">"xavier"</span></span><br><span class="line">    </span></span></span>&#125;</span><br><span class="line">    <span class="tag">bias_filler</span> <span class="rules">&#123;</span><br><span class="line">      <span class="rule"><span class="attribute">type</span>:<span class="value"> <span class="string">"constant"</span></span><br><span class="line">    </span></span></span>&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">layer</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">name</span>:<span class="value"> <span class="string">"accuracy"</span></span><br><span class="line">  type: <span class="string">"Accuracy"</span></span><br><span class="line">  bottom: <span class="string">"ip2"</span></span><br><span class="line">  bottom: <span class="string">"label"</span></span><br><span class="line">  top: <span class="string">"accuracy"</span></span><br><span class="line">  include &#123;</span><br><span class="line">    phase: TEST</span><br><span class="line">  </span></span></span>&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">layer</span> <span class="rules">&#123;</span><br><span class="line">  <span class="rule"><span class="attribute">name</span>:<span class="value"> <span class="string">"loss"</span></span><br><span class="line">  type: <span class="string">"SoftmaxWithLoss"</span></span><br><span class="line">  bottom: <span class="string">"ip2"</span></span><br><span class="line">  bottom: <span class="string">"label"</span></span><br><span class="line">  top: <span class="string">"loss"</span></span><br><span class="line"></span></span></span>&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="修改网络配置参数">修改网络配置参数</h2><p>修改参数配置文件<code>lenet_solver.prototxt</code>，这里面制定了训练测试文件的目录，还有其他参数，也是要注意路径中的斜杠问题，下面是我的配置文件。</p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># The train/test net protocol buffer definition</span></span><br><span class="line">net: <span class="string">"D:\\Application\\CaffeNew\\caffe\\examples\\mnist\\lenet_train_test.prototxt"</span></span><br><span class="line"><span class="comment"># test_iter specifies how many forward passes the test should carry out.</span></span><br><span class="line"><span class="comment"># In the case of MNIST, we have test batch size 100 and 100 test iterations,</span></span><br><span class="line"><span class="comment"># covering the full 10,000 testing images.</span></span><br><span class="line">test_iter: <span class="number">100</span></span><br><span class="line"><span class="comment"># Carry out testing every 500 training iterations.</span></span><br><span class="line">test_interval: <span class="number">500</span></span><br><span class="line"><span class="comment"># The base learning rate, momentum and the weight decay of the network.</span></span><br><span class="line">base_lr: <span class="number">0</span>.<span class="number">01</span></span><br><span class="line">momentum: <span class="number">0</span>.<span class="number">9</span></span><br><span class="line">weight_decay: <span class="number">0</span>.<span class="number">0005</span></span><br><span class="line"><span class="comment"># The learning rate policy</span></span><br><span class="line">lr_policy: <span class="string">"inv"</span></span><br><span class="line">gamma: <span class="number">0</span>.<span class="number">0001</span></span><br><span class="line">power: <span class="number">0</span>.<span class="number">75</span></span><br><span class="line"><span class="comment"># Display every 100 iterations</span></span><br><span class="line">display: <span class="number">100</span></span><br><span class="line"><span class="comment"># The maximum number of iterations</span></span><br><span class="line">max_iter: <span class="number">10000</span></span><br><span class="line"><span class="comment"># snapshot intermediate results</span></span><br><span class="line">snapshot: <span class="number">5000</span></span><br><span class="line">snapshot_prefix: <span class="string">"D:\\Application\\CaffeNew\\caffe\\examples\\mnist\\lenet"</span></span><br><span class="line"><span class="comment"># solver mode: CPU or GPU</span></span><br><span class="line">solver_mode: <span class="type">GPU</span></span><br></pre></td></tr></table></figure>
+<h2 id="运行一下">运行一下</h2><p>然后就可以运行了，可以直接在命令行中写命令：<br><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D:<span class="command">\Application</span><span class="command">\CaffeNew</span><span class="command">\caffe</span><span class="command">\scripts</span><span class="command">\build</span><span class="command">\tools</span><span class="command">\Release</span><span class="command">\caffe</span>.exe  train --solver=D:<span class="command">\Application</span><span class="command">\CaffeNew</span><span class="command">\caffe</span><span class="command">\examples</span><span class="command">\mnist</span><span class="command">\lenet</span>_solver.prototxt</span><br></pre></td></tr></table></figure></p>
+<p>也可以写一个批处理文件放在当前目录，我写一个批处理文件<code>run.bat</code>，双击就可以运行了：</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">D:<span class="command">\Application</span><span class="command">\CaffeNew</span><span class="command">\caffe</span><span class="command">\scripts</span><span class="command">\build</span><span class="command">\tools</span><span class="command">\Release</span><span class="command">\caffe</span>.exe  train --solver=D:<span class="command">\Application</span><span class="command">\CaffeNew</span><span class="command">\caffe</span><span class="command">\examples</span><span class="command">\mnist</span><span class="command">\lenet</span>_solver.prototxt  </span><br><span class="line">   </span><br><span class="line">Pause</span><br></pre></td></tr></table></figure>
+<p>如果之前都配置的没错的话，这里应该没有问题，准确率0.9+。</p>
+<h2 id="参考">参考</h2><p><a href="http://blog.csdn.net/light169/article/details/53993893" target="_blank" rel="external">http://blog.csdn.net/light169/article/details/53993893</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/02/04/Caffe-windows-vs2015/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">在Windows10上使用Visual Studio 2015 构建Caffe</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="test-caffe-windows" data-title="在Windows10上使用Visual Studio 2015 测试Caffe" data-url="http://yoursite.com/2017/02/07/test-caffe-windows/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"zhangxiaoya"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'zhangxiaoya'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 大眼睛男孩儿
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/mobile.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+</body>
+</html>
