@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>基于SVM的图像分类 | Big Eyes Boy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="今天在星巴克呆了一天，复习了一下学习的内容，翻到了研一期间旁听人工智能的课程设计，第一个完全写的一个基于SVM的图像分类任务，记得当时我是实验室第一个独立完成课程设计的，其他小伙伴还是参考我的代码，现在工业界，已经被漫天的深度学习覆盖，难道忘记了曾经万能的SVM了吗？
+还是写一遍小文，整理一下笔记，万一有初学者想要参考一下呢，也督促自己熟悉曾经做过的工作。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于SVM的图像分类">
+<meta property="og:url" content="http://yoursite.com/2017/02/09/use-svm-training/index.html">
+<meta property="og:site_name" content="Big Eyes Boy">
+<meta property="og:description" content="今天在星巴克呆了一天，复习了一下学习的内容，翻到了研一期间旁听人工智能的课程设计，第一个完全写的一个基于SVM的图像分类任务，记得当时我是实验室第一个独立完成课程设计的，其他小伙伴还是参考我的代码，现在工业界，已经被漫天的深度学习覆盖，难道忘记了曾经万能的SVM了吗？
+还是写一遍小文，整理一下笔记，万一有初学者想要参考一下呢，也督促自己熟悉曾经做过的工作。">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于SVM的图像分类">
+<meta name="twitter:description" content="今天在星巴克呆了一天，复习了一下学习的内容，翻到了研一期间旁听人工智能的课程设计，第一个完全写的一个基于SVM的图像分类任务，记得当时我是实验室第一个独立完成课程设计的，其他小伙伴还是参考我的代码，现在工业界，已经被漫天的深度学习覆盖，难道忘记了曾经万能的SVM了吗？
+还是写一遍小文，整理一下笔记，万一有初学者想要参考一下呢，也督促自己熟悉曾经做过的工作。">
+  
+    <link rel="alternative" href="/atom.xml" title="Big Eyes Boy" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="http://7xi4ue.com1.z0.glb.clouddn.com/HeadImg/headimage2.png" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">大眼睛男孩儿</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">运气总是实力积累爆发的时刻！</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+							<li><a href="/reading">我的阅历</a></li>
+				        
+							<li><a href="/about">我的简历</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/zhangxiaoya/" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/yayabuai/" title="weibo">weibo</a>
+					        
+								<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/zhang-xiao-ya-65/" title="zhihu">zhihu</a>
+					        
+								<a class="douban" target="_blank" href="http://www.douban.com/people/bigeyesboy/" title="douban">douban</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/BP神经网络/" style="font-size: 10px;">BP神经网络</a><a href="/tags/C/" style="font-size: 20px;">C++</a><a href="/tags/CUDA/" style="font-size: 10px;">CUDA</a><a href="/tags/Caffe/" style="font-size: 15px;">Caffe</a><a href="/tags/Cpp/" style="font-size: 10px;">Cpp</a><a href="/tags/Cuda/" style="font-size: 10px;">Cuda</a><a href="/tags/C语言/" style="font-size: 10px;">C语言</a><a href="/tags/Github/" style="font-size: 10px;">Github</a><a href="/tags/Hexo/" style="font-size: 12.5px;">Hexo</a><a href="/tags/LCS/" style="font-size: 10px;">LCS</a><a href="/tags/LeetCode/" style="font-size: 17.5px;">LeetCode</a><a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a><a href="/tags/MATLAB/" style="font-size: 10px;">MATLAB</a><a href="/tags/Machine-Learning/" style="font-size: 10px;">Machine Learning</a><a href="/tags/Math/" style="font-size: 17.5px;">Math</a><a href="/tags/OpenCV/" style="font-size: 10px;">OpenCV</a><a href="/tags/Python/" style="font-size: 12.5px;">Python</a><a href="/tags/Qt4/" style="font-size: 10px;">Qt4</a><a href="/tags/Redis/" style="font-size: 10px;">Redis</a><a href="/tags/STL/" style="font-size: 10px;">STL</a><a href="/tags/SVD/" style="font-size: 10px;">SVD</a><a href="/tags/SVM/" style="font-size: 10px;">SVM</a><a href="/tags/Scikit-Learn/" style="font-size: 10px;">Scikit Learn</a><a href="/tags/Sonar-Qube/" style="font-size: 10px;">Sonar Qube</a><a href="/tags/Sublime/" style="font-size: 10px;">Sublime</a><a href="/tags/Ubuntu/" style="font-size: 12.5px;">Ubuntu</a><a href="/tags/Ubuntu14-04/" style="font-size: 10px;">Ubuntu14.04</a><a href="/tags/VS2015/" style="font-size: 12.5px;">VS2015</a><a href="/tags/Visual-Studio/" style="font-size: 10px;">Visual Studio</a><a href="/tags/Win8-1/" style="font-size: 10px;">Win8.1</a><a href="/tags/Windows/" style="font-size: 17.5px;">Windows</a><a href="/tags/Windows8-1/" style="font-size: 10px;">Windows8.1</a><a href="/tags/image/" style="font-size: 10px;">image</a><a href="/tags/opensh/" style="font-size: 10px;">opensh</a><a href="/tags/putty/" style="font-size: 10px;">putty</a><a href="/tags/tracking/" style="font-size: 10px;">tracking</a><a href="/tags/yilia/" style="font-size: 10px;">yilia</a><a href="/tags/七牛/" style="font-size: 10px;">七牛</a><a href="/tags/中文/" style="font-size: 10px;">中文</a><a href="/tags/主题/" style="font-size: 10px;">主题</a><a href="/tags/二叉树/" style="font-size: 10px;">二叉树</a><a href="/tags/二维数组/" style="font-size: 10px;">二维数组</a><a href="/tags/代码扫描/" style="font-size: 10px;">代码扫描</a><a href="/tags/全排列/" style="font-size: 10px;">全排列</a><a href="/tags/分类/" style="font-size: 10px;">分类</a><a href="/tags/初始化/" style="font-size: 10px;">初始化</a><a href="/tags/图像分类/" style="font-size: 10px;">图像分类</a><a href="/tags/图床/" style="font-size: 10px;">图床</a><a href="/tags/多线程/" style="font-size: 12.5px;">多线程</a><a href="/tags/多说/" style="font-size: 10px;">多说</a><a href="/tags/实习/" style="font-size: 17.5px;">实习</a><a href="/tags/实现库函数/" style="font-size: 10px;">实现库函数</a><a href="/tags/对象模型/" style="font-size: 15px;">对象模型</a><a href="/tags/挂件/" style="font-size: 10px;">挂件</a><a href="/tags/排序/" style="font-size: 10px;">排序</a><a href="/tags/数据库概念/" style="font-size: 10px;">数据库概念</a><a href="/tags/数据结构/" style="font-size: 12.5px;">数据结构</a><a href="/tags/数组指针/" style="font-size: 10px;">数组指针</a><a href="/tags/时间管理/" style="font-size: 10px;">时间管理</a><a href="/tags/智力题/" style="font-size: 10px;">智力题</a><a href="/tags/最长公共子序列/" style="font-size: 10px;">最长公共子序列</a><a href="/tags/机器学习/" style="font-size: 10px;">机器学习</a><a href="/tags/标签云/" style="font-size: 10px;">标签云</a><a href="/tags/概率图模型/" style="font-size: 10px;">概率图模型</a><a href="/tags/生活/" style="font-size: 10px;">生活</a><a href="/tags/百度分享/" style="font-size: 10px;">百度分享</a><a href="/tags/笔试/" style="font-size: 15px;">笔试</a><a href="/tags/读书笔记/" style="font-size: 10px;">读书笔记</a><a href="/tags/读后感/" style="font-size: 10px;">读后感</a><a href="/tags/面试/" style="font-size: 10px;">面试</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://blog.csdn.net/qust_waiwai/">我之前的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.jianshu.com/p/1e402922ee32/">简书</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://tengine.taobao.org/book/">叔度的Nginx解析</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">13级北理工计算机硕士，擅长C++程序开发，为了找工作，现在研究Nginx、深入研究Linux，羡慕做前端的，因为网页确实漂亮。。。</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">大眼睛男孩儿</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="http://7xi4ue.com1.z0.glb.clouddn.com/HeadImg/headimage2.png" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">大眼睛男孩儿</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">运气总是实力积累爆发的时刻！</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+					<li><a href="/reading">我的阅历</a></li>
+		        
+					<li><a href="/about">我的简历</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/zhangxiaoya/" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/yayabuai/" title="weibo">weibo</a>
+			        
+						<a class="zhihu" target="_blank" href="http://www.zhihu.com/people/zhang-xiao-ya-65/" title="zhihu">zhihu</a>
+			        
+						<a class="douban" target="_blank" href="http://www.douban.com/people/bigeyesboy/" title="douban">douban</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-use-svm-training" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/02/09/use-svm-training/" class="article-date">
+  	<time datetime="2017-02-08T16:31:52.000Z" itemprop="datePublished">2017-02-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      基于SVM的图像分类
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MATLAB/">MATLAB</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SVM/">SVM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Windows/">Windows</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图像分类/">图像分类</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/机器学习/">机器学习</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天在星巴克呆了一天，复习了一下学习的内容，翻到了研一期间旁听人工智能的课程设计，第一个完全写的一个基于SVM的图像分类任务，记得当时我是实验室第一个独立完成课程设计的，其他小伙伴还是参考我的代码，现在工业界，已经被漫天的深度学习覆盖，难道忘记了曾经万能的SVM了吗？</p>
+<p>还是写一遍小文，整理一下笔记，万一有初学者想要参考一下呢，也督促自己熟悉曾经做过的工作。</p>
+<a id="more"></a>
+<p>当时还在CSDN上写过一篇文章，原因是用matlab配置libsvm总是配置不好（当时Win8.1是最新版的系统，libsvm还是最流行的svm工具包，当时是2013年），博客地址在<a href="http://blog.csdn.net/qust_waiwai/article/details/17189787" target="_blank" rel="external">http://blog.csdn.net/qust_waiwai/article/details/17189787</a> ，只是写了个草稿，没想到，却成了评论最多的文章。</p>
+<p>那就先把这个草稿整理完。</p>
+<h2 id="Windows64位_MATLAB使用LibSVM">Windows64位 MATLAB使用LibSVM</h2><p>在<a href="http://www.csie.ntu.edu.tw/~cjlin/libsvm/#download" target="_blank" rel="external">LibSVM的网站</a>上下载压缩包，然后解压。会发现有一些文件夹还有一些代码文件，其中一个<code>MATLAB</code>的的文件夹，里面就是提供的matlab接口（这些都在根目录的README文件里面介绍了，还有其他接口的安装与使用说明）。</p>
+<p>在MATLAB这个目录下也有一个README文件，这个文件详细的描述了如何使用LibSVM的MATLAB接口，其中介绍了64位系统提供了 预编译好的二进制可执行文件。</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">On Windows systems, pre-built binary <span class="built_in">files</span> are already <span class="operator">in</span> <span class="operator">the</span> </span><br><span class="line"><span class="built_in">directory</span> <span class="string">'..\windows'</span>, so no need <span class="built_in">to</span> conduct installation. Now we </span><br><span class="line">provide binary <span class="built_in">files</span> only <span class="keyword">for</span> <span class="number">64</span>bit MATLAB <span class="command"><span class="keyword">on</span> <span class="title">Windows</span>. <span class="title">If</span> <span class="title">you</span> <span class="title">would</span> </span></span><br><span class="line">like <span class="built_in">to</span> re-build <span class="operator">the</span> package, please rely <span class="command"><span class="keyword">on</span> <span class="title">the</span> <span class="title">following</span> <span class="title">steps</span>.</span></span><br></pre></td></tr></table></figure>
+<p>至于为什么编译不好，先不浪费时间在这上面了，应该是编译器版本的原因，现在Win10要比Win8.1稳定了，应该就没有这个问题了。</p>
+<p>将根目录中的windows目录拷贝到MATLAB的安装目录中的toolboxs中，里面全是各种包，不用自己在维护一个文件夹了，然后在MATLAB中<code>Set Path</code>，把这Windows目录添加进去，在MATLAB中就可以使用了。</p>
+<p>输入 svmtrain 测试一下，会输出基本的用法：</p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; svmtrain</span><br><span class="line">Usage: model = svmtrain(training_label_vector, training_instance_matrix, <span class="string">'libsvm_options'</span>);</span><br><span class="line">libsvm_options:</span><br><span class="line">-s svm_type : <span class="keyword">set</span> <span class="keyword">type</span> <span class="keyword">of</span> SVM (<span class="keyword">default</span> <span class="number">0</span>)</span><br><span class="line">	<span class="number">0</span> -- C-SVC		(multi-<span class="keyword">class</span> classification)</span><br><span class="line">	<span class="number">1</span> -- nu-SVC		(multi-<span class="keyword">class</span> classification)</span><br><span class="line">	<span class="number">2</span> -- one-<span class="keyword">class</span> SVM</span><br><span class="line">	<span class="number">3</span> -- epsilon-SVR	(regression)</span><br><span class="line">	<span class="number">4</span> -- nu-SVR		(regression)</span><br><span class="line">-t kernel_type : <span class="keyword">set</span> <span class="keyword">type</span> <span class="keyword">of</span> kernel <span class="function"><span class="keyword">function</span> <span class="params">(<span class="keyword">default</span> 2)</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="基于SVM的图像分类">基于SVM的图像分类</h2><p>这是一个课程设计，给定数据，设计分类器，建议使用SVM和kmeans。</p>
+<h3 id="问题描述">问题描述</h3><p>两类图像（一种是动物，也就是恐龙，另外一种是公共汽车）每种图像95张，总共190张图片，为了方便操作，已经使用sift工具包提取了sift特征描述子，设计了个分类器，可采用直接分割的方法用来训练和测试，也可用交叉验证法训练和测试。</p>
+<h3 id="基本思路">基本思路</h3><p>每个图像都被提取了SIFT特征，每个SIFT特征向量的维度是固定的，128维，但是每个图片会有多个sift描述子，数量不固定。</p>
+<p>参考Bag of Visual Word模型，先用KMeans将将所有的SIFT描述子分类，比如分为10类，那么统计每个图像sift描述子的直方图分布描述子，这个直方图分布描述子就是10维的，这个类似于词袋模型，计算出每个图像的描述特征，然后用SVM训练一个监督学习分类器。</p>
+<p>问题的关键点是用词袋模型来描述每张图片。</p>
+<h3 id="代码实现">代码实现</h3><p>用matlab 实现，下面是两个代码文件。<br>Main文件<br><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%%#########################################################################</span></span><br><span class="line"><span class="comment">%       名称：作业一</span></span><br><span class="line"><span class="comment">%       时间：2013.12.01</span></span><br><span class="line"><span class="comment">%       姓名：张亚南</span></span><br><span class="line"><span class="comment">%       专业：生物医学工程</span></span><br><span class="line"><span class="comment">%       学院：计算机学院</span></span><br><span class="line"><span class="comment">%##########################################################################</span></span><br><span class="line"><span class="comment">%%</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%利用Bag of visual Word模型，使用Kmeans聚类，形成字典</span></span><br><span class="line"><span class="comment">%分类，采用监督学习方法，SVM，每种特征训练集于测试集的比例大约为2：1</span></span><br><span class="line"><span class="comment">%%</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%清空工作空间，清屏</span></span><br><span class="line">clear all;                                              </span><br><span class="line">clc;</span><br><span class="line"><span class="comment">%%</span></span><br><span class="line"><span class="comment">%文件夹'k_f'中存放恐龙图片的特征向量</span></span><br><span class="line"><span class="comment">%存放每个恐龙图片特征的文件名</span></span><br><span class="line">file_name_k = dir(<span class="string">'k_f'</span>);</span><br><span class="line"><span class="comment">%获取特征文件的个数</span></span><br><span class="line">n_k = <span class="built_in">length</span>(file_name_k);</span><br><span class="line"><span class="comment">%初始化一个矩阵，存放恐龙图片的所有的特征</span></span><br><span class="line">d_k =<span class="built_in">zeros</span>(<span class="number">1</span>,<span class="number">128</span>); </span><br><span class="line"><span class="comment">%初始化一个矩阵，存放每个恐龙图片的特征的个数</span></span><br><span class="line">num = <span class="built_in">zeros</span>(<span class="number">1</span>,<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">%按照文件名读这些特征及其个数，分别存放在矩阵d_k和矩阵中num</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">3</span>:n_k</span><br><span class="line">    <span class="comment">%组合文件名</span></span><br><span class="line">    name = strcat(<span class="string">'./k_f/'</span>,file_name_k(<span class="built_in">i</span>).name);</span><br><span class="line">    <span class="comment">%没个特征文件第一行为特征的维数个个数，跳过第一行，读取特征矩阵，并用d临时存储</span></span><br><span class="line">    d = textread(name,<span class="string">''</span>,<span class="string">'headerlines'</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="comment">%采用textread读取数据时，默认是以空格为间隔标志，没恶感特征向量都在结尾多了一个0 ，去除最后一维数据</span></span><br><span class="line">    d =d(:,<span class="number">1</span>:<span class="number">128</span>);</span><br><span class="line">    <span class="comment">%将所有恐龙图片的特征向量存储在一个矩阵d_k中</span></span><br><span class="line">    d_k = <span class="matrix">[d_k ; d]</span>;</span><br><span class="line">    <span class="comment">%eval(['data_k_' num2str(i-2) '=d']);</span></span><br><span class="line">    <span class="comment">%从每个文件中读出每个图片特征的个数个维数</span></span><br><span class="line">    t = textread(<span class="matrix">[<span class="string">'./k_f/'</span> file_name_k(i).name]</span>,<span class="string">''</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="comment">%将每个图片的特征和维数都存放在矩阵num中</span></span><br><span class="line">    num = <span class="matrix">[num;t]</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">%end of loop </span></span><br><span class="line"><span class="comment">%获取此时矩阵num的维数，去除初始化时的第一行的无用数据</span></span><br><span class="line"><span class="matrix">[m,n]</span> =<span class="built_in">size</span>(num);</span><br><span class="line">num = num(<span class="number">2</span>:m,:);</span><br><span class="line"><span class="comment">%获取恐龙图片的特征的矩阵的维数，去除初始化时第一行的无用数据</span></span><br><span class="line"><span class="matrix">[m,n]</span> = <span class="built_in">size</span>(d_k);</span><br><span class="line">d_k = d_k(<span class="number">2</span>:m,:);</span><br><span class="line"><span class="comment">%%</span></span><br><span class="line"><span class="comment">%文件夹'_f'中存放汽车图片的特征向量</span></span><br><span class="line"><span class="comment">%存放每个汽车图片特征的文件名</span></span><br><span class="line">file_name_q = dir(<span class="string">'q_f'</span>);</span><br><span class="line"><span class="comment">%获取特征文件的个数</span></span><br><span class="line">n_q = <span class="built_in">length</span>(file_name_q);</span><br><span class="line"><span class="comment">%初始化一个矩阵，存放汽车图片的所有的特征</span></span><br><span class="line">d_q = <span class="built_in">zeros</span>(<span class="number">1</span>,<span class="number">128</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">%按照文件名读这些特征及其个数，分别存放在矩阵d_q和矩阵中num</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">3</span>:n_q</span><br><span class="line">    <span class="comment">%组合文件名</span></span><br><span class="line">    name = strcat(<span class="string">'./q_f/'</span>,file_name_q(<span class="built_in">i</span>).name);</span><br><span class="line">    <span class="comment">%没个特征文件第一行为特征的维数个个数，跳过第一行，读取特征矩阵，并用d临时存储</span></span><br><span class="line">    d = textread(name,<span class="string">''</span>,<span class="string">'headerlines'</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="comment">%采用textread读取数据时，默认是以空格为间隔标志，没恶感特征向量都在结尾多了一个0 ，去除最后一维数据</span></span><br><span class="line">    d =d(:,<span class="number">1</span>:<span class="number">128</span>);</span><br><span class="line">    <span class="comment">%将所有汽车图片的特征向量存储在一个矩阵d_q中</span></span><br><span class="line">    d_q = <span class="matrix">[d_q ; d]</span>;</span><br><span class="line">    <span class="comment">%eval(['data_q_' num2str(i-2) '=d']);</span></span><br><span class="line">    <span class="comment">%从每个文件中读出每个图片特征的个数个维数</span></span><br><span class="line">     t = textread(<span class="matrix">[<span class="string">'./q_f/'</span> file_name_q(i).name]</span>,<span class="string">''</span>,<span class="number">1</span>);</span><br><span class="line">     <span class="comment">%将每个图片的特征和维数都存放在矩阵num中</span></span><br><span class="line">     num= <span class="matrix">[num;t]</span>;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">%end of loop</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%获取汽车图片的特征的矩阵的维数，去除初始化时第一行的无用数据</span></span><br><span class="line"><span class="matrix">[m,n]</span> = <span class="built_in">size</span>(d_q);</span><br><span class="line">d_q = d_q(<span class="number">2</span>:m,:);</span><br><span class="line"><span class="comment">%将恐龙和汽车的特征向量放在一个矩阵d中</span></span><br><span class="line">d = <span class="matrix">[d_k;d_q]</span>;</span><br><span class="line"><span class="comment">%%</span></span><br><span class="line"><span class="comment">%使用matlab内置的K-均值函数将所有的特征聚类</span></span><br><span class="line"><span class="comment">%idx = kmeans(d,10);</span></span><br><span class="line"><span class="comment">%使用K-中心点将所有的特征的聚类</span></span><br><span class="line">idx = KMeans(d,<span class="number">10</span>,<span class="number">2</span>);</span><br><span class="line"><span class="comment">%%</span></span><br><span class="line"><span class="comment">%初始化一个矩阵，用来记录每个图片特征给文件的由字典中的词的个数组成的向量</span></span><br><span class="line">dema = <span class="built_in">zeros</span>(<span class="number">190</span>,<span class="number">10</span>);</span><br><span class="line"><span class="comment">%设定每个图片特征在总的特征矩阵中的标志</span></span><br><span class="line">last = <span class="number">0</span>;</span><br><span class="line"><span class="comment">%两重循环，构建每个特征文件的向量，组成一个新的矩阵</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">190</span></span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">j</span> =<span class="number">1</span>:num(<span class="built_in">i</span>,<span class="number">1</span>)</span><br><span class="line">        dema(<span class="built_in">i</span>,idx(<span class="built_in">j</span>+last)) = dema(<span class="built_in">i</span>,idx(<span class="built_in">j</span>+last)) +<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    last = num(<span class="built_in">i</span>,<span class="number">1</span>);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">%分别提取出训练数据和测试数据，比例是2：1</span></span><br><span class="line">train_data = dema(<span class="number">1</span>:<span class="number">60</span>,:);</span><br><span class="line">train_data = <span class="matrix">[train_data;dema(<span class="number">96</span>:<span class="number">155</span>,:)]</span>;</span><br><span class="line"></span><br><span class="line">test_data = dema(<span class="number">61</span>:<span class="number">95</span>,:);</span><br><span class="line">test_data= <span class="matrix">[test_data;dema(<span class="number">156</span>:<span class="number">190</span>,:)]</span>;</span><br><span class="line"><span class="comment">%存储类别标志，对应训练数据和测试数据</span></span><br><span class="line">label_train = <span class="built_in">zeros</span>(<span class="number">1</span>,<span class="number">60</span>);</span><br><span class="line">label_train = <span class="matrix">[label_train,ones(<span class="number">1</span>,<span class="number">60</span>)]</span>;</span><br><span class="line">label_train = label_train<span class="operator">'</span>;</span><br><span class="line"></span><br><span class="line">label_test = <span class="built_in">zeros</span>(<span class="number">1</span>,<span class="number">35</span>);</span><br><span class="line">label_test = <span class="matrix">[label_test,ones(<span class="number">1</span>,<span class="number">35</span>)]</span>;</span><br><span class="line">label_test = label_test<span class="operator">'</span>;</span><br><span class="line"><span class="comment">%%</span></span><br><span class="line"><span class="comment">%使用svmtrain函数训练</span></span><br><span class="line">model = svmtrain(label_train,train_data);</span><br><span class="line"><span class="comment">%用训练的数据预测待测试的数据</span></span><br><span class="line"><span class="matrix">[predice_label,accuracy,dec_values]</span> = svmpredict(label_test,test_data,model);</span><br><span class="line"></span><br><span class="line"><span class="comment">%end</span></span><br></pre></td></tr></table></figure></p>
+<p>KMeans是参考了网络资源：<br><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">label</span> = <span class="title">KMeans</span><span class="params">( data,K,mode)</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">%  -data </span></span><br><span class="line"><span class="comment">%  -K: number of clusters</span></span><br><span class="line"><span class="comment">%  -mode: </span></span><br><span class="line"><span class="comment">%   1: use kmeans cluster algorithm in matlab</span></span><br><span class="line"><span class="comment">%   2: k_medroid algorithm: use data points as k centers</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">N_samples = <span class="number">91024</span>;</span><br><span class="line">N_features = <span class="number">128</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">switch</span> (mode)</span><br><span class="line">    <span class="comment">%call system function KMeans</span></span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span> </span><br><span class="line">        label = kmeans(data,K);</span><br><span class="line">     <span class="comment">%use kmedroid method</span></span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span></span><br><span class="line">        <span class="keyword">for</span> testcase = <span class="number">1</span>:<span class="number">10</span><span class="comment">% do 10 times to get rid of the influence from Initial_center</span></span><br><span class="line">            K_center = Initial_center(data,K); <span class="comment">%select initial points randomly</span></span><br><span class="line">            changed_label = N_samples;</span><br><span class="line">            label = <span class="built_in">zeros</span>(<span class="number">1</span>,N_samples);</span><br><span class="line">            iteration_times = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span> changed_label~=<span class="number">0</span></span><br><span class="line">                cls_label = cell(<span class="number">1</span>,K);</span><br><span class="line">                <span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>: N_samples</span><br><span class="line">                    <span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">1</span> : K</span><br><span class="line">                        D(<span class="built_in">j</span>) = dis(data(<span class="built_in">i</span>,:),K_center(<span class="built_in">j</span>,:));</span><br><span class="line">                    <span class="keyword">end</span></span><br><span class="line">                    <span class="matrix">[~,label(i)]</span> = min(D);</span><br><span class="line">                    cls_label<span class="cell">&#123;label(i)&#125;</span> = <span class="matrix">[cls_label&#123;label(i)&#125; i]</span>;</span><br><span class="line">                <span class="keyword">end</span></span><br><span class="line">                changed_label = <span class="number">0</span>;</span><br><span class="line">                cls_center = <span class="built_in">zeros</span>(K,N_features);</span><br><span class="line">                <span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span> : K</span><br><span class="line">                    cls_center(<span class="built_in">i</span>,:) = mean(data(cls_label<span class="cell">&#123;i&#125;</span>,:));</span><br><span class="line">                    D1 = <span class="matrix">[]</span>;</span><br><span class="line">                    <span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">1</span>:<span class="built_in">size</span>(cls_label<span class="cell">&#123;i&#125;</span>,<span class="number">2</span>)<span class="comment">%number of samples clsutered in i-th class</span></span><br><span class="line">                        D1(<span class="built_in">j</span>) = dis(cls_center(<span class="built_in">i</span>,:),data(cls_label<span class="cell">&#123;i&#125;</span>(<span class="built_in">j</span>),:));</span><br><span class="line">                    <span class="keyword">end</span></span><br><span class="line">                    <span class="matrix">[~,min_ind]</span> = min(D1);</span><br><span class="line">                    <span class="keyword">if</span> ~<span class="built_in">isequal</span>(K_center(<span class="built_in">i</span>,:),data(cls_label<span class="cell">&#123;i&#125;</span>(min_ind),:))</span><br><span class="line">                        K_center(<span class="built_in">i</span>,:) = data(cls_label<span class="cell">&#123;i&#125;</span>(min_ind),:);</span><br><span class="line">                        changed_label = changed_label+<span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">end</span></span><br><span class="line">                <span class="keyword">end</span></span><br><span class="line">                iteration_times = iteration_times+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">end</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">center</span> = <span class="title">Initial_center</span><span class="params">(X,K)</span></span></span><br><span class="line">        rnd_Idx = randperm(N_samples,K);</span><br><span class="line">        center = X(rnd_Idx,:);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">res</span> = <span class="title">dis</span><span class="params">(X1,X2)</span></span></span><br><span class="line">        res = norm(X1-X2);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/02/07/test-caffe-windows/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">在Windows10上使用Visual Studio 2015 测试Caffe</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="use-svm-training" data-title="基于SVM的图像分类" data-url="http://yoursite.com/2017/02/09/use-svm-training/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"zhangxiaoya"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'zhangxiaoya'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 大眼睛男孩儿
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/mobile.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+</body>
+</html>
