@@ -10,20 +10,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="@(Program Primer)
 这本是在印象笔记中的一个小系列，当初用于自己整理学习，现在发现实验室有师弟师妹需要，整理成一篇文章。按照顺序，配置顺序是CUDA，OpenCV，MKL，Caffe,中间可能会有各种依赖的安装。
-这可能是我在2015年的最后一篇文章，因为我剩下的时间要完成毕业论文！！！">
+这可能是我在2015年的最后一篇文章，因为我剩下的时间要完成毕业论文！！！
+
+2017年3月19日更新">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ubuntu14.04 配置Caffe开发环境">
 <meta property="og:url" content="http://yoursite.com/2015/11/17/init-caffe-develop-kit-on-ubuntu-14-04/index.html">
 <meta property="og:site_name" content="Big Eyes Boy">
 <meta property="og:description" content="@(Program Primer)
 这本是在印象笔记中的一个小系列，当初用于自己整理学习，现在发现实验室有师弟师妹需要，整理成一篇文章。按照顺序，配置顺序是CUDA，OpenCV，MKL，Caffe,中间可能会有各种依赖的安装。
-这可能是我在2015年的最后一篇文章，因为我剩下的时间要完成毕业论文！！！">
+这可能是我在2015年的最后一篇文章，因为我剩下的时间要完成毕业论文！！！
+
+2017年3月19日更新">
 <meta property="og:image" content="http://7xi4ue.com1.z0.glb.clouddn.com/normal/deep_learning.jpg">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu14.04 配置Caffe开发环境">
 <meta name="twitter:description" content="@(Program Primer)
 这本是在印象笔记中的一个小系列，当初用于自己整理学习，现在发现实验室有师弟师妹需要，整理成一篇文章。按照顺序，配置顺序是CUDA，OpenCV，MKL，Caffe,中间可能会有各种依赖的安装。
-这可能是我在2015年的最后一篇文章，因为我剩下的时间要完成毕业论文！！！">
+这可能是我在2015年的最后一篇文章，因为我剩下的时间要完成毕业论文！！！
+
+2017年3月19日更新">
   
     <link rel="alternative" href="/atom.xml" title="Big Eyes Boy" type="application/atom+xml">
   
@@ -192,19 +198,30 @@
         <p>@(Program Primer)</p>
 <p>这本是在印象笔记中的一个小系列，当初用于自己整理学习，现在发现实验室有师弟师妹需要，整理成一篇文章。按照顺序，配置顺序是CUDA，OpenCV，MKL，Caffe,中间可能会有各种依赖的安装。</p>
 <p>这可能是我在2015年的最后一篇文章，因为我剩下的时间要完成毕业论文！！！</p>
+<blockquote>
+<p>2017年3月19日更新</p>
+</blockquote>
 <p><img src="http://7xi4ue.com1.z0.glb.clouddn.com/normal/deep_learning.jpg" alt="一起来学习"></p>
 <a id="more"></a>
 <h2 id="Ubuntu14-04_配置CUDA7-15">Ubuntu14.04 配置CUDA7.15</h2><p>主要还是参考之前的文章<a href="http://zhangxiaoya.github.io/2015/06/10/install-on-windows8-1/" target="_blank" rel="external">在Windows8.1安装配置CUDA</a>。</p>
 <p>下面是具体步骤：</p>
 <ol>
-<li>下载，在<a href="https://developer.nvidia.com/" target="_blank" rel="external">官网</a>上下载安装包，详细的地址在<a href="https://developer.nvidia.com/cuda-downloads" target="_blank" rel="external">这里</a>，选择与自己的电脑相匹配的条件，最后下载安装包就有1.1G。</li>
-<li>我是选择的使用<code>.run</code>安装文件，若是选择使用<code>deb</code>包安装，据说是比较简单，可以参考<a href="https://ouxinyu.github.io/Blogs/20140723001.html" target="_blank" rel="external">这里</a>。</li>
-<li>若是使用<code>run</code>文件安装，可能会遇到一些麻烦，下面是我的步骤，我是参考了<a href="http://developer.download.nvidia.com/compute/cuda/7.5/Prod/docs/sidebar/CUDA_Installation_Guide_Linux.pdf" target="_blank" rel="external">官方文档</a>，这里面有点坑。</li>
-<li>检查硬件是不是支持，我的系统是ubuntu14.04 64位，硬件是NVIDIA GT755M，是支持的，也可以使用命令<code>lspci | grep -i nvidia</code>检查支持否。</li>
-<li>停止自身的显卡服务，这里文档是有点坑了，不需要创建什么黑名单文件，直接在一个文本模式下，停止显卡服务就可以，安装过程中会自动创建黑名单文件，使用命令<code>sudo service lightdm stop</code>。（安装文档说的做，安装不会有什么问题，就是无法进入桌面了）</li>
-<li>然后使用命令安装就可以了，中间让你选择几个文件目录，安装过程还是挺快的。</li>
-<li>完成后，输入命令<code>sudo service lightdm start</code>重新开启显卡服务，这时候就可以进入桌面了。</li>
-<li>添加环境变量，在<code>.profile</code>或者<code>.bashrc</code>文件的最后添加下面两行。</li>
+<li><p>下载，在<a href="https://developer.nvidia.com/" target="_blank" rel="external">官网</a>上下载安装包，详细的地址在<a href="https://developer.nvidia.com/cuda-downloads" target="_blank" rel="external">这里</a>，选择与自己的电脑相匹配的条件，最后下载安装包就有1.1G。</p>
+</li>
+<li><p>我是选择的使用<code>.run</code>安装文件，若是选择使用<code>deb</code>包安装，据说是比较简单，可以参考<a href="https://ouxinyu.github.io/Blogs/20140723001.html" target="_blank" rel="external">这里</a>。</p>
+</li>
+<li><p>若是使用<code>run</code>文件安装，可能会遇到一些麻烦，下面是我的步骤，我是参考了<a href="http://developer.download.nvidia.com/compute/cuda/7.5/Prod/docs/sidebar/CUDA_Installation_Guide_Linux.pdf" target="_blank" rel="external">官方文档</a>。</p>
+</li>
+<li><p>检查硬件是不是支持，我的系统是ubuntu14.04 64位，硬件是NVIDIA GT755M，是支持的，也可以使用命令<code>lspci | grep -i nvidia</code>检查支持否。</p>
+</li>
+<li><p>停止自身的显卡服务，按照文档里面说的，创建一个黑名单，阻止开源的显卡驱动，然后进入文本模式下，停止显卡服务就可以，使用命令<code>sudo service lightdm stop</code>。（<strong>这里需要注意的是，若是笔记本双显卡，会遇到OpenGL的问题，若是双显卡最好不要安装OpenGL，否则就会在登录界面无穷循环，具体原因在文档里面有说明</strong>）</p>
+</li>
+<li><p>然后使用命令安装就可以了，中间让你选择几个文件目录，安装过程还是挺快的。</p>
+</li>
+<li><p>完成后，输入命令<code>sudo service lightdm start</code>重新开启显卡服务，这时候就可以进入桌面了。</p>
+</li>
+<li><p>添加环境变量，在<code>.profile</code>或者<code>.bashrc</code>文件的最后添加下面两行。</p>
+</li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=/usr/<span class="built_in">local</span>/cuda-<span class="number">7.5</span>/bin:<span class="variable">$PATH</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=/usr/<span class="built_in">local</span>/cuda-<span class="number">7.5</span>/lib64:<span class="variable">$LD_LIBRARY_PATH</span></span><br></pre></td></tr></table></figure>
 <p>测试一下，<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">nvcc -V</span><br><span class="line">nvcc: NVIDIA (R) Cuda compiler driver</span><br><span class="line">Copyright (c) <span class="number">2005</span>-<span class="number">2015</span> NVIDIA Corporation</span><br><span class="line">Built <span class="function_start"><span class="keyword">on</span></span> Tue_Aug_11_14:<span class="number">27</span>:<span class="number">32</span>_CDT_2015</span><br><span class="line">Cuda compilation tools, release <span class="number">7.5</span>, V7<span class="number">.5</span><span class="number">.17</span></span><br></pre></td></tr></table></figure></p>
@@ -216,12 +233,20 @@
 <blockquote>
 <p>新建cuda.conf，并编辑：<br>sudo gedit /etc/ld.so.conf.d/cuda.conf<br>添加内容：/usr/local/cuda/lib64/lib<br>sudo ldconfig -v</p>
 </blockquote>
+<p><strong>编译Sample</strong><br>CUDA本身提供了很多例子，可以进入目录，make一下，若是这个过程没有问题，基本上CUDA就安装成功了。</p>
 <h4 id="主要参考">主要参考</h4><ol>
 <li><a href="https://ouxinyu.github.io/Blogs/20140723001.html" target="_blank" rel="external">Caffe + Ubuntu 15.04 + CUDA 7.0 新手安装配置指南</a></li>
 <li><a href="http://blog.csdn.net/xizero00/article/details/43227019" target="_blank" rel="external">ubuntu14.04安装cuda</a></li>
 <li><a href="http://www.cnblogs.com/platero/p/3993877.html" target="_blank" rel="external">Caffe + Ubuntu 14.04 64bit + CUDA 6.5 配置说明</a></li>
+<li><a href="http://blog.csdn.net/masa_fish/article/details/51882183" target="_blank" rel="external">Ubuntu 14.04 上安装 CUDA 7.5/8.0 超详细教程</a></li>
+<li><a href="https://www.zhihu.com/question/48027732" target="_blank" rel="external">有没有双显卡笔记本在Ubuntu下使用cuda的解决方案？</a></li>
 </ol>
-<h2 id="Ubuntu14-04_安装OpenCV2-9">Ubuntu14.04 安装OpenCV2.9</h2><p>这个安装OpenCV的方法与以前的有点区别，之前我都是直接编译安装，但是这次需要用到的CUDA，用了别人写好的Shell脚本，但是也有不少的问题，最后还是没有成功安装2.4.9，安装是3.0.0.</p>
+<h2 id="Ubuntu14-04_安装OpenCV2-9">Ubuntu14.04 安装OpenCV2.9</h2><p><strong>2017年3月19日更新</strong></p>
+<blockquote>
+<p>这个最好还是用在<a href="https://github.com/jayrambhia/Install-OpenCV" target="_blank" rel="external">Github</a>上的这个编译OpenCV的脚本，很好用。</p>
+</blockquote>
+<hr>
+<p>这个安装OpenCV的方法与以前的有点区别，之前我都是直接编译安装，但是这次需要用到的CUDA，用了别人写好的Shell脚本，但是也有不少的问题，最后还是没有成功安装2.4.9，安装是3.0.0.</p>
 <p>主要是参考了下面的两篇文章：</p>
 <ul>
 <li><a href="https://ouxinyu.github.io/Blogs/20140723001.html" target="_blank" rel="external">Caffe + Ubuntu 15.04 + CUDA 7.0 新手安装配置指南</a></li>
@@ -265,9 +290,7 @@
 <li>一定要注意在下载页面会有一个序列号，要记录下来，在安装过程中会使用的。</li>
 </ol>
 <p><strong>最后，配置MKL环境</strong><br>新建intel_mkl.conf， 并编辑：</p>
-<blockquote>
-<p>$ sudo gedit /etc/ld.so.conf.d/intel_mkl.conf<br>/opt/intel/lib/intel64<br>/opt/intel/mkl/lib/intel64<br>$ sudo ldconfig -v</p>
-</blockquote>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ sudo gedit /etc/ld<span class="class">.so</span><span class="class">.conf</span><span class="class">.d</span>/intel_mkl<span class="class">.conf</span></span><br><span class="line">/opt/intel/lib/intel64</span><br><span class="line">/opt/intel/mkl/lib/intel64</span><br><span class="line">$ sudo ldconfig -v</span><br></pre></td></tr></table></figure>
 <h4 id="参考-1">参考</h4><ol>
 <li><a href="http://www.netlib.org/blas/" target="_blank" rel="external">BLAS (Basic Linear Algebra Subprograms)</a></li>
 <li><a href="http://blog.csdn.net/g_spider/article/details/6054990" target="_blank" rel="external">BLAS库学习</a></li>
@@ -391,11 +414,15 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">MKL</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">OpenCV</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Ubuntu14.04</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Ubuntu</a>
         		</li>
       		
 		</ul>
@@ -923,6 +950,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">数据库概念</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MKL</a>
               </li>
             
             <div class="clearfix"></div>
