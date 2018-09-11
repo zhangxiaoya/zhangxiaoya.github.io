@@ -164,6 +164,93 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Back-propagation-from-abstract-to-specific" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/11/Back-propagation-from-abstract-to-specific/">反向传播理解--从抽象到具体</a>
+    </h1>
+  
+
+        
+        <a href="/2018/09/11/Back-propagation-from-abstract-to-specific/" class="archive-article-date">
+  	<time datetime="2018-09-11T06:52:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>神经网络从计算的角度看，数据是从底层输入，经过每一层，根据与该层之间的权重计算以一个中间结果，这个中间结果再经过一个非线性激活函数作用，得到该层的输出结果，然后把该层的输出结果传递给下一层，继续进行下一层的中间结果计算与非线性函数激活，直到最后一层，得到最终的结果，最后的结果或者用来表示分类结果，或者表示回归结果。<br>如果一个网络训练好了，所有层之间的权重都是确定好的，给定任意的一个输入，根据每一层之间的权重系数，从底层到顶层，计算出最终的结果，这一阶段叫做推理或者叫做测试。<br>反向传播发生是在学习过程中，每一次迭代根据计算出的结果与实际对应结果的误差，反向调整网络层之间的系数。<br>网络结构对于解决特定的问题是关键，但是最底层还是网络的反向传播过程，这是学习过程的基础，理解这部分，才能更清晰的理解一个网络结构，以及如何修改网络或者涉及全新的网络。<br>很久之前，写过一个从BP神经网络理解反向传播文章，那是从细节描述，反而理解起来不是很容易，尤其是跟同事讲或者带新人的时候，不太容易让他们清晰的理解反向传播的过程。这里反过来，从高层的抽象开始，逐步到细节，先从整体上有一个概念，然后逐步细化。</p>
+        
+          <a class="article-more-a" href="/2018/09/11/Back-propagation-from-abstract-to-specific/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">BP</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/BasicIntrocution/" class="article-tag-list-link color3">Basic Introcution</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/09/11/Back-propagation-from-abstract-to-specific/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-interest-interview-one" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -634,94 +721,6 @@
 
 
   
-    <article id="post-from-simple-perceptron-to-BP" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/23/from-simple-perceptron-to-BP/">从双层感知机到BP神经网络的Delta规则</a>
-    </h1>
-  
-
-        
-        <a href="/2017/01/23/from-simple-perceptron-to-BP/" class="archive-article-date">
-  	<time datetime="2017-01-22T23:15:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>@(人工智能学习)</p>
-<p>这是研一学习一门课程的课程实践，总结在印象笔记，还做了一个小的学术报告，当时和另一位实验室小伙伴合作完成BP神经网络的推导以及部分应用，参考的是一本外文书籍（影印版）的部分章节，有我自己翻译的部分，也有自己的理解，整理在一起，放在自己的博客中方便师弟师妹学习。</p>
-        
-          <a class="article-more-a" href="/2017/01/23/from-simple-perceptron-to-BP/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">BP神经网络</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/机器学习与算法/" class="article-tag-list-link color3">机器学习与算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/01/23/from-simple-perceptron-to-BP/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1100,6 +1099,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">排序</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">BP</a>
               </li>
              
               <li class="article-tag-list-item">
