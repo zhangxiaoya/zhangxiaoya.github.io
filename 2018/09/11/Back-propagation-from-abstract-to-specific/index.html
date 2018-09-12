@@ -16,7 +16,7 @@
 <meta property="og:description" content="神经网络从计算的角度看，数据是从底层输入，经过每一层，根据与该层之间的权重计算以一个中间结果，这个中间结果再经过一个非线性激活函数作用，得到该层的输出结果，然后把该层的输出结果传递给下一层，继续进行下一层的中间结果计算与非线性函数激活，直到最后一层，得到最终的结果，最后的结果或者用来表示分类结果，或者表示回归结果。如果一个网络训练好了，所有层之间的权重都是确定好的，给定任意的一个输入，根据每一层之">
 <meta property="og:image" content="http://7xi4ue.com1.z0.glb.clouddn.com/newBP/newBP-1.png">
 <meta property="og:image" content="http://7xi4ue.com1.z0.glb.clouddn.com/newBP/newBP-2.png">
-<meta property="og:image" content="http://7xi4ue.com1.z0.glb.clouddn.com/newBP/newBP-4.png">
+<meta property="og:image" content="http://7xi4ue.com1.z0.glb.clouddn.com/newBP/newBP-3.png">
 <meta property="og:image" content="http://7xi4ue.com1.z0.glb.clouddn.com/newBP/newBP-4.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="反向传播理解--从抽象到具体">
@@ -194,7 +194,7 @@
 <p>一般的网络结构都类似与这个样子，下面图描述了网络的前向计算过程中的数据传递。</p>
 <p><img src="http://7xi4ue.com1.z0.glb.clouddn.com/newBP/newBP-2.png" alt=""></p>
 <p>从图中可以看出，第1、2、3层之间的计算过程。前向传递理解起来比较容易，不管这样抽象的表示，还是具体的网络实现。下面看看反向传递是怎么回事。<br>下图是反向传播时，从顶端的误差如何反向传递给下面的每一层。</p>
-<p><img src="http://7xi4ue.com1.z0.glb.clouddn.com/newBP/newBP-4.png" alt=""></p>
+<p><img src="http://7xi4ue.com1.z0.glb.clouddn.com/newBP/newBP-3.png" alt=""></p>
 <p>第3层是最后一层，可以直接计算误差的损失，根据损失计算对权重的导数；但是到了内部的层，没有办法直接获取损失，只能通过上图中的链式规则计算对内层权重大导数。<br>从上面的图中发现，层次越深，这个导数计算越多，这哪能受得了，每一层的导数对输入的导数，在下面一层的计算中还会有用，所以，可以把这一部分直接传递给下面的层，这也就是误差回传的本质。<br>对上面的图进行修改能更清晰的理解。</p>
 <p><img src="http://7xi4ue.com1.z0.glb.clouddn.com/newBP/newBP-4.png" alt=""></p>
 <h2 id="从细节理解反向传播">从细节理解反向传播</h2><p>这个在去年写的一篇文章中很详细的推到了，文章地址在<a href="http://zhangxiaoya.github.io/2017/01/23/from-simple-perceptron-to-BP/" target="_blank" rel="external">http://zhangxiaoya.github.io/2017/01/23/from-simple-perceptron-to-BP/</a></p>
